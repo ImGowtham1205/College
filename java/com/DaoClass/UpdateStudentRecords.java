@@ -1,0 +1,69 @@
+package com.DaoClass;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+
+public class UpdateStudentRecords {
+	
+	private String url = "jdbc:mysql://localhost:3306/college";
+    private String user = "root";
+    private String pass = "test";
+	
+  //Method For To Update Selected Student Record Using Student Rollno & Department Number As Parameter
+	public void upadteStudent(int rollno,String name,int dno,String email,String blood,String phone,String address) {
+		 String table = getTableName(dno);
+		 Connection con=null;
+		 PreparedStatement ps=null;
+		 
+		 //Code For Update Selected Student Record
+	        try {
+	        	Class.forName("com.mysql.jdbc.Driver");
+	            con = DriverManager.getConnection(url, user, pass);
+	            con.setAutoCommit(false);
+	            String qry = "update " + table + " set Sname=?,Email=?,Blood_Group=?,phoneno=?,Address=? where Rollno=?";
+	            ps = con.prepareStatement(qry);
+	            ps.setString(1, name);
+	            ps.setString(2, email);
+	            ps.setString(3, blood);
+	            ps.setString(4, phone);
+	            ps.setString(5, address);
+	            ps.setInt(6, rollno);
+	            int row=ps.executeUpdate();
+	            if(row>0)
+	            	con.commit();
+	            else
+	            	con.rollback();
+	        }
+	        
+	        catch(Exception e) {
+	        	e.printStackTrace();
+	        }
+	        
+	        //Close The Connection Using Finally Block
+	        finally {
+	        	try {
+	        		if(ps!=null) ps.close();
+	        	}catch(Exception e) {}
+	        	try {
+	        		if(con!=null) con.close();
+	        	}catch(Exception e) {}
+	        }
+	}
+	
+	//Method For Getting Table Name
+	private String getTableName(int dno) {
+        switch (dno) {
+            case 5: return "Bcom_general";
+            case 10: return "Bcom_cs";
+            case 15: return "Bcom_AF";
+            case 20: return "Bcom_BM";
+            case 25: return "Bcom_ISM";
+            case 30: return "Bcom_CA";
+            case 35: return "BBA";
+            case 40: return "Bsc_CS";
+            case 45: return "BCA";
+            default: return null;
+        }
+}
+}
