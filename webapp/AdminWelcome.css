@@ -1,0 +1,155 @@
+@charset "UTF-8";
+
+nav {
+      background-color: #333;
+      overflow: hidden;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+}
+
+.nav-links {
+      display: flex;
+      gap: 20px;
+}
+
+nav a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 15px;
+}
+
+nav a:hover {
+      background-color: #575757;
+      border-radius: 4px;
+}
+
+.logout-form button {
+      background-color: #e60000;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+}
+
+.logout-form button:hover {
+      background-color: #cc0000;
+}
+
+.admin-container {
+      text-align: center;
+      margin-top: 60px;
+}
+
+.button-group a {
+      margin: 10px;
+      display: inline-block;
+      padding: 10px 15px;
+      background-color: #007BFF;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+}
+
+.button-group a:hover {
+      background-color: #0056b3;
+}
+    
+/* Container & Subject Cards */
+.container {
+  padding: 30px 20px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.container h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #004080;
+}
+
+.subject-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.subject-card {
+  background-color: white;
+  padding: 20px;
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.subject-card:hover {
+  transform: translateY(-5px);
+  background-color: #e6f0ff;
+}
+
+/* Responsive Navigation */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+.nav-links {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.nav-links a {
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+}
+
+.logout-form {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.logout-form button {
+    width: 100%;
+}
+}
+
+/* Responsive Admin Buttons */
+@media (max-width: 600px) {
+  .button-group a {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    text-align: center;
+  }
+}
+
+/* Responsive Container and Cards */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 10px;
+  }
+
+  .container h3 {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .subject-grid {
+    gap: 10px;
+  }
+
+  .subject-card {
+    font-size: 16px;
+    padding: 15px;
+  }
+}
