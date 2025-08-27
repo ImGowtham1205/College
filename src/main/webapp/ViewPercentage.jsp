@@ -38,7 +38,7 @@
 		name=fs.fetchName(rollno);
 		dep=fs.fetchDname(rollno);
 		
-		//Getting Individula Papers Attendance Details By Calling getAttendanceDetails() Method using Student RollNo & Subject Code As Arugment
+		//Getting Individulal Papers Attendance Details By Calling getAttendanceDetails() Method using Student RollNo & Subject Code As Arugment
 		FetchAttendanceDetails fad=new FetchAttendanceDetails();
 		List<Attendance>list=fad.getAttendanceDetails(rollno, code);
 %>
