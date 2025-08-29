@@ -18,7 +18,7 @@ public class StudentLogin extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			//Read The Values From The Staff Login Form
-			int id=Integer.parseInt(request.getParameter("student-id"));
+			int id=Integer.parseInt(request.getParameter("id"));
 			String password=request.getParameter("password");
 			
 			//It Checks The Login credentials By Using checkStudent() Method If It Returns True Then Redirect To The Welcome Page 

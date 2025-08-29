@@ -18,7 +18,7 @@ public class AdminLogin extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//Read The Values From The Admin Login Form
-		int aid=Integer.parseInt(request.getParameter("Admin-id"));
+		int aid=Integer.parseInt(request.getParameter("id"));
 		String password=request.getParameter("password");
 		
 		//It Checks The Login credentials By Using checkAdmin() Method If It Returns True Then Redirect To The Welcome Page 

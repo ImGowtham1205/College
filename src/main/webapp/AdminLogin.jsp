@@ -31,17 +31,20 @@
   
   <!-- Admin Login Form -->
     <h2>Admin Login</h2>
-    <form action="AdminLogin" method="post">
+    <form id="loginForm" action="AdminLogin" method="post" novalidate>
       <div class="input-group">
-        <label for="Admin-id">Admin ID</label>
-        <input type="number" id="Admin-id" name="Admin-id" required />
+        <label for="id">Admin ID</label>
+        <input type="number" id="id" name="id" required />
+        <span class="error-text"></span>
       </div>
       <div class="input-group">
         <label for="password">Password</label>
         <input type="password" id="password" name="password" required />
+        <span class="error-text"></span>
       </div>
       <button type="submit">Login</button>
     </form>
   </div>
+  <script src="jscodes/Login.js"></script>
 </body>
 </html>    

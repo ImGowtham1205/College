@@ -31,17 +31,20 @@
   
    <!-- HOD Login Form -->
     <h2>Hod Login</h2>
-    <form action="HodLogin" method="post">
+    <form id="loginForm" action="HodLogin" method="post" novalidate>
       <div class="input-group">
-        <label for="hod-id">HOD ID</label>
-        <input type="number" id="hod-id" name="hod-id" required />
+        <label for="id">HOD ID</label>
+        <input type="number" id="id" name="id" required />
+        <span class="error-text"></span>
       </div>
       <div class="input-group">
         <label for="password">Password</label>
         <input type="password" id="password" name="password" required />
+        <span class="error-text"></span>
       </div>
       <button type="submit">Login</button>
     </form>
   </div>
+  <script src="jscodes/Login.js"></script>
 </body>
 </html>

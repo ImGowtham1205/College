@@ -29,21 +29,22 @@
   </div>
   <%} %>
   
-  <!-- Student Login Form -->
-  
+  <!-- Student Login Form --> 
     <h2>Student Login</h2>
-    <form action="StudentLogin" method="post">
+    <form id="loginForm"  action="StudentLogin" method="post" novalidate>
       <div class="input-group">
-        <label for="student-id">Student ID</label>
-        <input type="number" id="student-id" name="student-id" required />
+        <label for="id">Student ID</label>
+        <input type="number" id="id" name="id" required />
+        <span class="error-text"></span>
       </div>
       <div class="input-group">
         <label for="password">Password</label>
         <input type="password" id="password" name="password" required />
+        <span class="error-text"></span>
       </div>
-      <button type="submit">Login</button>
-      
+      <button type="submit">Login</button>    
     </form>
   </div>
+  <script src="jscodes/Login.js"></script>
 </body>
 </html>

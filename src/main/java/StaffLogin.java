@@ -18,7 +18,7 @@ public class StaffLogin extends HttpServlet {
 	StaffVerify sv=new StaffVerify();
  	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
  		//Read The Values From The Staff Login Form
- 		int id=Integer.parseInt(request.getParameter("staff-id"));
+ 		int id=Integer.parseInt(request.getParameter("id"));
 		String pass=request.getParameter("password");
 		
 		//It Checks The Login credentials By Using checkStaff() Method If It Returns True Then Redirect To The Welcome Page 

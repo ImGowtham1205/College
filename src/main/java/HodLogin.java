@@ -18,7 +18,7 @@ public class HodLogin extends HttpServlet {
 	HodVerify hv=new HodVerify();
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			//Read The Values From The HOD Login Form
-			int Hodid=Integer.parseInt(request.getParameter("hod-id"));
+			int Hodid=Integer.parseInt(request.getParameter("id"));
 			String pass=request.getParameter("password");
 			
 			//It Checks The Login credentials By Using checkStaff() Method If It Returns True Then Redirect To The Welcome Page 
