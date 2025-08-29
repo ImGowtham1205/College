@@ -15,7 +15,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Assign Subject</title>
-  <link rel="stylesheet" href="AssignSubject.css" />
+  <link rel="stylesheet" href="csscodes/AssignSubject.css" />
 </head>
 <body>
 	<%! String name,hodname;%>

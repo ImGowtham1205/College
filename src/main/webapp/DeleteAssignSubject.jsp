@@ -15,7 +15,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Delete Assign Subject</title>
-<link rel="stylesheet" href="UpdateAssignSubject.css" />
+<link rel="stylesheet" href="csscodes/UpdateAssignSubject.css" />
 </head>
 <body>
 	<%! String name,hodname;%>

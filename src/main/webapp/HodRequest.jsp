@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Request To Admin</title>
-<link rel="stylesheet" href="StaffRequest.css" />
+<link rel="stylesheet" href="csscodes/StaffRequest.css" />
 </head>
 <body>
 <%

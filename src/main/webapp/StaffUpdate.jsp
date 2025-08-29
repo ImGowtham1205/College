@@ -36,7 +36,7 @@ if (session.getAttribute("Dno") != null)
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Update Staff Details</title>
-  <link rel="stylesheet" href="UpdatePage.css" />
+  <link rel="stylesheet" href="csscodes/UpdatePage.css" />
 </head>
 <body>
 

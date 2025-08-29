@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Change Password</title>
- <link rel="stylesheet" href="ChangeAdminPassword.css" />
+ <link rel="stylesheet" href="csscodes/ChangeAdminPassword.css" />
 </head>
 <body>
 	<%

@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Confirm Password</title>
- <link rel="stylesheet" href="ConfirmPassword.css" />
+ <link rel="stylesheet" href="csscodes/ConfirmPassword.css" />
 </head>
 <body>
 <%!String name=" "; %>

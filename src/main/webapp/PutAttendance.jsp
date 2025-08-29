@@ -13,7 +13,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Put Attendance</title>
-<link rel="stylesheet" href="PutAttendance.css" />
+<link rel="stylesheet" href="csscodes/PutAttendance.css" />
 
 <script>
   // Select-all that only touches row radios (names beginning with "status")

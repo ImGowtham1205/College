@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>View Assign Subject</title>
-<link rel="stylesheet" href="HodWelcome.css" />
+<link rel="stylesheet" href="csscodes/HodWelcome.css" />
 </head>
 <body>
 

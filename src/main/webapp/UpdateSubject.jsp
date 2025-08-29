@@ -7,7 +7,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Update Assign Subject</title>
-  <link rel="stylesheet" href="HodWelcome.css" />
+  <link rel="stylesheet" href="csscodes/HodWelcome.css" />
 </head>
 <body>
 	<%! String name=" "; %>

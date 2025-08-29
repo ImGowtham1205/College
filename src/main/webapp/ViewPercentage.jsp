@@ -11,7 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <title>ViewAttendance</title>
-<link rel="stylesheet" href="ViewPercentage.css" />
+<link rel="stylesheet" href="csscodes/ViewPercentage.css" />
 </head>
 <body>
 	<%!String name,dep; %>

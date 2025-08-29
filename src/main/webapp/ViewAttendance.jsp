@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>View Attendance</title>
-<link rel="stylesheet" href="ViewAttendance.css" />
+<link rel="stylesheet" href="csscodes/ViewAttendance.css" />
 </head>
 <body>
 <%! 

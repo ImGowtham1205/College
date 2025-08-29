@@ -7,7 +7,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Student Registration</title>
-  <link rel="stylesheet" href="AddStudent.css" />
+  <link rel="stylesheet" href="csscodes/AddStudent.css" />
 </head>
 <body>
 <%! int aid; 
