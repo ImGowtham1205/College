@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>View Attendance</title>
+<link rel="icon" type="image/png" href="<%= request.getContextPath() %>/Image/favicon.png">
 <link rel="stylesheet" href="csscodes/ViewAttendance.css" />
 </head>
 <body>
@@ -53,18 +54,30 @@
     String percent = String.format("%.0f", totalpercent);
 %>
 
+<!-- Overlay for sidebar -->
+<div id="overlay" onclick="closeSidebar()"></div>
+
 <!-- Navigation Bar-->
 <nav>
-    <div class="nav-left">Welcome, <%= name %></div>
-    <div class="nav-links">
+    <div class="nav-left-group">
+        <!-- Hamburger Icon -->
+        <div class="menu-toggle" id="menuToggle" onclick="toggleMenu()">☰</div>
+        <div class="nav-left">Welcome, <%= name %></div>
+    </div>
+
+    <!-- Logout always on right -->
+    <form action="Logout" method="post" class="logout-form">
+        <button class="logout-btn">Logout</button>
+    </form>
+</nav> 
+    <div class="sidebar" id="sidebarMenu">
         <a href="StudentWelcome.jsp">Home</a>
         <a href="PersonalInfo.jsp">Personal Info</a>
         <a href="CourseDetails.jsp">Course Details</a>
         <a href="ChangePassword.jsp">Change Password</a>
         <a href="StudentRequest.jsp">Update Personal Info</a>
-        <form action="Logout" method="post"><button class="logout-btn">Logout</button></form>
     </div>
-</nav>
+
 
 <div class="container">
     <div class="section">
@@ -102,5 +115,6 @@
     </div>
 </div>
 <script src="jscodes/ViewAttendance.js"></script> 
+<script src="jscodes/Menu.js"></script>
 </body>
 </html>

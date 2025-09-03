@@ -10,22 +10,22 @@ window.addEventListener("DOMContentLoaded", function () {
 });
 
 // Form validation
-const form = document.getElementById("loginForm");
+const form = document.getElementById("PassForm");
 const inputs = form.querySelectorAll("input[required]");
 
 form.addEventListener("submit", function (e) {
   let valid = true;
 
   inputs.forEach(input => {
-    const errorText = input.parentElement.querySelector(".error-text");
+    const errorText = input.nextElementSibling; 
 
     if (!input.value.trim()) {
-      if (input.id === "id") {
-        errorText.textContent = "Please Enter Your ID";
-      } else if (input.id === "password") {
-        errorText.textContent = "Please enter your Password";
-      } else {
-        errorText.textContent = "This field is required";
+      if (input.id === "currentPassword") {
+        errorText.textContent = "Please enter your Current Password";
+      } else if (input.id === "newPassword") {
+        errorText.textContent = "Please enter your New Password";
+      } else if (input.id === "confirmPassword") {
+        errorText.textContent = "Please enter your Confirm Password";
       }
 
       input.classList.add("invalid", "shake");
@@ -46,7 +46,7 @@ form.addEventListener("submit", function (e) {
 // Live validation while typing
 inputs.forEach(input => {
   input.addEventListener("input", function () {
-    const errorText = this.parentElement.querySelector(".error-text");
+    const errorText = this.nextElementSibling;
     if (this.value.trim()) {
       errorText.textContent = "";
       this.classList.remove("invalid");

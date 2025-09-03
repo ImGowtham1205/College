@@ -24,7 +24,7 @@
   String error = request.getParameter("error");
   if ("unauthorized".equals(error)) {
   %>
-  	<div class="error-msg">
+  	<div class="error-msg" id="errorMsg">
     Incorrect ID Or Password .
   </div>
   <%} %>

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" import="com.DaoClass.*,java.util.*"%>
 
 <%
-	//Read The Values from The View Attendance Function
+    // Read The Values from The View Attendance Function
     String subject = request.getParameter("subject");
     String code = request.getParameter("code");
 %>
@@ -10,53 +10,69 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ViewAttendance</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>View Attendance</title>
+<link rel="icon" type="image/png" href="<%= request.getContextPath() %>/Image/favicon.png">
 <link rel="stylesheet" href="csscodes/ViewPercentage.css" />
 </head>
 <body>
-	<%!String name,dep; %>
+<%! String name, dep; %>
 
-	<%
-		//If The User Logout Their Session After Click The Backwards Button It Will Not Again Redirect To The Previous Web Page Activity
-		response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate"); // HTTP 1.1
-		response.setHeader("Pragma", "no-cache"); // HTTP 1.0
-		response.setHeader("Expires", "0"); // Proxies
+<%
+    // Prevent back button after logout
+    response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+    response.setHeader("Pragma", "no-cache");
+    response.setHeader("Expires", "0");
 
-		 //If The User Enter Their Login credentials In The Login Form Then Only The User Are Allow To Access This Page
-		if(session.getAttribute("Rollno") == null) {
-    		response.sendRedirect("StudentLogin.jsp");
-    		return; 
-		
-		}
-		
-		//Read The Student Rollno from session 
-		String id=session.getAttribute("Rollno").toString();
-		int rollno=Integer.parseInt(id);
-		
-		//Getting Student Name & Department Name By Calling fetchName() & fetchDname() Method Using Student RollNo As Arugment
-		FetchStudent fs=new FetchStudent();
-		name=fs.fetchName(rollno);
-		dep=fs.fetchDname(rollno);
-		
-		//Getting Individulal Papers Attendance Details By Calling getAttendanceDetails() Method using Student RollNo & Subject Code As Arugment
-		FetchAttendanceDetails fad=new FetchAttendanceDetails();
-		List<Attendance>list=fad.getAttendanceDetails(rollno, code);
+    // Only allow access if user logged in
+    if(session.getAttribute("Rollno") == null) {
+        response.sendRedirect("StudentLogin.jsp");
+        return; 
+    }
+
+    // Read Rollno from session
+    String id=session.getAttribute("Rollno").toString();
+    int rollno=Integer.parseInt(id);
+
+    // Fetch student name and department
+    FetchStudent fs=new FetchStudent();
+    name=fs.fetchName(rollno);
+    dep=fs.fetchDname(rollno);
+
+    // Fetch attendance details
+    FetchAttendanceDetails fad=new FetchAttendanceDetails();
+    List<Attendance> list = fad.getAttendanceDetails(rollno, code);
 %>
-	<!-- Navigation Bar-->
-	<nav>
-    <div class="nav-left">Welcome,<%=name %> </div>
-    <div class="nav-links">
-    	<a href="StudentWelcome.jsp">Home</a>
+
+<!-- Overlay for sidebar -->
+<div id="overlay" onclick="closeSidebar()"></div>
+
+<!-- Navigation Bar -->
+<nav>
+    <div class="nav-left-group">
+        <!-- Hamburger Icon -->
+        <div class="menu-toggle" id="menuToggle" onclick="toggleMenu()">☰</div>
+        <div class="nav-left">Welcome, <%= name %></div>
+    </div>
+
+    <!-- Logout always on right -->
+    <form action="Logout" method="post" class="logout-form">
+        <button class="logout-btn">Logout</button>
+    </form>
+</nav>
+    <!-- Sidebar Menu -->
+    <div class="sidebar" id="sidebarMenu">
+        <a href="StudentWelcome.jsp">Home</a>
         <a href="PersonalInfo.jsp">Personal Info</a>
         <a href="CourseDetails.jsp">Course Details</a>
         <a href="ChangePassword.jsp">Change Password</a>
         <a href="ViewAttendance.jsp">View Attendance</a>
         <a href="StudentRequest.jsp">Update Personal Info</a>
-        <form action="Logout" method="post"><button class="logout-btn">Logout</button></form>
     </div>
-</nav>
-	
-	<!-- Display Subject Detail -->
+
+<!-- Main Content -->
+<div class="container">
+    <!-- Info Card -->
     <div class="info">
         <h2>Attendance Details (Class-wise)</h2>
         <p><b>Programme Name</b>: <%=dep %></p>
@@ -65,7 +81,7 @@
         <p><b>Student RollNo</b>: <%=rollno %></p>
     </div>
 
-	<!-- Display Subject Attendance Details -->
+    <!-- Attendance Table -->
     <table>
         <thead>
             <tr>
@@ -76,12 +92,11 @@
             </tr>
         </thead>
         <tbody>
-        
-        <%for(Attendance a:list){ 
-        	String date=a.getDate();
-        	String time=a.getTime();
-        	String staff=a.getStaff_name();
-        	String attendance=a.getAttendance();
+        <% for(Attendance a:list) { 
+            String date = a.getDate();
+            String time = a.getTime();
+            String staff = a.getStaff_name();
+            String attendance = a.getAttendance();
         %>
             <tr>
                 <td data-label="Date"><%=date %></td>
@@ -89,8 +104,11 @@
                 <td data-label="Teacher"><%=staff %></td>
                 <td data-label="Attendance"><%=attendance %></td>
             </tr>
-        <% }%>    
+        <% } %>
         </tbody>
     </table>
+</div>
+
+<script src="jscodes/Menu.js"></script>
 </body>
 </html>

@@ -6,7 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Request To Admin</title>
-<link rel="stylesheet" href="csscodes/Request.css" />
+<link rel="icon" type="image/png" href="<%= request.getContextPath() %>/Image/favicon.png">
+<link rel="stylesheet" href="csscodes/Request.css"/>
 </head>
 <body>
 <%
@@ -32,27 +33,37 @@
     name = sn.fetchName(rollno); 
 %>
 
+<!-- Overlay for sidebar -->
+<div id="overlay" onclick="closeSidebar()"></div>
+
 <!-- Navigation Bar -->
 <nav>
-    <div class="nav-left">Welcome, <%= name %></div>
-    <div class="nav-links">
+    <div class="nav-left-group">
+        <!-- Hamburger Icon -->
+        <div class="menu-toggle" id="menuToggle" onclick="toggleMenu()">☰</div>
+        <div class="nav-left">Welcome, <%= name %></div>
+    </div>
+
+    <!-- Logout always on right -->
+    <form action="Logout" method="post" class="logout-form">
+        <button class="logout-btn">Logout</button>
+    </form>
+</nav>  
+    <div class="sidebar" id="sidebarMenu">
     	<a href="StudentWelcome.jsp">Home</a>
         <a href="PersonalInfo.jsp">Personal Info</a>
         <a href="CourseDetails.jsp">Course Details</a>
         <a href="ChangePassword.jsp">Change Password</a>
         <a href="ViewAttendance.jsp">View Attendance</a>
-        <form action="Logout" method="post">
-            <button class="logout-btn">Logout</button>
-        </form>
     </div>
-</nav>
+
 
  <!-- Messages -->
 <%
 String success = request.getParameter("success");
 
-if ("success".equals(request.getParameter("success"))) { %>
-  <div class="success-msg">
+if ("success".equals(success)) { %>
+  <div class="success-msg" id="successMsg">
      Request Sent Successfully.
   </div>
 <% } %>
@@ -61,15 +72,20 @@ if ("success".equals(request.getParameter("success"))) { %>
 <div class="form-wrapper">
     <div class="register-container">
         <h2>Request To Admin</h2>
-        <form action="StudentRequest" method="post">
-            <div class="input-group">
-                <label for="request">Request</label>
-                <textarea id="request" name="request" rows="5" required></textarea>
-            </div>
-            <button type="submit">Send</button>
-        </form>
+        <form action="StudentRequest" method="post" onsubmit="return validateRequest()">
+    <div class="input-group">
+        <label for="request">Request</label>
+        <textarea id="request" name="request" rows="5"></textarea>
+        <small id="charCount" class="char-count">0 / 500 characters</small>
+        <small id="errorMsg" class="error-msg"></small>
+    </div>	
+    <button type="submit">Send</button>
+</form>
+        
     </div>
 </div>
 
+<script src="jscodes/RequestMenu.js"></script>
+<script src="jscodes/Task.js"></script>
 </body>
 </html>

@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Information</title>
+    <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/Image/favicon.png">
     <link rel="stylesheet" href="csscodes/StudentWelcome.css" />
 </head>
 <body>
@@ -45,20 +46,31 @@
 	     sem=fs.fetchSem(rollno);
 	     year=fs.fetchYear(rollno);
 	%>
+<!-- Overlay for sidebar -->
+<div id="overlay" onclick="closeSidebar()"></div>
 
-<!-- Navigation Bar-->
-    <nav>
-    <div class="nav-left">Welcome, <%=name %></div>
-    <div class="nav-links">
+<!-- Navigation Bar -->
+<nav>
+    <div class="nav-left-group">
+        <!-- Hamburger Icon -->
+        <div class="menu-toggle" id="menuToggle" onclick="toggleMenu()">☰</div>
+        <div class="nav-left">Welcome, <%= name %></div>
+    </div>
+
+    <!-- Logout always on right -->
+    <form action="Logout" method="post" class="logout-form">
+        <button class="logout-btn">Logout</button>
+    </form>
+</nav>
+     
+    <div class="sidebar" id="sidebarMenu">
       <a href="StudentWelcome.jsp">Home</a>
       <a href="CourseDetails.jsp">Course Details</a>
       <a href="ChangePassword.jsp">Change Password</a>
       <a href="ViewAttendance.jsp">View Attendance</a>
       <a href="StudentRequest.jsp">Update Personal Info</a>
-      <form action="Logout" method="post"><button class="logout-btn">Logout</button></form>
     </div>
-  </nav>
-
+ 
 <!-- Display Student Personal Details-->
   <div class="container">
     <div class="section">
@@ -78,5 +90,6 @@
       </div>
     </div>
     </div>
+    <script src="jscodes/Menu.js"></script>
 </body>
 </html>    

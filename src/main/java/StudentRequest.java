@@ -25,7 +25,7 @@ public class StudentRequest extends HttpServlet {
 		
 		//Send Student Request To Admin By Using sendStudentRequest() Method
 		ar.sendStudentRequest(rollno, req);
-		request.getRequestDispatcher("StudentRequest.jsp?success=success").forward(request, response);
+		response.sendRedirect("StudentRequest.jsp?success=success");
 	}
 
 }
