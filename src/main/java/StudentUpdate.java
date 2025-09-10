@@ -7,6 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/StudentUpdate")
 public class StudentUpdate extends HttpServlet {
@@ -28,15 +29,28 @@ public class StudentUpdate extends HttpServlet {
 		int year=Integer.parseInt(request.getParameter("year"));
 		int sem=Integer.parseInt(request.getParameter("sem"));
 		
+		//Creating HttpSession
+		HttpSession session=request.getSession();
+		
 		//Check When Admin Is Entered valid Year & Semester If True Then It Allow To Update Student Record In Particular Department
 		if ((year == 1 && (sem == 1 || sem == 2)) || (year == 2 && (sem == 3 || sem == 4)) || (year == 3 && (sem == 5 || sem == 6))) {
 			
 			/*By Using updateStudent() Method Is Able To Delete The Selected Student Record Using 
 			 Rollno,Student Name,Department Number,Email,Blood Group,Phone Number & Address As Argument*/
 			usr.upadteStudent(rollno, name, dno, email, blood_group, phoneno, address,year,sem);
-			response.sendRedirect("StudentUpdate.jsp?success=true&studentId=" + rollno);
+			session.removeAttribute("UpdateName");
+			session.removeAttribute("UpdateBlood");
+			session.removeAttribute("UpdatePhone");
+			session.removeAttribute("UpdateMail");
+			session.removeAttribute("UpdateAddress");
+			session.removeAttribute("UpdateDno");
+			session.removeAttribute("Updateyear");
+			session.removeAttribute("Updatesem");
+			session.removeAttribute("Updaterollno");
+			response.sendRedirect("StudentUpdate.jsp?success=true");
 		}
-		else
-			request.getRequestDispatcher("StudentUpdate.jsp?success=false&studentId="+rollno).forward(request, response);;
+		else 
+			request.getRequestDispatcher("StudentUpdate.jsp?success=false&studentId="+rollno).forward(request, response);
+		
 	}
 }

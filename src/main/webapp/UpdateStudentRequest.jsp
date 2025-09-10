@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ page import="com.DaoClass.*" %>    
+ 
+ <%! String aname;
+	int aid;
+%>   
 <%
 	//Read The Values from The Update Student Request Function
     String reqid = request.getParameter("reqid");
@@ -14,6 +18,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Student Request</title>
+<link rel="icon" type="image/png" href="<%= request.getContextPath() %>/Image/favicon.png">
 <link rel="stylesheet" href="csscodes/UpdateStudentRequest.css" />
 </head>
 <body>
@@ -29,11 +34,39 @@
 		response.sendRedirect("AdminLogin.jsp");
 		return;
 	}
+	
+	//Read The Admin Id  from session
+	String id=session.getAttribute("Adminid").toString();
+	aid=Integer.parseInt(id);
+
+	//Getting Admin Name By Calling fetchName() Method Using Admin ID As Arugment
+	FetchStaff fs=new FetchStaff();
+	aname=fs.fetchName(aid);
 %>
 
- <!-- Navigation Bar -->
-  <nav>
-    <div class="nav-links">
+	<!-- Navigation Bar -->
+	<nav>
+  <!-- Hamburger Menu -->
+  <div class="menu-toggle" onclick="toggleSidebar(this)">
+      <span></span>
+      <span></span>
+      <span></span>
+  </div>
+
+  <!-- Welcome Text -->
+  <div class="nav-welcome">
+    Welcome, <%= aname %>
+  </div>
+
+  <!-- Logout Button -->
+  <div class="nav-right">
+    <form class="logout-form" action="AdminLogout" method="post">
+      <button type="submit" class="logout-btn">Logout</button>
+    </form>
+  </div>
+</nav>
+ 
+    <div class="sidebar" id="sidebar">
       <a href="AdminWelcome.jsp">Admin Welcome Page</a>
       <a href="AddStudent.jsp">Add Student Details</a>	
       <a href="StudentUpdate.jsp">Update Student Details</a>
@@ -42,26 +75,22 @@
       <a href="StaffDelete.jsp">Delete Staff Record</a>
       <a href="ChangeAdminPassword.jsp">Change Password</a>
     </div>
-    <form class="logout-form" action="AdminLogout" method="post">
-      <button type="submit">Logout</button>
-    </form>
-  </nav>
-  
+ 
   <!-- Display Request Details-->
     <div class="info">
-    
+    <div class="main-content">
     <!-- Messages -->
   <% 
   String change = request.getParameter("change");
   if ("success".equals(change)) {
   %>
-  	<div class="success-msg">
+  	<div class="success-msg msg-box">
     	Update Request Successfully...
   </div>
   <%} 
   else if("fail".equals(change)){
   %>
-  		<div class="error-msg">
+  		<div class="error-msg msg-box">
     	First Select Complete To Update...
   </div>
   <%} %>
@@ -84,5 +113,8 @@
         <button type="submit" class="submit">Submit</button>
      </form>   
     </div>
+    </div>
+     <script src="jscodes/DisapperMessage.js"></script>
+    <script src="jscodes/AdminMenu.js"></script>
 </body>
 </html>

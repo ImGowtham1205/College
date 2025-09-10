@@ -7,11 +7,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Student Registration</title>
+   <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/Image/favicon.png">
   <link rel="stylesheet" href="csscodes/AddStudent.css" />
 </head>
 <body>
 <%! int aid; 
-  	  String name="";	
+  	String aname="";;	
   %>
   
  <%
@@ -29,47 +30,68 @@
 		//Read The Admin Id  from session
 		String id=session.getAttribute("Adminid").toString();
 		aid=Integer.parseInt(id);
+		
+		//Getting Admin Name By Calling fetchName() Method Using Admin ID As Arugment
+	    FetchStaff fs=new FetchStaff();
+	    aname=fs.fetchName(aid);
   %>
   
-   <!-- Navigation Bar -->
-  <nav>
-    <div class="nav-links">
+ <!-- Navigation Bar -->
+<nav>
+  <!-- Hamburger Menu -->
+  <div class="menu-toggle" onclick="toggleSidebar(this)">
+      <span></span>
+      <span></span>
+      <span></span>
+  </div>
+
+  <!-- Welcome Text -->
+  <div class="nav-welcome">
+    Welcome, <%= aname %>
+  </div>
+
+  <!-- Logout Button -->
+  <div class="nav-right">
+    <form class="logout-form" action="AdminLogout" method="post">
+      <button type="submit" class="logout-btn">Logout</button>
+    </form>
+  </div>
+</nav>
+ 
+    <div class="sidebar" id="sidebar">
       <a href="AdminWelcome.jsp">Admin Welcome Page</a>
       <a href="StudentUpdate.jsp">Update Student Details</a>
       <a href="StaffUpdate.jsp">Update Staff Details</a>
       <a href="StudentDelete.jsp">Delete Student Record</a>
       <a href="StaffDelete.jsp">Delete Staff Record</a>
       <a href="ChangeAdminPassword.jsp">Change Password</a>
-    </div>
-    <form class="logout-form" action="AdminLogout" method="post">
-      <button type="submit">Logout</button>
-    </form>
-  </nav>  
-  
+    </div> 
   <div class="register-container">
    <!-- Messages -->
 <%
 String success = request.getParameter("success");
 
 if ("true".equals(success)) { %>
-  <div class="success-msg">
+  <div class="success-msg msg-box">
      student Record Added Successfully.
   </div>
 <% }  else if("unauthorized".equals(success)) {%>
-  	 <div class="error-msg">
+  	 <div class="error-msg msg-box">
       You are not authorized to Add student Record for the selected department.
   </div>
 <%}   else if("false".equals(success)) {%>
-	<div class="error-msg">
+	<div class="error-msg msg-box">
       Select Valid Semester For Add Student Record.
   </div>
 <%} %>
   	 <!-- Form For Add The Student Record -->
+  	 <div class="main-content">
     <h2>Add Student Record</h2>
-    <form action="AddStudent" method="post">
+    <form id="studentForm" action="AddStudent" method="post" novalidate>
       <div class="input-group">
         <label for="fullname">Full Name</label>
         <input type="text" id="fullname" name="fullname" required />
+        <small class="error-text"></small>
       </div>
 
       <div class="input-group">
@@ -78,6 +100,7 @@ if ("true".equals(success)) { %>
           <label><input type="radio" name="gender" value="Male" required /> Male</label>
           <label><input type="radio" name="gender" value="Female" /> Female</label>
         </div>
+        <small class="error-text"></small>
       </div>
 
       <div class="input-group">
@@ -94,6 +117,7 @@ if ("true".equals(success)) { %>
           <option value="B.Sc(Computer Science)">B.Sc(Computer Science)</option>
           <option value="BCA">BCA</option>
         </select>
+        <small class="error-text"></small>
       </div>
 
       <div class="input-group">
@@ -109,21 +133,25 @@ if ("true".equals(success)) { %>
           <option value="AB+ve">AB+ve</option>
           <option value="AB-ve">AB-ve</option>
         </select>
+        <small class="error-text"></small>
       </div>
 
       <div class="input-group">
         <label for="phone">Phone Number</label>
-        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required placeholder="10-digit number" />
+        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required placeholder="10-digit number"/>
+        <small class="error-text"></small>
       </div>
 
       <div class="input-group">
         <label for="address">Address</label>
         <textarea id="address" name="address" rows="3" required></textarea>
+        <small class="error-text"></small>
       </div>
 
       <div class="input-group">
         <label for="email">Email Address</label>
         <input type="email" id="email" name="email" required />
+        <small class="error-text"></small>
       </div>
 
 	<div class="input-group">
@@ -134,6 +162,7 @@ if ("true".equals(success)) { %>
           <option value="2">2</option>
           <option value="3">2</option>
         </select>
+        <small class="error-text"></small>
       </div>
 	
 	<div class="input-group">
@@ -147,11 +176,15 @@ if ("true".equals(success)) { %>
           <option value="5">5</option>
           <option value="6">6</option>
         </select>
+        <small class="error-text"></small>
       </div>
 
       <button type="submit">Add Record</button>
     </form>
   </div>
+  </div>
+  <script src="jscodes/AdminMenu.js"></script>
+  <script src="jscodes/StudentValidation.js"></script>
 </body>
 </html>
     

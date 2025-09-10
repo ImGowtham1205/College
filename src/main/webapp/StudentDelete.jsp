@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.sql.*" %>
+<%@ page import="com.DaoClass.*" %>
+
+<%! String aname;
+	int aid;
+%>
 
 <%
 //If The User Logout Their Session After Click The Backwards Button It Will Not Again Redirect To The Previous Web Page Activity
@@ -18,24 +22,32 @@ String fetchedName = "", fetchedEmail = "", fetchedBlood = "", fetchedPhone = ""
 int studentIdParam = 0;
 
 // Read values from session
-if (session.getAttribute("rollno") != null)
-    studentIdParam = (int) session.getAttribute("rollno");
-if (session.getAttribute("Name") != null)
-    fetchedName = session.getAttribute("Name").toString();
-if (session.getAttribute("Mail") != null)
-    fetchedEmail = session.getAttribute("Mail").toString();
-if (session.getAttribute("Blood") != null)
-    fetchedBlood = session.getAttribute("Blood").toString();
-if (session.getAttribute("Phone") != null)
-    fetchedPhone = session.getAttribute("Phone").toString();
-if (session.getAttribute("Address") != null)
-    fetchedAddress = session.getAttribute("Address").toString();
-if (session.getAttribute("Dno") != null)
-    fetchedDno = session.getAttribute("Dno").toString();
-if (session.getAttribute("year") != null)
-	fetchedyear = session.getAttribute("year").toString();
-if (session.getAttribute("sem") != null)
-	fetchedsem = session.getAttribute("sem").toString();
+if (session.getAttribute("Deleterollno") != null)
+    studentIdParam = (int) session.getAttribute("Deleterollno");
+if (session.getAttribute("DeleteName") != null)
+    fetchedName = session.getAttribute("DeleteName").toString();
+if (session.getAttribute("DeleteMail") != null)
+    fetchedEmail = session.getAttribute("DeleteMail").toString();
+if (session.getAttribute("DeleteBlood") != null)
+    fetchedBlood = session.getAttribute("DeleteBlood").toString();
+if (session.getAttribute("DeletePhone") != null)
+    fetchedPhone = session.getAttribute("DeletePhone").toString();
+if (session.getAttribute("DeleteAddress") != null)
+    fetchedAddress = session.getAttribute("DeleteAddress").toString();
+if (session.getAttribute("DeleteDno") != null)
+    fetchedDno = session.getAttribute("DeleteDno").toString();
+if (session.getAttribute("Deleteyear") != null)
+	fetchedyear = session.getAttribute("Deleteyear").toString();
+if (session.getAttribute("Deletesem") != null)
+	fetchedsem = session.getAttribute("Deletesem").toString();
+
+//Read The Admin Id  from session
+	String id=session.getAttribute("Adminid").toString();
+	aid=Integer.parseInt(id);
+
+//Getting Admin Name By Calling fetchName() Method Using Admin ID As Arugment
+FetchStaff fs=new FetchStaff();
+aname=fs.fetchName(aid);
 %>
 
 <!DOCTYPE html>
@@ -44,13 +56,34 @@ if (session.getAttribute("sem") != null)
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Delete Student Details</title>
+  <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/Image/favicon.png">
   <link rel="stylesheet" href="csscodes/UpdatePage.css" />
 </head>
 <body>
 
 <!-- Navigation Bar -->
 <nav>
-  <div class="nav-links">
+  <!-- Hamburger Menu -->
+  <div class="menu-toggle" onclick="toggleSidebar(this)">
+      <span></span>
+      <span></span>
+      <span></span>
+  </div>
+
+  <!-- Welcome Text -->
+  <div class="nav-welcome">
+    Welcome, <%= aname %>
+  </div>
+
+  <!-- Logout Button -->
+  <div class="nav-right">
+    <form class="logout-form" action="AdminLogout" method="post">
+      <button type="submit" class="logout-btn">Logout</button>
+    </form>
+  </div>
+</nav>
+
+  <div class="sidebar" id="sidebar">
     <a href="AdminWelcome.jsp">Admin Welcome Page</a>
     <a href="AddStudent.jsp">Add Student Details</a>	
     <a href="StudentUpdate.jsp">Update Student Details</a>
@@ -58,11 +91,10 @@ if (session.getAttribute("sem") != null)
     <a href="StaffDelete.jsp">Delete Staff Record</a>
     <a href="ChangeAdminPassword.jsp">Change Password</a>
   </div>
-  <form class="logout-form" action="AdminLogout" method="post">
-    <button type="submit">Logout</button>
-  </form>
-</nav>
 
+
+<div class="container">
+<div class="main-content">
 <!-- Display Messages -->
 <%
 String error = request.getParameter("error");
@@ -70,27 +102,25 @@ String success = request.getParameter("success");
 
 if ("unauthorized".equals(error)) {
 %>
-  <div class="error-msg">You are not authorized to delete student details for the selected department.</div>
+  <div class="error-msg msg-box">You are not authorized to delete student details for the selected department.</div>
 <% } else if ("true".equals(success)) { %>
-  <div class="success-msg">Student details deleted successfully.</div>
+  <div class="success-msg msg-box">Student details deleted successfully.</div>
 <% } %>
 
 <% if ("true".equals(request.getParameter("fetchError"))) { %>
-  <div class="error-msg">No student record found with the entered Roll Number.</div>
+  <div class="error-msg msg-box">No student record found with the entered Roll Number.</div>
 <% } %>
-
-<div class="container">
   <h2>Delete Student Details</h2>
 
   <!-- Form to Fetch Student Details -->
-  <form class="update-form" method="post" action="FetchStudentDelete">
+  <form id="fetchStudentForm" class="update-form" method="post" action="FetchStudentDelete" novalidate>
     <label for="studentId">Roll Number:</label>
     <input type="number" id="studentId" name="studentId" required value="<%= studentIdParam != 0 ? String.valueOf(studentIdParam) : "" %>">
     <button type="submit" name="fetch" value="true">Fetch</button>
   </form>
 
   <!-- Form to Delete Student Details -->
-  <form class="update-form" action="StudentDelete" method="post">
+  <form id="updateStudentForm" class="update-form" action="StudentDelete" method="post" novalidate>
     <input type="hidden" name="studentId" value="<%= studentIdParam != 0 ? String.valueOf(studentIdParam) : "" %>">
 
     <label for="studentName">Name:</label>
@@ -141,9 +171,11 @@ if ("unauthorized".equals(error)) {
   <% } %>
 	</select>
 
-    <button type="submit">Delete</button>
+   <button type="submit" id="updateBtn" <%= studentIdParam == 0 ? "disabled" : "" %>>Delete</button>
   </form>
 </div>
-
+</div>
+<script src="jscodes/AdminMenu.js"></script>
+<script src="jscodes/ManageStudent.js"></script>
 </body>
 </html>

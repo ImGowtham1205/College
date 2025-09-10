@@ -7,63 +7,200 @@
 }
 
 body {
-    background: #f2f2f2;
-    margin: 0;
-    padding: 0;
+   background: #f4f7fa;
+   color: #222;
+   line-height: 1.6;
+   font-size: 16px;
+   transition: margin-left 0.3s ease;
+   padding-top: 60px; /* leave space for navbar */
 }
 
 .success-msg {
     color: green;
     text-align: center;
     margin-top: 10px;
+    font-weight: bold;
 }
 
 .error-msg {
-  color: red;
-  text-align: center;
-  margin-top: 10px;
-  }
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
+}
   
 /* Navigation Bar */
 nav {
-    background-color: #333;
-    overflow: hidden;
-    padding: 10px 20px;
+    background: linear-gradient(90deg, #003366, #0059b3);
+    height: 60px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    position: sticky;
+    padding: 0 20px;
+    position: fixed;
+    width: 100%;
     top: 0;
-    z-index: 1000;
+    left: 0;
+    z-index: 1001;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-.nav-links {
+/* Hamburger */
+.menu-toggle {
     display: flex;
-    gap: 20px;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 1100;
+    transition: all 0.3s ease;
 }
 
-nav a {
+.menu-toggle span {
+    width: 28px;
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+    transition: all 0.4s ease;
+    transform-origin: center;
+}
+
+.menu-toggle.open span:nth-child(1) {
+    transform: rotate(90deg) translate(3px, 0);
+}
+
+.menu-toggle.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.open span:nth-child(3) {
+    transform: rotate(-90deg) translate(3px, 0);
+}
+
+/* Welcome Text */
+.nav-welcome {
+    margin-left: 15px;
+    font-size: 1.1rem;
+    font-weight: 500;
     color: white;
-    text-decoration: none;
-    padding: 10px 15px;
+    white-space: nowrap;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 1;
 }
 
-nav a:hover {
-    background-color: #575757;
-    border-radius: 4px;
+body.sidebar-open .nav-welcome {
+    transform: translateX(10px);
+    opacity: 0.8;
+}
+
+/* Logout Button */
+.nav-right {
+    margin-left: auto;
 }
 
 .logout-form button {
-    background-color: #e60000;
+    background: #ff3333;
     color: white;
     border: none;
-    padding: 10px 15px;
-    border-radius: 4px;
+    padding: 8px 16px;
+    border-radius: 6px;
     cursor: pointer;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease, background 0.3s ease;
 }
 
-.logout-form button:hover {
-    background-color: #cc0000;
+.logout-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2),transparent);
+    transition: all 0.5s ease;
+}
+
+.logout-btn:hover::after {
+    left: 100%;
+}
+
+.logout-btn:hover {
+    background: linear-gradient(90deg, #ff4d4d, #ff1a1a);
+    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
+    transform: scale(1.05);
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 60px;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background: linear-gradient(180deg, #003366, #0059b3);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: left 0.3s ease;
+    z-index: 1000;
+    overflow-y: auto;
+    border-radius: 0 8px 8px 0;
+}
+
+.sidebar.show {
+    left: 0;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    padding: 12px 15px;
+    border-radius: 6px;
+    font-weight: 500;
+    position: relative;
+    transition: all 0.3s ease, background 0.3s ease;
+    overflow: hidden;
+}
+
+.sidebar a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 0;
+    background: linear-gradient(90deg, #00c6ff, #0073e6);
+    border-radius: 2px;
+    transition: width 0.3s ease-in-out;
+}
+
+.sidebar a:hover::after {
+    width: 100%;
+}
+
+.sidebar a:hover {
+    transform: translateX(6px) scale(1.03);
+    background: linear-gradient(90deg, #0059b3, #0073e6);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 115, 230, 0.3);
+}
+
+/* Blur effect when sidebar is open */
+body.sidebar-open .main-content {
+    filter: blur(4px);
+    transition: margin-left 0.3s ease, filter 0.3s ease;
+}
+
+.msg-box {
+  transition: opacity 1s ease, visibility 1s ease;
+  opacity: 1;
+  visibility: visible;
+}
+
+.msg-box.fade-out {
+  opacity: 0;
+  visibility: hidden;
 }
 
 /* Form Container */
@@ -87,6 +224,7 @@ h2 {
 /* Input Groups */
 .input-group {
     margin-bottom: 20px;
+    position: relative;
 }
 
 .input-group label {
@@ -103,15 +241,56 @@ h2 {
     padding: 10px;
     border: 1px solid #bbb;
     border-radius: 5px;
-    transition: border-color 0.3s;
+    transition: border-color 0.3s, box-shadow 0.3s;
     resize: vertical;
 }
 
+/* Focus Style */
 .input-group input:focus,
 .input-group select:focus,
 .input-group textarea:focus {
     border-color: #28a745;
     outline: none;
+    box-shadow: 0 0 4px rgba(40,167,69,0.4);
+}
+
+/* Error State */
+.error-border {
+    border: 2px solid red !important;
+    animation: shake 0.2s ease-in-out 2;
+}
+
+/* Success State */
+.success-border {
+    border: 2px solid #28a745 !important;
+}
+
+/* Success checkmark */
+.success-border::after {
+    content: "✔";
+    position: absolute;
+    right: 10px;
+    top: 38px;
+    color: #28a745;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* Error text */
+.error-text {
+    color: red;
+    font-size: 0.85rem;
+    margin-top: 4px;
+    display: block;
+}
+
+/* Shake animation */
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  50% { transform: translateX(3px); }
+  75% { transform: translateX(-3px); }
+  100% { transform: translateX(0); }
 }
 
 /* Radio Buttons */
@@ -136,11 +315,12 @@ button {
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background 0.3s, transform 0.2s;
 }
 
 button:hover {
     background-color: #218838;
+    transform: scale(1.03);
 }
 
 /* Responsive Design */

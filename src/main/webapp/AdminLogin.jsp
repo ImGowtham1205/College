@@ -7,6 +7,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Admin Login</title>
+  <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/Image/favicon.png">
   <link rel="stylesheet" href="csscodes/StudentLogin.css" />
 </head>
 <body>
@@ -28,6 +29,8 @@
     Incorrect ID Or Password .
   </div>
   <%} %>
+  
+  	<img src="<%= request.getContextPath() %>/Image/favicon.png" alt="Student Logo" class="page-logo"/>
   
   <!-- Admin Login Form -->
     <h2>Admin Login</h2>

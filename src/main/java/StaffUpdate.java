@@ -8,6 +8,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/StaffUpdate")
 public class StaffUpdate extends HttpServlet {
@@ -25,6 +26,9 @@ public class StaffUpdate extends HttpServlet {
 		String email=request.getParameter("staffEmail");
 		String phoneno=request.getParameter("phone");
 		String desigination=request.getParameter("desigination");
+		
+		//Creating A HttpSession
+		HttpSession session=request.getSession();
 		
 		//Get The Current Desigination Of The Selected Staff From fetchDesigination() Method
 		String currentdesigination=fs.fetchDesigination(staffid);
@@ -49,7 +53,13 @@ public class StaffUpdate extends HttpServlet {
 		  StaffId & Name,Department Number,Email,Phone Number & Desigination As Argument */		
 		else {
 			usr.updateStaff(staffid,name,dno,email,phoneno,desigination);
-			response.sendRedirect("StaffUpdate.jsp?success=true&staffId=" + staffid);
+			 session.removeAttribute("StaffUpdateName");
+	         session.removeAttribute("StaffUpdatePhone");
+	         session.removeAttribute("StaffUpdateMail");
+	         session.removeAttribute("StaffUpdateDesigination");
+	         session.removeAttribute("StaffUpdateDno");
+	         session.removeAttribute("StaffUpdatestaffid");
+			 response.sendRedirect("StaffUpdate.jsp?success=true");
 		}
 	}
 }

@@ -42,29 +42,29 @@ public class FetchStudentDelete extends HttpServlet {
 
 		// If No Record Found For The Given Staff Id Then It Removes Session Values By Using removeAttribute() Method
 		if (name == null || name.isEmpty()) {
-			session.removeAttribute("Name");
-			session.removeAttribute("Blood");
-			session.removeAttribute("Phone");
-			session.removeAttribute("Mail");
-			session.removeAttribute("Address");
-			session.removeAttribute("Dno");
-			session.removeAttribute("year");
-			session.removeAttribute("sem");
-			session.removeAttribute("rollno");
+			session.removeAttribute("DeleteName");
+			session.removeAttribute("DeleteBlood");
+			session.removeAttribute("DeletePhone");
+			session.removeAttribute("DeleteMail");
+			session.removeAttribute("DeleteAddress");
+			session.removeAttribute("DeleteDno");
+			session.removeAttribute("Deleteyear");
+			session.removeAttribute("Deletesem");
+			session.removeAttribute("Deleterollno");
 			response.sendRedirect("StudentDelete.jsp?fetchError=true");
 		}
 
 		//If Record Found For The Given Staff Id Then It Set Session Values By Using setAttribute() Method
 		else {
-			session.setAttribute("Name", name);
-			session.setAttribute("Blood", blood);
-			session.setAttribute("Phone", phone);
-			session.setAttribute("Mail", mail);
-			session.setAttribute("Address", address);
-			session.setAttribute("Dno", dno);
-			session.setAttribute("year", year);
-			session.setAttribute("sem", sem);
-			session.setAttribute("rollno", rollno);
+			session.setAttribute("DeleteName", name);
+			session.setAttribute("DeleteBlood", blood);
+			session.setAttribute("DeletePhone", phone);
+			session.setAttribute("DeleteMail", mail);
+			session.setAttribute("DeleteAddress", address);
+			session.setAttribute("DeleteDno", dno);
+			session.setAttribute("Deleteyear", year);
+			session.setAttribute("Deletesem", sem);
+			session.setAttribute("Deleterollno", rollno);
 			response.sendRedirect("StudentDelete.jsp");
 		}
 	}

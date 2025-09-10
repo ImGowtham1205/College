@@ -1,132 +1,383 @@
-@charset "UTF-8";
-
-/* Reset some default styling */
+/* ====== General Layout ====== */
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Responsive Navigation Bar */
+body {
+   background: #f4f7fa;
+   color: #222;
+   line-height: 1.6;
+   font-size: 16px;
+   transition: margin-left 0.3s ease;
+   padding-top: 60px; /* leave space for navbar */
+}
+
+.container {
+  max-width: 800px;
+  margin: 80px auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* ====== Navigation Bar ====== */
 nav {
-  background-color: #333;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  flex-wrap: wrap;
+   background: linear-gradient(90deg, #003366, #0059b3);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-.nav-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
+/* Hamburger */
+.menu-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 1100;
+    transition: all 0.3s ease;
 }
 
-nav a {
-  color: white;
-  text-decoration: none;
-  padding: 10px 15px;
+.menu-toggle span {
+    width: 28px;
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+    transition: all 0.4s ease;
+    transform-origin: center;
 }
 
-nav a:hover {
-  background-color: #575757;
-  border-radius: 4px;
+.menu-toggle.open span:nth-child(1) {
+    transform: rotate(90deg) translate(3px, 0);
+}
+
+.menu-toggle.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.open span:nth-child(3) {
+    transform: rotate(-90deg) translate(3px, 0);
+}
+
+/* Welcome Text */
+.nav-welcome {
+    margin-left: 15px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: white;
+    white-space: nowrap;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 1;
+}
+
+body.sidebar-open .nav-welcome {
+    transform: translateX(10px);
+    opacity: 0.8;
+}
+
+.nav-right {
+  margin-left: auto;
 }
 
 .logout-form button {
-  background-color: #e60000;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 4px;
-  cursor: pointer;
+    background: #ff3333;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease, background 0.3s ease;
 }
 
-.logout-form button:hover {
-  background-color: #cc0000;
+.logout-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2),transparent);
+    transition: all 0.5s ease;
 }
 
-.error-msg {
-  color: red;
-  text-align: center;
-  margin-top: 10px;
+.logout-btn:hover::after {
+    left: 100%;
 }
 
-.success-msg{
-	color: green; 
-	text-align:center; 
-	margin-top: 10px;
+.logout-btn:hover {
+    background: linear-gradient(90deg, #ff4d4d, #ff1a1a);
+    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
+    transform: scale(1.05);
 }
 
-/* Main container styling */
-.container {
-  max-width: 600px;
-  margin: 40px auto;
-  padding: 20px;
+/* ====== Sidebar ====== */
+.sidebar {
+  position: fixed;
+  top: 50px;
+  left: -250px;
+  width: 220px;
+  height: 100%;
+  background: #34495e;
+  padding-top: 20px;
+  transition: left 0.3s;
+  z-index: 900;
 }
 
-.container h2 {
-  text-align: center;
-  margin-bottom: 20px;
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 60px;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background: linear-gradient(180deg, #003366, #0059b3);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: left 0.3s ease;
+    z-index: 1000;
+    overflow-y: auto;
+    border-radius: 0 8px 8px 0;
 }
 
-/* Form styling */
+.sidebar.show {
+    left: 0;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    padding: 12px 15px;
+    border-radius: 6px;
+    font-weight: 500;
+    position: relative;
+    transition: all 0.3s ease, background 0.3s ease;
+    overflow: hidden;
+}
+
+.sidebar a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 0;
+    background: linear-gradient(90deg, #00c6ff, #0073e6);
+    border-radius: 2px;
+    transition: width 0.3s ease-in-out;
+}
+
+.sidebar a:hover::after {
+    width: 100%;
+}
+
+.sidebar a:hover {
+    transform: translateX(6px) scale(1.03);
+    background: linear-gradient(90deg, #0059b3, #0073e6);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 115, 230, 0.3);
+}
+
+/* Blur effect when sidebar is open */
+body.sidebar-open .main-content {
+    filter: blur(4px);
+    transition: margin-left 0.3s ease, filter 0.3s ease;
+}
+/* ====== Form Styles ====== */
 .update-form {
   display: flex;
   flex-direction: column;
+  margin-top: 20px;
 }
 
 .update-form label {
-  margin-top: 10px;
+  margin-top: 12px;
+  font-weight: bold;
+  color: #444;
 }
 
-.update-form input ,select,textarea{
-  padding: 8px;
-  margin-top: 5px;
+.update-form input,
+.update-form select,
+.update-form textarea,
+.update-form button {
+  margin-top: 6px;
+  padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 4px;
-}
-.update-form :focus{
-    border-color: #007bff;
-    outline:none;
+  border-radius: 6px;
+  font-size: 14px;
 }
 
 .update-form button {
-  margin-top: 20px;
-  padding: 10px;
-  background-color: #007BFF;
+  background: #3498db;
   color: white;
+  font-weight: bold;
   border: none;
-  border-radius: 4px;
   cursor: pointer;
+  transition: background 0.3s;
+  margin-top: 20px;
 }
 
 .update-form button:hover {
-  background-color: #0056b3;
+  background: #2980b9;
 }
 
-/* Responsive adjustments */
-@media (max-width: 600px) {
+/* Disabled update button */
+#updateBtn:disabled,
+.disabled-btn {
+  background-color: #ccc !important;
+  color: #666 !important;
+  cursor: not-allowed !important;
+  border: 1px solid #aaa !important;
+}
+
+/* ====== Error & Success Styles ====== */
+.error-text {
+  color: red;
+  font-size: 12px;
+  margin-top: 2px;
+  height: 14px;
+}
+
+.error-border {
+  border: 2px solid red !important;
+}
+
+.success-border {
+  border: 2px solid green !important;
+}
+
+/* ====== Messages ====== */
+.msg-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  font-weight: 600;
+  font-size: 14px;
+  text-align: center;
+  opacity: 1;
+  max-height: 40px;              
+  overflow: hidden;
+  transition: opacity 0.6s ease, max-height 0.6s ease;
+}
+
+.success-msg {
+  	color: green;
+    text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.error-msg {
+  	color: red;
+    text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.msg-box.fade-out {
+  opacity: 0;
+  max-height: 0;
+  margin: 0;
+  visibility: hidden;
+}
+
+/* ====== Responsive Styles ====== */
+
+/* 🔹 Small Phones (up to 480px) */
+@media (max-width: 480px) {
   nav {
     flex-direction: column;
     align-items: flex-start;
-  }
-
-  .nav-links {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .logout-form {
-    align-self: flex-end;
-    margin-top: 10px;
-    margin-right: 200px;
-  }
-
-  .container {
-    margin: 20px;
     padding: 10px;
+  }
+  .nav-welcome {
+    font-size: 14px;
+    margin: 5px 0;
+  }
+  .logout-btn {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+  .container {
+    margin: 100px 10px;
+    padding: 15px;
+  }
+  .update-form input,
+  .update-form select,
+  .update-form textarea,
+  .update-form button {
+    font-size: 13px;
+    padding: 8px;
+  }
+}
+
+/* 🔹 Tablets (481px – 768px) */
+@media (max-width: 768px) {
+  .container {
+    margin: 100px 15px;
+    padding: 20px;
+  }
+  nav {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .nav-welcome {
+    margin: 8px 0;
+    font-size: 15px;
+  }
+  .sidebar {
+    width: 200px;
+  }
+}
+
+/* 🔹 Laptops (769px – 1024px) */
+@media (max-width: 1024px) {
+  .container {
+    max-width: 700px;
+    margin: 100px auto;
+    padding: 20px;
+  }
+  .update-form label {
+    font-size: 15px;
+  }
+}
+
+/* 🔹 Large Desktops (1440px and above) */
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1000px;
+    padding: 30px;
+  }
+  .update-form input,
+  .update-form select,
+  .update-form textarea {
+    font-size: 16px;
+    padding: 12px;
+  }
+  .update-form button {
+    font-size: 16px;
+    padding: 12px 20px;
   }
 }

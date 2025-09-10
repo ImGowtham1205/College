@@ -39,23 +39,23 @@ public class FetchStaffUpdate extends HttpServlet {
 		
 		// If No Record Found For The Given Staff Id Then It Removes Session Values By Using removeAttribute() Method
 		if(name == null || name.isEmpty()) {
-			 session.removeAttribute("Name");
-	         session.removeAttribute("Phone");
-	         session.removeAttribute("Mail");
-	         session.removeAttribute("Desigination");
-	         session.removeAttribute("Dno");
-	         session.removeAttribute("staffid");
+			 session.removeAttribute("StaffUpdateName");
+	         session.removeAttribute("StaffUpdatePhone");
+	         session.removeAttribute("StaffUpdateMail");
+	         session.removeAttribute("StaffUpdateDesigination");
+	         session.removeAttribute("StaffUpdateDno");
+	         session.removeAttribute("StaffUpdatestaffid");
 	         response.sendRedirect("StaffUpdate.jsp?fetchError=true");
 		}
 		
 		//If Record Found For The Given Staff Id Then It Set Session Values By Using setAttribute() Method
 		else {
-		    session.setAttribute("Name", name);
-		    session.setAttribute("Phone", phone);
-		    session.setAttribute("Mail", mail);
-		    session.setAttribute("Desigination", des);
-		    session.setAttribute("Dno", dno);
-		    session.setAttribute("staffid", sid);
+		    session.setAttribute("StaffUpdateName", name);
+		    session.setAttribute("StaffUpdatePhone", phone);
+		    session.setAttribute("StaffUpdateMail", mail);
+		    session.setAttribute("StaffUpdateDesigination", des);
+		    session.setAttribute("StaffUpdateDno", dno);
+		    session.setAttribute("StaffUpdatestaffid", sid);
 			response.sendRedirect("StaffUpdate.jsp");
 		}
 	}

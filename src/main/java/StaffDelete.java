@@ -8,6 +8,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @SuppressWarnings("serial")
 @WebServlet("/StaffDelete")
@@ -19,6 +20,9 @@ public class StaffDelete extends HttpServlet {
 		//Reads Values From The Form
 		int staffid=Integer.parseInt(request.getParameter("staffId"));
 		int dno=Integer.parseInt(request.getParameter("dno"));
+		
+		//Creating A HttpSession
+		HttpSession session=request.getSession();
 		
 		FetchStaff fs=new FetchStaff();
 		//Getting Staff Desigination By Calling fetchDesigination() Method Using Staff ID As Arugment
@@ -37,7 +41,13 @@ public class StaffDelete extends HttpServlet {
 		//If Not By Using deleteStaff() Method is Able To Delete The Selected Staff Record Using StaffId & Department Number As Argument
 		else {
 			dsr.deteleStaff(staffid, dno);
-			response.sendRedirect("StaffDelete.jsp?success=true&staffId=" + staffid);
+			session.removeAttribute("Name");
+	        session.removeAttribute("Phone");
+	        session.removeAttribute("Mail");
+	        session.removeAttribute("Desigination");
+	        session.removeAttribute("Dno");
+	        session.removeAttribute("staffid");
+			response.sendRedirect("StaffDelete.jsp?success=true");
 		}
 	}	
 }
