@@ -9,42 +9,149 @@
 }
 
 body {
-  background-color: #f4f6f8;
-  color: #333;
+  	background-color: #f4f6f8;
+	color: #333;
+	transition: filter 0.3s ease;
+	position: relative;
+	overflow-x: hidden;
+	padding-top: 35px;
 }
 
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #004080;
-  color: white;
-  padding: 15px 25px;
-  flex-wrap: wrap;
+    display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #004080;
+	color: white;
+	padding: 12px 25px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1200;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .navbar h2 {
-  font-size: 22px;
+  	font-size: 20px;
+	margin-left: 10px;
+	word-break: break-word; 
 }
 
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.nav-left {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+	flex-wrap: wrap; 
 }
 
-.nav-right a {
-  color: white;
-  text-decoration: none;
+.hamburger {
+	font-size: 22px;
+	background: none;
+	border: none;
+	color: white;
+	cursor: pointer;
+	padding: 6px 10px;
+	z-index: 1300;
+}
+
+.hamburger:hover {
+	transform: rotate(90deg);
 }
 
 .logout-btn {
-  padding: 8px 16px;
-  background-color: #e74c3c;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+	background: #ff3333;
+	color: white;
+	border: none;
+	padding: 8px 16px;
+	border-radius: 6px;
+	cursor: pointer;
+	font-weight: 500;
+	position: relative;
+	overflow: hidden;
+	transition: all 0.3s ease, background 0.3s ease;
+	white-space: nowrap;
+}
+
+.logout-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2),transparent);
+    transition: all 0.5s ease;
+}
+
+.logout-btn:hover::after {
+    left: 100%;
+}
+
+.logout-btn:hover {
+    background: linear-gradient(90deg, #ff4d4d, #ff1a1a);
+    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
+    transform: scale(1.05);
+}
+
+/* Sidebar */
+.sidebar {
+	position: fixed;
+	top: 60px;
+	left: 0;
+	width: 0;
+	height: calc(100% - 60px);
+	background: linear-gradient(180deg, #004080, #00264d);
+	overflow-x: hidden;
+	transition: width 0.4s ease;
+	z-index: 1100;
+	padding-top: 20px;
+	box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
+	border-top: 2px solid #003366;
+}
+
+.sidebar.active {
+	width: 250px;
+}
+
+.sidebar a {
+	display: block;
+	padding: 14px 25px;
+	font-size: 16px;
+	color: #fff;
+	text-decoration: none;
+	border-left: 3px solid transparent;
+	transition: background 0.3s, border-color 0.3s;
+}
+
+.sidebar a:hover {
+	background: rgba(255, 255, 255, 0.1);
+	border-left: 3px solid #00bfff;
+}
+
+.sidebar .closebtn {
+	position: absolute;
+	top: 10px;
+	right: 15px;
+	font-size: 22px;
+	background: #e74c3c;
+	color: white;
+	border-radius: 50%;
+	padding: 2px 8px;
+	cursor: pointer;
+	transition: background 0.3s;
+}
+
+body.sidebar-open::after {
+  content: "";
+  position: fixed;
+  top: 60px; 
+  left: 0;
+  width: 100%;
+  height: calc(100% - 60px);
+  background: rgba(0, 0, 0, 0.3); 
+  backdrop-filter: blur(6px);      
+  z-index: 900;
 }
 
 .error-msg {
@@ -94,6 +201,15 @@ form input[type="password"] {
 form input:focus {
   border-color: #007bff;
   outline: none;
+}
+
+/* Required Validation*/
+form input:invalid {
+  border-color: #e74c3c;
+}
+
+form input:invalid:focus {
+  box-shadow: 0 0 5px #e74c3c;
 }
 
 form button {
@@ -148,8 +264,33 @@ form button:hover {
   background-color: #e6f0ff;
 }
 
-/* Responsive Additions Below */
+.error-text {
+  display: block;   
+  color: red;
+  font-size: 13px;
+  margin-top: -15px;  
+  margin-bottom: 10px;
+}
 
+input.invalid {
+  border-color: red;
+  box-shadow: 0 0 5px rgba(255,0,0,0.3);
+}
+
+/* Shake Animation*/
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+.shake {
+  animation: shake 0.3s;
+}
+
+/* Responsive Additions Below */
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;

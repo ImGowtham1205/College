@@ -16,6 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Assign Subject</title>
   <link rel="stylesheet" href="csscodes/AssignSubject.css" />
+  <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/Image/favicon.png">
 </head>
 <body>
 	<%! String name,hodname;%>
@@ -47,19 +48,29 @@
 <!-- Navigation Bar-->
 <nav class="navbar">
   <div class="nav-left">
-    <span class="welcome-text">Welcome, <%= hodname %></span>
-  </div>
+  <button class="hamburger" onclick="toggleSidebar()">☰</button>
+  <h2>Welcome, <%=hodname %></h2>
+</div>
+  
+
   <div class="nav-right">
-   <a href="HodWelcome.jsp" class="nav-link">Home Page</a>
-    <a href="ChangeHodPassword.jsp" class="nav-link">Change Password</a>
-    <a href="HodRequest.jsp" class="nav-link">Update Personal Info</a>
-    <a href="ViewAssignSubject.jsp" class="nav-link">View Assign Subject</a>
-    <a href="UpdateSubject.jsp" class="nav-link">Update Assigned Subject</a>
-    <a href="DeleteSubject.jsp" class="nav-link">Delete Assigned Subject</a>
-    <form action="HodLogout" method="post" class="logout-form"><button type="submit" class="logout-btn">Logout</button></form>
+    <!-- Hamburger menu button -->
+    <form action="HodLogout" method="post">
+      <button class="logout-btn">Logout</button>
+    </form>
   </div>
 </nav>
 
+  <div id="sidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="toggleSidebar()">×</a>
+   <a href="HodWelcome.jsp">Home Page</a>
+    <a href="ChangeHodPassword.jsp">Change Password</a>
+    <a href="HodRequest.jsp">Update Personal Info</a>
+    <a href="ViewAssignSubject.jsp">View Assign Subject</a>
+    <a href="UpdateSubject.jsp">Update Assigned Subject</a>
+    <a href="DeleteSubject.jsp">Delete Assigned Subject</a>
+  </div>
+  
 <!-- Messages -->
   <div class="container">
   <% String status = request.getParameter("status");
@@ -81,11 +92,11 @@
    		 Already Assigned Subject To The Staff...
   </div>
  <%} %>
- 
+ 	
  <!-- Form For Assign The Selected Subject To The Staff -->
     <h2>Assign Subject: <span><%= subject %></span></h2>
 
-    <form action="AssignSubject" method="post">
+    <form id="assignSubjectForm" action="AssignSubject" method="post" novalidate>
       <!-- Hidden field to pass subject -->
       <input type="hidden" name="subject" value="<%= subject %>"/>
       <input type="hidden" name="code" value="<%= code %>"/>
@@ -106,6 +117,7 @@
       <button type="submit">Assign Subject</button>
     </form>
   </div>
-
+<script src="jscodes/HodMenu.js"></script> 
+<script src="jscodes/AssignStaffValidation.js"></script>
 </body>
 </html>

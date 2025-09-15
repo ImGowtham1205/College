@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.DaoClass.*,java.util.*"%>
 
+<% 
+	FetchAssignStaff fas=new FetchAssignStaff();
+	@SuppressWarnings("unchecked")
+	List<FetchAssignStaff> semlist = (List<FetchAssignStaff>) request.getAttribute("subject");
+
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +15,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Delete Assign Subject</title>
   <link rel="stylesheet" href="csscodes/HodWelcome.css" />
+  <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/Image/favicon.png">
 </head>
 <body>
 	<%! String name=" "; %>
@@ -29,91 +37,102 @@
 		
 		//Getting Hod Name By Calling fetchName() Method Using HOD ID As Arugment
 		name=fh.fetchName(hodid);
-		
-		//Getting Staffs Who Are Handle Subject By Calling get3rdYearStaff(),get2ndYearStaff(),get1stYearStaff() Method
-		FetchAssignedStaff fas=new FetchAssignedStaff();
-		List<FetchAssignStaff>list3rdyear=fas.get3rdYearStaff(hodid);
-		List<FetchAssignStaff>list2ndyear=fas.get2ndYearStaff(hodid);
-		List<FetchAssignStaff>list1styear=fas.get1stYearStaff(hodid);
 %>
 
- <!-- Navigation Bar-->
+<!-- Navigation Bar-->
 <nav class="navbar">
   <div class="nav-left">
-    <h2>Welcome, <%=name %></h2>
-  </div>
+  <button class="hamburger" onclick="toggleSidebar()">☰</button>
+  <h2>Welcome, <%=name %></h2>
+</div>
+  
+
   <div class="nav-right">
+    <!-- Hamburger menu button -->
+    <form action="HodLogout" method="post">
+      <button class="logout-btn">Logout</button>
+    </form>
+  </div>
+</nav>
+
+  <div id="sidebar" class="sidebar">
+  	<a href="javascript:void(0)" class="closebtn" onclick="toggleSidebar()">×</a>
   	<a href="HodWelcome.jsp">Home Page</a>
     <a href="ChangeHodPassword.jsp">Change Password</a>
     <a href="HodRequest.jsp">Update Personal Info</a>
     <a href="ViewAssignSubject.jsp">View Assign Subject</a>
     <a href="UpdateSubject.jsp">Update Assigned Subject</a>
-    <form action="HodLogout" method="post"><button class="logout-btn">Logout</button></form>
   </div>
-</nav>
+ 
+ <!-- Message -->
+<% String fetch=request.getParameter("fetch"); %>
+<% if("error".equals(fetch)){ %>
+  <div class="error-msg" id="serverMsg">Select valid Semester And Year</div>
+<% } %>
+
+<!-- Form For Fetch The Selected Sem Subjects -->
+<form id="hodForm" class="hod-form" method="post" action="DeleteAssignedStaff" novalidate>
+  <div class="form-group">
+    <label for="year">Year</label>
+    <select id="year" name="year">
+      <option value="" disabled selected>Select Year</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+    </select>
+    <div class="field-error" id="yearError" aria-live="polite"></div>
+  </div>
+
+  <div class="form-group">
+    <label for="sem">Semester</label>
+    <select id="sem" name="sem">
+      <option value="" disabled selected>Select Semester</option>
+      <option value="1">1</option>
+      <option value="3">3</option>
+      <option value="5">5</option>
+    </select>
+    <div class="field-error" id="semError" aria-live="polite"></div>
+  </div>
+
+  <div class="form-action">
+    <button type="submit" class="fetch-btn">Fetch</button>
+  </div>
+</form>
   
   <div class="container">
-  <% if ((list3rdyear == null || list3rdyear.isEmpty()) && (list2ndyear == null || list2ndyear.isEmpty()) && (list1styear == null || list1styear.isEmpty())) { %>
-      <h3>You Didn't Assign Subjects To Any Staff</h3>
-  <% } else { %>
-      <h3>Click Subject Name To Delete Assign Subject To Selected Staff:</h3>
-      
-        <% 
-        //Displaying 3rd Year Assigned Subjects
-        for (FetchAssignStaff sub : list3rdyear) {
-            String subject = sub.getSubject();
-            String code=sub.getCode();
-            String sname=sub.getName();
-            int id=sub.getId();
-            int sem=sub.getSem();
-        %>
-       		<div class="subject-card" onclick="deleteSubject('<%= subject %>', '<%= code %>' ,'<%= sname %>', '<%= id %>' ,'<%= sem %>')">
-  			<%= subject %><br>
-    		Course Code : <%= code %><br>
-    		Staff Name : <%= sname %><br>
-    		Staff Id : <%= id %><br>
-    		Semester : <%= sem %>
-  			</div>
-  			<br>
-        <%   
-           }
-        
-        	//Displaying 2nd Year Assigned Subjects
-        	for (FetchAssignStaff sub : list2ndyear) {
-            String subject = sub.getSubject();
-            String code=sub.getCode();
-            String sname=sub.getName();
-            int id=sub.getId();
-            int sem=sub.getSem();
-        %>  
-           <div class="subject-card" onclick="deleteSubject('<%= subject %>', '<%= code %>' ,'<%= sname %>', '<%= id %>' ,'<%= sem %>')">
-  			<%= subject %><br>
-    		Course Code : <%= code %><br>
-    		Staff Name : <%= sname %><br>
-    		Staff Id : <%= id %><br>
-    		Semester : <%= sem %>
-  			</div>
-  			<br>
-  			<%} 
-        	//Displaying 1st Year Assigned Subjects
-        	for (FetchAssignStaff sub : list1styear) {
-            String subject = sub.getSubject();
-            String code=sub.getCode();
-            String sname=sub.getName();
-            int id=sub.getId();
-            int sem=sub.getSem();
-  			%> 
-  			<div class="subject-card" onclick="deleteSubject('<%= subject %>', '<%= code %>' ,'<%= sname %>', '<%= id %>' ,'<%= sem %>')">
-  			<%= subject %><br>
-    		Course Code : <%= code %><br>
-    		Staff Name : <%= sname %><br>
-    		Staff Id : <%= id %><br>
-    		Semester : <%= sem %>
-  			</div>
-  			<br>
-  			<%} %> 			
-  <% }%>
+  <% 
+    if (semlist != null) {
+        if (semlist.isEmpty()) { 
+  %>
+          <h3>You Didn't Assign Subjects To Any Staff.</h3>
+  <%
+        } else {
+  %>
+          <h3>Assigned Subjects For Selected Semester</h3>
+          <% for (FetchAssignStaff sub : semlist) {
+              String subject = sub.getSubject(); 
+              String code = sub.getCode();
+              String sname=sub.getName();
+              int id = sub.getId();
+              int sem = sub.getSem();
+          %>
+              <div class="subject-card" onclick="deleteSubject('<%= subject %>', '<%= code %>' ,'<%= sname %>', '<%= id %>' ,'<%= sem %>')">
+                  <%= subject %><br>
+                  Course Code : <%=code %><br>
+                  Staff Name : <%= sname %><br>
+                  Staff Id : <%= id %><br>
+                  Semester : <%= sem %>
+              </div>
+          <% } %>
+  <%
+        }
+    } else { 
+  %>
+        <h3>No subjects loaded yet. Please select Year And Semester.</h3>
+  <% } %>
 </div>
-  <script src="jscodes/DeleteSubject.js"></script> 	
+  <script src="jscodes/HodMenu.js"></script>
+  <script src="jscodes/DeleteSubject.js"></script>
+  <script src="jscodes/FetchValidation.js"></script>
   </body>
 </html>

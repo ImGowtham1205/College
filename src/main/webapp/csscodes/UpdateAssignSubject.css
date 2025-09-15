@@ -8,61 +8,175 @@
   font-family: 'Segoe UI', sans-serif;
 }
 
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: #f0f4f8;
+html,body {
+    background-color: #f4f6f8;
+	color: #333;
+	transition: filter 0.3s ease;
+	position: relative;
+	overflow-x: hidden;
+	padding-top: 35px;
 }
 
 /* Navbar */
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #004080;
-  color: white;
-  padding: 15px 25px;
-  flex-wrap: wrap;
+    display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #004080;
+	color: white;
+	padding: 12px 25px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1200;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* Left nav */
-.nav-left .welcome-text {
-  font-size: 22px;
-  font-weight: bold;
-  color: white;
+.navbar h2 {
+   color: white;
+   font-size: 20px;
+   margin: 0; 
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+
+.nav-left {
+   display: flex;
+   align-items: center;
+   gap: 12px;
+   white-space: nowrap;
+}
+
+.welcome-text {
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.hamburger {
+	font-size: 22px;
+	background: none;
+	border: none;
+	color: white;
+	cursor: pointer;
+	padding: 6px 10px;
+	z-index: 1300;
+}
+
+.hamburger:hover {
+	transform: rotate(90deg);
 }
 
 .nav-right {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: none !important;
+    box-shadow: none !important;
 }
 
-.nav-right a {
-  color: white;
-  text-decoration: none;
-  font-size:18px;
+/* Remove form white box */
+.nav-right form {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
 }
 
-.logout-form {
-  margin: 0;
-  background: none;
-  padding:0;
+/* Logout button */
+.nav-right .logout-btn {
+	position: relative;
+    background: #ff3333 !important;
+    color: white !important;
+    border: none !important;
+    padding: 6px 14px !important;
+    border-radius: 6px !important;
+    cursor: pointer !important;
+    font-weight: 500 !important;
+    box-shadow: none !important;
+    overflow: hidden;
 }
 
-.logout-btn {
-  background-color: #e74c3c;
-  color: white;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 5px;
-  font-size: 15px;
-  cursor: pointer;
+.logout-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2),transparent);
+    transition: all 0.5s ease;
+}
+
+.logout-btn:hover::after {
+    left: 100%;
 }
 
 .logout-btn:hover {
-  background-color: #c0392b;
+    background: linear-gradient(90deg, #ff4d4d, #ff1a1a);
+    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
+    transform: scale(1.05);
+}
+
+/*  Sidebar */
+.sidebar {
+	position: fixed;
+	top: 60px;
+	left: 0;
+	width: 0;
+	height: calc(100% - 60px);
+	background: linear-gradient(180deg, #004080, #00264d);
+	overflow-x: hidden;
+	transition: width 0.4s ease;
+	z-index: 1100;
+	padding-top: 20px;
+	box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
+	border-top: 2px solid #003366;
+}
+
+.sidebar.active {
+	width: 250px;
+}
+
+.sidebar a {
+	display: block;
+	padding: 14px 25px;
+	font-size: 16px;
+	color: #fff;
+	text-decoration: none;
+	border-left: 3px solid transparent;
+	transition: background 0.3s, border-color 0.3s;
+}
+
+.sidebar a:hover {
+	background: rgba(255, 255, 255, 0.1);
+	border-left: 3px solid #00bfff;
+}
+
+.sidebar .closebtn {
+	position: absolute;
+	top: 10px;
+	right: 15px;
+	font-size: 22px;
+	background: #e74c3c;
+	color: white;
+	border-radius: 50%;
+	padding: 2px 8px;
+	cursor: pointer;
+	transition: background 0.3s;
+}
+
+body.sidebar-open::after {
+  content: "";
+  position: fixed;
+  top: 60px; /* below navbar */
+  left: 0;
+  width: 100%;
+  height: calc(100% - 60px);
+  background: rgba(0, 0, 0, 0.3); 
+  backdrop-filter: blur(6px);      
+  z-index: 900;
 }
 
 /* Page Title */
@@ -126,6 +240,26 @@ input[readonly] {
   cursor: not-allowed; 
 }
 
+/* Input error message */
+.input-error {
+  color: #e74c3c;
+  font-size: 14px;
+  margin-top: 5px;
+  font-weight: 500;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Red border for invalid field */
+.error-border {
+  border: 2px solid #e74c3c !important;
+  background-color: #fff6f6;
+}
+
+/* Fade-in effect for error messages */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
 form button {
   width: 100%;

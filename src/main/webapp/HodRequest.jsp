@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Request To Admin</title>
+<link rel="icon" type="image/png" href="<%= request.getContextPath() %>/Image/favicon.png">
 <link rel="stylesheet" href="csscodes/StaffRequest.css" />
 </head>
 <body>
@@ -34,25 +35,34 @@
  <!-- Navigation Bar-->
 <nav class="navbar">
   <div class="nav-left">
-    <h2>Welcome, <%=name %></h2>
-  </div>
+  <button class="hamburger" onclick="toggleSidebar()">☰</button>
+  <h2>Welcome, <%=name %></h2>
+</div>
+  
+
   <div class="nav-right">
+    <!-- Hamburger menu button -->
+    <form action="HodLogout" method="post">
+      <button class="logout-btn">Logout</button>
+    </form>
+  </div>
+</nav>
+
+  <div id="sidebar" class="sidebar">
+  	<a href="javascript:void(0)" class="closebtn" onclick="toggleSidebar()">×</a>
   	<a href="HodWelcome.jsp">Home Page</a>
     <a href="ChangeHodPassword.jsp">Change Password</a>
     <a href="ViewAssignSubject.jsp">View Assign Subject</a>
     <a href="UpdateSubject.jsp">Update Assigned Subject</a>
     <a href="DeleteSubject.jsp">Delete Assigned Subject</a>
-    <form action="HodLogout" method="post"><button class="logout-btn">Logout</button></form>
   </div>
-</nav>
-
 
  <!-- Messages -->
 <%
 String success = request.getParameter("success");
 
 if ("success".equals(request.getParameter("success"))) { %>
-  <div class="success-msg">
+  <div class="success-msg" id="successMsg">
      Request Sent Successfully.
   </div>
 <% } %>
@@ -61,15 +71,18 @@ if ("success".equals(request.getParameter("success"))) { %>
 <div class="form-wrapper">
     <div class="register-container">
         <h2>Request To Admin</h2>
-        <form action="HodRequest" method="post">
+        <form action="HodRequest" method="post" onsubmit="return validateRequest()">
             <div class="input-group">
                 <label for="request">Request</label>
-                <textarea id="request" name="request" rows="5" required></textarea>
+                <textarea id="request" name="request" rows="5"></textarea>
+                <small id="charCount" class="char-count">0 / 500 characters</small>
+        		<small id="errorMsg" class="error-msg"></small>
             </div>
             <button type="submit">Send</button>
         </form>
     </div>
 </div>
-
+<script src="jscodes/HodMenu.js"></script>
+<script src="jscodes/Task.js"></script>
 </body>
 </html>

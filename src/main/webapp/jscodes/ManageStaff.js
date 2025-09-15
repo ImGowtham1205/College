@@ -82,9 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!isValid) e.preventDefault();
   });
 
-  /* ============================
-     Validation for Update Form
-  ============================ */
+  /*  Validation for Update Form  */
   updateForm.addEventListener("submit", (e) => {
     let isValid = true;
 
@@ -103,9 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!isValid) e.preventDefault();
   });
 
-  /* ============================
-     Live validation on input
-  ============================ */
+  /* Live validation on input */
   document.querySelectorAll("#updateStaffForm input, #updateStaffForm select").forEach((input) => {
     input.addEventListener("input", () => {
       if (input.id === "staffEmail") checkEmail(input);

@@ -16,6 +16,7 @@
 <meta charset="UTF-8">
 <title>Update Assign Subject</title>
 <link rel="stylesheet" href="csscodes/UpdateAssignSubject.css" />
+<link rel="icon" type="image/png" href="<%= request.getContextPath() %>/Image/favicon.png">
 </head>
 <body>
 	<%! String name,hodname;%>
@@ -44,21 +45,29 @@
 	List<StaffName> list=fsn.getStaffName(hodid); 
 	%>
 	
-<!-- Navigation Bar-->
+ <!-- Navigation Bar-->
 <nav class="navbar">
   <div class="nav-left">
+    <button class="hamburger" onclick="toggleSidebar()">☰</button>
     <span class="welcome-text">Welcome, <%= hodname %></span>
   </div>
+  
   <div class="nav-right">
-   <a href="HodWelcome.jsp" class="nav-link">Home Page</a>
-    <a href="ChangeHodPassword.jsp" class="nav-link">Change Password</a>
-    <a href="HodRequest.jsp" class="nav-link">Update Personal Info</a>
-    <a href="ViewAssignSubject.jsp" class="nav-link">View Assign Subject</a>
-    <a href="UpdateSubject.jsp" class="nav-link">Update Assigned Subject</a>
-    <a href="DeleteSubject.jsp" class="nav-link">Delete Assigned Subject</a>
-    <form action="HodLogout" method="post" class="logout-form"><button type="submit" class="logout-btn">Logout</button></form>
+    <form action="HodLogout" method="post">
+      <button class="logout-btn">Logout</button>
+    </form>
   </div>
 </nav>
+ 
+  <div id="sidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="toggleSidebar()">×</a>
+    <a href="HodWelcome.jsp">Home Page</a>
+    <a href="ChangeHodPassword.jsp">Change Password</a>
+    <a href="HodRequest.jsp">Update Personal Info</a>
+    <a href="ViewAssignSubject.jsp">View Assign Subject</a>
+    <a href="UpdateSubject.jsp">Update Assigned Subject</a>
+    <a href="DeleteSubject.jsp">Delete Assigned Subject</a>
+  </div>
 
 <!-- Form For Update The Selected Assigned Subject To The Staff -->
 <h2>Update Assign Subject</h2>
@@ -76,7 +85,7 @@
    			Update Successfully...
   	</div>
 <%} %>
-<form action="UpdateAssignSubject" method="post">
+<form id="assignSubjectForm" action="UpdateAssignSubject" method="post" novalidate>
 <label for="subject">Subject Name:</label>
 <input type="text" name="subject" id="subject" value="<%=subject%>" readonly>
 
@@ -103,5 +112,7 @@
       </select>
       <button type="submit">Update Staff</button>
 </form>
+<script src="jscodes/HodMenu.js"></script> 
+<script src="jscodes/AssignStaffValidation.js"></script>
 </body>
 </html>

@@ -15,8 +15,8 @@ public class FetchCourse {
     //Creating Object For FetchStaff Class
     FetchStaff fs=new FetchStaff();
     
-    //Method For To Get The Subject Details For The Current Semester
-    public List<CourseName> getCourseName(int hodid){
+    //Method For To Get The Subject Details For The Current Semester By Using HOD ID As Parameter
+    public List<CourseName> getCourseName(int hodid,int sem,int year){
     	List<CourseName> list=new ArrayList<>();
     	Connection con=null;
     	PreparedStatement ps=null;
@@ -33,8 +33,10 @@ public class FetchCourse {
     		//Getting Table Name From getTable() 
     		String table=getCourseTable(dno);
     		
-    		String qry="SELECT Subject_name, subject_code , Dno , Semseter ,cyear FROM " + table + " where Semseter in(1,3,5) order by Semseter;";
+    		String qry="SELECT Subject_name, subject_code , Dno , Semseter ,cyear FROM " + table + " where Semseter=? and cyear=?;";
     		ps=con.prepareStatement(qry);
+    		ps.setInt(1, sem);
+    		ps.setInt(2, year);
     		rs=ps.executeQuery();
     		while(rs.next()) {
     			CourseName c=new CourseName();
