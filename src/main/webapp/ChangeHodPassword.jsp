@@ -89,11 +89,11 @@
 			<span class="error-text"></span>
 			
 			<label for="newPassword">New Password</label> 
-			<input type="password" id="newPassword" name="newPassword" required /> 
+			<input type="password" id="newPassword" name="newPassword" required pattern="^(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{7,}$"/> 
 			<span class="error-text"></span>
 			
 			<label for="confirmPassword">Confirm New Password</label> 
-			<input type="password" id="confirmPassword" name="confirmPassword" required />
+			<input type="password" id="confirmPassword" name="confirmPassword" required pattern="^(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{7,}$"/>
 			<span class="error-text"></span>
 			
 			<button type="submit">Change Password</button>

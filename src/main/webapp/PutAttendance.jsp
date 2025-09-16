@@ -14,15 +14,8 @@
 <meta charset="UTF-8">
 <title>Put Attendance</title>
 <link rel="stylesheet" href="csscodes/PutAttendance.css" />
-
-<script>
-  // Select-all that only touches row radios (names beginning with "status")
-  function setAll(status) {
-    const selector = 'input[type="radio"][name^="status"][value="' + status + '"]';
-    const radios = document.querySelectorAll(selector);
-    radios.forEach(r => { r.checked = true; });
-  }
-</script>
+<link rel="icon" type="image/png" href="<%= request.getContextPath() %>/Image/favicon.png">
+ <script src="jscodes/SelectAllAttendance.js"></script> 
 </head>
 <body>
 
@@ -69,16 +62,25 @@
 <!-- Navigation Bar-->
 <nav class="navbar">
   <div class="nav-left">
-    <h2>Welcome, <%=name %></h2>
-  </div>
+  <button class="hamburger" onclick="toggleSidebar()">☰</button>
+  <h2>Welcome, <%=name %></h2>
+</div>
+  
   <div class="nav-right">
+    <!-- Hamburger menu button -->
+    <form action="StaffLogout" method="post">
+      <button class="logout-btn">Logout</button>
+    </form>
+  </div>
+</nav>
+
+  <div id="sidebar" class="sidebar">
+  	<a href="javascript:void(0)" class="closebtn" onclick="toggleSidebar()">×</a>
     <a href="StaffWelcome.jsp">Home Page</a>
     <a href="ChangeStaffPassword.jsp">Change Password</a>
     <a href="StaffRequest.jsp">Update Personal info</a>
     <a href="UpdateAttendance.jsp">Update Attendance</a>
-    <form action="StaffLogout" method="post"><button class="logout-btn">Logout</button></form>
   </div>
-</nav>
 
 <div class="attendance-form">
 <!-- Messages-->
@@ -88,28 +90,26 @@
 
     if ("invalid".equals(time)) {
 %>
-        <div class="error-msg">Invalid Time Duration For Mark Attendance...</div>
+        <div class="error-msg" id="serverMsg">Invalid Time Duration For Mark Attendance...</div>
 <%
     } else if ("taken".equals(time)) {
 %>
-        <div class="error-msg">For This Hour Attendance Already Marked...</div>
+        <div class="error-msg" id="serverMsg">For This Hour Attendance Already Marked...</div>
 <%
     } else if ("mark".equals(time)) {
 %>
-        <div class="error-msg">For This Hour You Already Mark Attendance In Another Class...</div>
+        <div class="error-msg" id="serverMsg">For This Hour You Already Mark Attendance In Another Class...</div>
 <%
     }
     if ("success".equals(statusMsg)) {
 %>
-        <div class="success-msg">Attendance Entered Successfully ...</div>
+        <div class="success-msg" id="serverMsg">Attendance Entered Successfully ...</div>
 <%
     }
 %>
  
-  
-
 <!-- Time Selection Form -->
-  <form method="post" action="CheckTime">
+  <form method="post" action="CheckTime" id="timeForm" novalidate>
     <!-- Hidden Form To Access The Values In CheckTime Servlet -->
     <input type="hidden" name="subject" value="<%= subject%>">
     <input type="hidden" name="code" value="<%= code%>">
@@ -118,34 +118,45 @@
     <input type="hidden" name="year" value="<%= year %>">
 
     <div class="form-row">
-      <label for="date">Date:</label>
-      <select name="date" id="date" required>
-        <option value="">Select Date</option>
-        <option value="<%=formattedDate%>"><%=formattedDate%></option>
-      </select>
+  <div class="form-group">
+    <label for="date">Date:</label>
+    <select name="date" id="date">
+      <option value="">Select Date</option>
+      <option value="<%=formattedDate%>"><%=formattedDate%></option>
+    </select>
+      <div class="field-error" aria-live="polite"></div>
+  </div>
 
-      <label for="beginTime">Begin Time:</label>
-      <select name="beginTime" id="beginTime" required>
-        <option value="">Begin Time</option>
-        <option value="08:30">08:30 AM</option>
-        <option value="09:15">09:15 AM</option>
-        <option value="10:15">10:15 AM</option>
-        <option value="11:00">11:00 AM</option>
-        <option value="11:45">11:45 AM</option>
-      </select>
+  <div class="form-group">
+    <label for="beginTime">Begin Time:</label>
+    <select name="beginTime" id="beginTime">
+      <option value="">Begin Time</option>
+      <option value="08:30">08:30 AM</option>
+      <option value="09:15">09:15 AM</option>
+      <option value="10:15">10:15 AM</option>
+      <option value="11:00">11:00 AM</option>
+      <option value="11:45">11:45 AM</option>
+    </select>
+      <div class="field-error" aria-live="polite"></div>
+  </div>
 
-      <label for="endTime">End Time:</label>
-      <select name="endTime" id="endTime" required>
-        <option value="">End Time</option>
-        <option value="09:15">09:15 AM</option>
-        <option value="10:00">10:00 AM</option>
-        <option value="11:00">11:00 AM</option>
-        <option value="11:45">11:45 AM</option>
-        <option value="12:30">12:30 PM</option>
-      </select>
-      
-      <button type="submit" class="fetch-btn" name="fetch">Fetch</button>
-    </div>
+  <div class="form-group">
+    <label for="endTime">End Time:</label>
+    <select name="endTime" id="endTime">
+      <option value="">End Time</option>
+      <option value="09:15">09:15 AM</option>
+      <option value="10:00">10:00 AM</option>
+      <option value="11:00">11:00 AM</option>
+      <option value="11:45">11:45 AM</option>
+      <option value="12:30">12:30 PM</option>
+    </select>
+     <div class="field-error" aria-live="polite"></div>
+  </div>
+
+  <div class="form-group button-group">
+    <button type="submit" class="fetch-btn" name="fetch">Fetch</button>
+  </div>
+</div>
   </form>
 
   <!-- Attendance Form -->
@@ -216,6 +227,7 @@
   <% } %>
 
 </div>
-
+ <script src="jscodes/HodMenu.js"></script>
+ <script src="jscodes/AttendanceValidation.js"></script>
 </body>
 </html>

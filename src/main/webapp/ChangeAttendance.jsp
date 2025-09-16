@@ -13,6 +13,7 @@
 <meta charset="UTF-8">
 <title>Update Attendance</title>
 <link rel="stylesheet" href="csscodes/ChangeAttendance.css" />
+<link rel="icon" type="image/png" href="<%= request.getContextPath() %>/Image/favicon.png">
 </head>
 <body>
 
@@ -56,19 +57,29 @@
 	    List<SetStudent> list=fsr.fetchStudent(sid,y);
 	%>
 
- <!-- Navigation Bar-->
+<!-- Navigation Bar-->
 <nav class="navbar">
   <div class="nav-left">
-    <h2>Welcome, <%=name %></h2>
-  </div>
+  <button class="hamburger" onclick="toggleSidebar()">☰</button>
+  <h2>Welcome, <%=name %></h2>
+</div>
+  
+
   <div class="nav-right">
+    <!-- Hamburger menu button -->
+    <form action="StaffLogout" method="post">
+      <button class="logout-btn">Logout</button>
+    </form>
+  </div>
+</nav>
+
+  <div id="sidebar" class="sidebar">
+  	<a href="javascript:void(0)" class="closebtn" onclick="toggleSidebar()">×</a>
     <a href="StaffWelcome.jsp">Home Page</a>
     <a href="ChangeStaffPassword.jsp">Change Password</a>
     <a href="StaffRequest.jsp">Update Personal info</a>
     <a href="UpdateAttendance.jsp">Update Attendance</a>
-    <form action="StaffLogout" method="post"><button class="logout-btn">Logout</button></form>
   </div>
-</nav>
 
 <div class="attendance-form">
 
@@ -76,13 +87,13 @@
 <% String time = request.getParameter("time");
 	if("invalid".equals(time)){
 %>
-	<div class="error-msg">
+	<div class="error-msg" id="serverMsg">
    		Invalid Time Duration For Update Attendance...
   </div>
 <%} 
 	else if("not".equals(time)){
 %>
-	<div class="error-msg">
+	<div class="error-msg" id="serverMsg">
    		For Selected Time You Didn't Marked Attendance...
   </div>
 <%} %>
@@ -90,13 +101,13 @@
 	String status=request.getParameter("status");
 	if("success".equals(status)){
 %>
-	<div class="success-msg">
+	<div class="success-msg" id="serverMsg">
    		Attendance Update Successfully ...
   </div>
 <%} %>
 
 <!-- Form For Update Attendance To Selected Student -->
-  <form  method="post" action="ChangeAttendance">   	
+  <form id="attendanceForm" method="post" action="ChangeAttendance" novalidate>   	
     <div class="form-row">
     	<h3>Update Attendance</h3>
       <label for="date">Date:</label>
@@ -104,7 +115,8 @@
         <option value="">Select Date</option>
         <option value="<%=formattedDate%>"><%=formattedDate%></option>
       </select>
-
+	  <span class="field-error" id="dateError"></span>
+	  	
       <label for="beginTime">Begin Time:</label>
       <select name="beginTime" id="beginTime" required>
         <option value="">Begin Time</option>
@@ -114,7 +126,8 @@
         <option value="11:00">11:00 AM</option>
         <option value="11:45">11:45 AM</option>
       </select>
-
+	  <span class="field-error" id="beginTimeError"></span>
+		 
       <label for="endTime">End Time:</label>
       <select name="endTime" id="endTime" required>
         <option value="">End Time</option>
@@ -124,15 +137,16 @@
         <option value="11:45">11:45 AM</option>
         <option value="12:30">12:30 PM</option>
       </select>
-
+	<span class="field-error" id="endTimeError"></span>
+		
 	<label for="subject">Subject Name:</label>
 	<input type="text" name="subject" id="subject" value="<%=subject%>" readonly>
 
 	<label for="code">Subject Code:</label>
 	<input type="text" name="code" id="code" value="<%=code%>" readonly>	
 
-	<label for="student">Select Student :</label>
-      <select name="studentname" id="student" required>
+	<label for="studentname">Select Student :</label>
+      <select name="studentname" id="studentname" required>
         <option value="">-- Select Student --</option>
         <%for(SetStudent s: list) {
         	int no=s.getRollno();
@@ -140,23 +154,26 @@
         <option value="<%=no%>"><%=no %></option>
         <% }%>
       </select>
-
+	<span class="field-error" id="studentError"></span>
+	
 		<label for="attendance">Attendance :</label>
 	<div class="radio-group">
   		<label class="radio-option">
-    	<input type="radio" name="attendance" value="Present"> Present
+    	<input type="radio" name="attendance" id="attendance" value="Present"> Present
   	</label>
  		 <label class="radio-option">
-    	<input type="radio" name="attendance" value="Absent"> Absent
+    	<input type="radio" name="attendance" id="attendance" value="Absent"> Absent
   </label>
- 	</div>	
- 	
+  <span class="field-error" id="attendanceError"></span>
+  
+ 	</div>	 	
  	<input type="hidden" name="year" value="<%= year %>">
  	
       <button type="submit" class="fetch-btn" name="fetch">Update Attendance</button>
     </div>
   </form>   
 </div>
-
+<script src="jscodes/HodMenu.js"></script>
+<script src="jscodes/ChangeAttendanceValidation.js"></script>
 </body>
 </html>

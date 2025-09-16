@@ -92,15 +92,15 @@
 		<h2>Change Password</h2>
 		<form id="PassForm" action="ChangeAdminPass" method="post" novalidate>
 			<label for="currentPassword">Current Password</label> 
-			<input type="password" id="currentPassword" name="currentPassword" required />
+			<input type="password" id="currentPassword" name="currentPassword" required  />
 			<span class="error-text"></span>
 			
 			<label for="newPassword">New Password</label> 
-			<input type="password" id="newPassword" name="newPassword" required /> 
+			<input type="password" id="newPassword" name="newPassword" required pattern="^(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{7,}$"/> 
 			<span class="error-text"></span>
 			
 			<label for="confirmPassword">Confirm New Password</label> 
-			<input type="password" id="confirmPassword" name="confirmPassword" required />
+			<input type="password" id="confirmPassword" name="confirmPassword" required pattern="^(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{7,}$"/>
 			<span class="error-text"></span>
 			
 			<button type="submit">Change Password</button>

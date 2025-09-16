@@ -8,6 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Update Attendance</title>
   <link rel="stylesheet" href="csscodes/HodWelcome.css" />
+  <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/Image/favicon.png">
 </head>
 <body>
 	<%! String name=" ",code,subject; %>
@@ -37,18 +38,27 @@
 		List<FetchAssignStaff>list1styear=fas.get1stYearStaff(sid);
 	%>
 	
- <!-- Navigation Bar-->
+<!-- Navigation Bar-->
 <nav class="navbar">
   <div class="nav-left">
-    <h2>Welcome, <%=name %></h2>
-  </div>
+  <button class="hamburger" onclick="toggleSidebar()">☰</button>
+  <h2>Welcome, <%=name %></h2>
+</div>
+  
   <div class="nav-right">
+    <!-- Hamburger menu button -->
+    <form action="StaffLogout" method="post">
+      <button class="logout-btn">Logout</button>
+    </form>
+  </div>
+</nav>
+
+  <div id="sidebar" class="sidebar">
+  	<a href="javascript:void(0)" class="closebtn" onclick="toggleSidebar()">×</a>
     <a href="StaffWelcome.jsp">Home Page</a>
     <a href="ChangeStaffPassword.jsp">Change Password</a>
     <a href="StaffRequest.jsp">Update Personal info</a>
-    <form action="StaffLogout" method="post"><button class="logout-btn">Logout</button></form>
   </div>
-</nav>
 
  <!-- It Checks That Any Subject Assigned For That Particular If Assigend Then Display The Assigned Subject Else It Display "No Subject Assigned" Message-->
   <div class="container">
@@ -126,5 +136,6 @@
     window.location.href = "ChangeAttendance.jsp?subject=" + encodeURIComponent(subjectName) + "&code=" + encodeURIComponent(code) + "&year=" + encodeURIComponent(year);
   }
 </script> 
+<script src="jscodes/HodMenu.js"></script>
   </body>
 </html>

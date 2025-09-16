@@ -7,6 +7,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Staff Login</title>
+   <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/Image/favicon.png">
   <link rel="stylesheet" href="csscodes/StudentLogin.css"/>
 </head>
 <body>
@@ -29,6 +30,7 @@
   </div>
   <%} %>
   
+  <img src="<%= request.getContextPath() %>/Image/favicon.png" alt="Student Logo" class="page-logo"/>
    <!-- Staff Login Form -->
     <h2>Staff Login</h2>
     <form id="loginForm" action="StaffLogin" method="post" novalidate>
