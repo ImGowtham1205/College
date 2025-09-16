@@ -30,18 +30,20 @@ public class StaffVerify {
 			int dno=fs.fetchDno(sid);
 			
 			//Getting Table Name From getTableName() Method
-	    	String table = dsr.getStaffTable(dno);
-			
-		     String qry="select *from "+ table +" where staffid=? and pass=?;";
+	    	 String table = dsr.getStaffTable(dno);	
+	    	 
+	    	 //Prevents The Code From Crash 
+	    	 if (table == null || table.trim().isEmpty()) 
+	                return false;
+	            	    	 
+	    	 String qry = "select 1 from " + table + " where staffid=? and pass=?;";
 			 ps=con.prepareStatement(qry);
 			 ps.setInt(1, sid);
 			 ps.setString(2, password);
 			 rs=ps.executeQuery();
-			 if(rs.next())
-				return true;
-			
+			 return rs.next();			
 		}
-		catch(Exception e) {e.printStackTrace();}
+		catch(Exception e) {e.printStackTrace(); return false;}
 		
 		//Close The Connection By Using Finally Block
 		finally {
@@ -55,6 +57,5 @@ public class StaffVerify {
 				if(con!=null) con.close();
 			}catch(Exception e) {}
 		}
-		return false;
 	}
 }

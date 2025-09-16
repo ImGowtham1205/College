@@ -21,15 +21,14 @@ public class HodVerify {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			con=DriverManager.getConnection(url,user,pass);
-			String qry="select * from Hod where Hodid=? and Pass=?";
+			String qry="select 1 from Hod where Hodid=? and Pass=?";
 			ps=con.prepareStatement(qry);
 			ps.setInt(1, hodid);
 			ps.setString(2, password);
 			rs=ps.executeQuery();
-			if(rs.next()) 
-            	return true;
+			return rs.next();
 		}
-		catch(Exception e) {e.printStackTrace();}
+		catch(Exception e) {e.printStackTrace();return false;}
 		
 		//Close The Connection By Using Finally Block
 		finally {
@@ -43,6 +42,5 @@ public class HodVerify {
 				if(con!=null) con.close();
 			}catch(Exception e) {}
 		}
-		return false;
 	}
 }

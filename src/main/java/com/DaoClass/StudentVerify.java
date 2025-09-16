@@ -31,15 +31,18 @@ public class StudentVerify {
 	    	FetchStudentRecord fsr=new FetchStudentRecord();
             String table=fsr.getStudentTable(dno, year);
             
-            String qry = "SELECT * FROM " + table + " WHERE Rollno=? AND Pass=?";
+          //Prevents The Code From Crash 
+	    	if (table == null || table.trim().isEmpty()) 
+	              return false;
+            
+            String qry = "SELECT 1 FROM " + table + " WHERE Rollno=? AND Pass=?";
             ps = con.prepareStatement(qry);
             ps.setInt(1, id);
             ps.setString(2, password);
             rs = ps.executeQuery();
-            if(rs.next()) 
-               return true;
+            return rs.next();
         } 
-        catch (Exception e) { e.printStackTrace();}
+        catch (Exception e) { e.printStackTrace(); return false;}
         
       //Close The Connection By Using Finally Block
         finally {
@@ -56,6 +59,5 @@ public class StudentVerify {
         	}
         	catch(Exception e) {}
         }
-        return false;
     }
 }

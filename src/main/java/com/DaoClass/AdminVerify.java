@@ -21,16 +21,16 @@ public class AdminVerify {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			con=DriverManager.getConnection(url,user,pass);
-			String qry="select * from admin_staff where Adminid=? and pass=?";
+			String qry="select 1 from admin_staff where Adminid=? and pass=?";
 			ps=con.prepareStatement(qry);
 			ps.setInt(1, aid);
 			ps.setString(2, password);
 			rs=ps.executeQuery();
-			if(rs.next()) 
-            	return true;
+			return rs.next();
 		}
 		catch(Exception e) {
 			e.printStackTrace();
+			return false;
 		}
 		
 		//Close The Connection By Using Finally Block
@@ -45,6 +45,5 @@ public class AdminVerify {
 				if(con!=null) con.close();
 			}catch(Exception e) {}
 		}
-		return false;
 	}
 }

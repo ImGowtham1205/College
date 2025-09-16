@@ -2,24 +2,24 @@
 
 /* Reset & Base Styles */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Segoe UI', sans-serif;
 }
 
 body {
-    background-color: #f4f6f8;
+	background-color: #f4f6f8;
 	color: #333;
 	transition: filter 0.3s ease;
 	position: relative;
-	overflow-x: hidden; 
+	overflow-x: hidden;
 	padding-top: 35px;
 }
 
 /* Navbar */
 .navbar {
-    display: flex;
+	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	background-color: #004080;
@@ -31,23 +31,22 @@ body {
 	width: 100%;
 	z-index: 1200;
 	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  
 }
 
 .navbar h2 {
-   color: white;
-   font-size: 20px;
-   margin: 0; 
-   overflow: hidden;
-   text-overflow: ellipsis; 
+	color: white;
+	font-size: 20px;
+	margin: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .nav-left {
-   display: flex;
-   align-items: center;
-   gap: 15px;
-   flex-wrap: nowrap;  
-   white-space: nowrap; 
+	display: flex;
+	align-items: center;
+	gap: 15px;
+	flex-wrap: nowrap;
+	white-space: nowrap;
 }
 
 .hamburger {
@@ -79,24 +78,25 @@ body {
 }
 
 .logout-btn::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2),transparent);
-    transition: all 0.5s ease;
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2),
+		transparent);
+	transition: all 0.5s ease;
 }
 
 .logout-btn:hover::after {
-    left: 100%;
+	left: 100%;
 }
 
 .logout-btn:hover {
-    background: linear-gradient(90deg, #ff4d4d, #ff1a1a);
-    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
-    transform: scale(1.05);
+	background: linear-gradient(90deg, #ff4d4d, #ff1a1a);
+	box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
+	transform: scale(1.05);
 }
 
 /* Sidebar */
@@ -148,102 +148,103 @@ body {
 }
 
 body.sidebar-open::after {
-  content: "";
-  position: fixed;
-  top: 60px; /* below navbar */
-  left: 0;
-  width: 100%;
-  height: calc(100% - 60px);
-  background: rgba(0, 0, 0, 0.3); 
-  backdrop-filter: blur(6px);      
-  z-index: 900;
+	content: "";
+	position: fixed;
+	top: 60px; /* below navbar */
+	left: 0;
+	width: 100%;
+	height: calc(100% - 60px);
+	background: rgba(0, 0, 0, 0.3);
+	backdrop-filter: blur(6px);
+	z-index: 900;
 }
 
-.success-msg{
-	color: green; 
-	text-align:center; 
-	margin-top: 10px;
+.success-msg {
+	color: green;
+	text-align: center;
+	margin: 80px auto 10px auto; 
 	transition: opacity 0.5s ease;
+	position: relative;
+	z-index: 1000; 
 }
 
 /* Form Wrapper */
 .form-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 40px 10px;
 }
-
 
 /* Form Container */
 .register-container {
-  background-color: #ffffff;
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 520px;
-  margin-top: 30px;
-  transition: transform 0.3s ease;
+	background-color: #ffffff;
+	padding: 40px;
+	border-radius: 12px;
+	box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+	width: 100%;
+	max-width: 520px;
+	margin-top: 30px;
+	transition: transform 0.3s ease;
 }
 
 .register-container:hover {
-  transform: translateY(-3px);
+	transform: translateY(-3px);
 }
 
 h2 {
-  text-align: center;
-  margin-bottom: 30px;
-  color: #2c3e50;
-  font-size: 28px;
+	text-align: center;
+	margin-bottom: 30px;
+	color: #2c3e50;
+	font-size: 28px;
 }
 
 /* Input Group */
 .input-group {
-  margin-bottom: 25px;
+	margin-bottom: 25px;
 }
 
 .input-group label {
-  display: block;
-  margin-bottom: 10px;
-  font-weight: 600;
-  color: #34495e;
-  font-size: 16px;
+	display: block;
+	margin-bottom: 10px;
+	font-weight: 600;
+	color: #34495e;
+	font-size: 16px;
 }
 
 .input-group textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 15px;
-  resize: vertical;
-  transition: border-color 0.3s, box-shadow 0.3s;
+	width: 100%;
+	padding: 12px;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	font-size: 15px;
+	resize: vertical;
+	transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .input-group textarea:focus {
-  border-color: #28a745;
-  box-shadow: 0 0 6px rgba(40, 167, 69, 0.4);
-  outline: none;
+	border-color: #28a745;
+	box-shadow: 0 0 6px rgba(40, 167, 69, 0.4);
+	outline: none;
 }
 
 /* Submit Button */
 button[type="submit"] {
-  width: 100%;
-  padding: 12px;
-  background-color: #28a745;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-size: 17px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s, transform 0.2s ease-in-out;
+	width: 100%;
+	padding: 12px;
+	background-color: #28a745;
+	color: #fff;
+	border: none;
+	border-radius: 8px;
+	font-size: 17px;
+	font-weight: bold;
+	cursor: pointer;
+	transition: background 0.3s, transform 0.2s ease-in-out;
 }
 
 button[type="submit"]:hover {
-  background-color: #218838;
-  transform: scale(1.02);
+	background-color: #218838;
+	transform: scale(1.02);
 }
 
 /* Character Counter */
@@ -258,13 +259,13 @@ button[type="submit"]:hover {
 .char-count.warning {
 	color: red;
 	font-weight: bold;
-} 
+}
 
 /* Error State */
 textarea.error {
 	border-color: red !important;
 	box-shadow: 0 0 6px rgba(255, 0, 0, 0.4);
-} 
+}
 
 /* Error Message */
 .error-msg {
@@ -272,63 +273,98 @@ textarea.error {
 	font-size: 14px;
 	margin-top: 5px;
 	display: block;
-} 
-
-/* Shake Animation */
-@keyframes shake {
-  0% { transform: translateX(0); }
-  20% { transform: translateX(-6px); }
-  40% { transform: translateX(6px); }
-  60% { transform: translateX(-6px); }
-  80% { transform: translateX(6px); }
-  100% { transform: translateX(0); }
 }
 
-textarea.shake { 
-	animation: shake 0.3s; 
+/* Shake Animation */
+@
+keyframes shake { 0% {
+	transform: translateX(0);
+}
+
+20
+%
+{
+transform
+:
+translateX(
+-6px
+);
+}
+40
+%
+{
+transform
+:
+translateX(
+6px
+);
+}
+60
+%
+{
+transform
+:
+translateX(
+-6px
+);
+}
+80
+%
+{
+transform
+:
+translateX(
+6px
+);
+}
+100
+%
+{
+transform
+:
+translateX(
+0
+);
+}
+}
+textarea.shake {
+	animation: shake 0.3s;
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-  .register-container {
-    padding: 25px;
-    margin: 20px;
-  }
-
-  h2 {
-    font-size: 24px;
-  }
-
-  .input-group label {
-    font-size: 15px;
-  }
-
-  button[type="submit"] {
-    font-size: 15px;
-    padding: 10px;
-  }
+@media ( max-width : 768px) {
+	.register-container {
+		padding: 25px;
+		margin: 20px;
+	}
+	h2 {
+		font-size: 24px;
+	}
+	.input-group label {
+		font-size: 15px;
+	}
+	button[type="submit"] {
+		font-size: 15px;
+		padding: 10px;
+	}
 }
 
-@media (max-width: 480px) {
-  .register-container {
-    padding: 20px;
-  }
-
-  h2 {
-    font-size: 20px;
-  }
-
-  .input-group label {
-    font-size: 14px;
-  }
-
-  .input-group textarea {
-    font-size: 14px;
-    padding: 10px;
-  }
-
-  button[type="submit"] {
-    font-size: 14px;
-    padding: 10px;
-  }
+@media ( max-width : 480px) {
+	.register-container {
+		padding: 20px;
+	}
+	h2 {
+		font-size: 20px;
+	}
+	.input-group label {
+		font-size: 14px;
+	}
+	.input-group textarea {
+		font-size: 14px;
+		padding: 10px;
+	}
+	button[type="submit"] {
+		font-size: 14px;
+		padding: 10px;
+	}
 }
