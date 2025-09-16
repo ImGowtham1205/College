@@ -162,10 +162,10 @@ body.sidebar-open::after {
 .success-msg {
 	color: green;
 	text-align: center;
-	margin: 80px auto 10px auto; 
+	margin: 80px auto 10px auto;
 	transition: opacity 0.5s ease;
 	position: relative;
-	z-index: 1000; 
+	z-index: 1000;
 }
 
 /* Form Wrapper */
@@ -276,56 +276,13 @@ textarea.error {
 }
 
 /* Shake Animation */
-@
-keyframes shake { 0% {
-	transform: translateX(0);
-}
-
-20
-%
-{
-transform
-:
-translateX(
--6px
-);
-}
-40
-%
-{
-transform
-:
-translateX(
-6px
-);
-}
-60
-%
-{
-transform
-:
-translateX(
--6px
-);
-}
-80
-%
-{
-transform
-:
-translateX(
-6px
-);
-}
-100
-%
-{
-transform
-:
-translateX(
-0
-);
-}
+@keyframes shake {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-6px); }
+  80% { transform: translateX(6px); }
+  100% { transform: translateX(0); }
 }
 textarea.shake {
 	animation: shake 0.3s;
