@@ -33,9 +33,9 @@
 		
 		//Getting Staffs Who Are Handle Subject By Calling get3rdYearStaff(),get2ndYearStaff(),get1stYearStaff() Method
 		FetchAssignedStaff fas=new FetchAssignedStaff();
-		List<FetchAssignStaff>list3rdyear=fas.get3rdYearStaff(sid);
-		List<FetchAssignStaff>list2ndyear=fas.get2ndYearStaff(sid);
-		List<FetchAssignStaff>list1styear=fas.get1stYearStaff(sid);
+		List<FetchAssignStaff>list3rdyear=fas.get3rdYearForStaff(sid);
+		List<FetchAssignStaff>list2ndyear=fas.get2ndYearForStaff(sid);
+		List<FetchAssignStaff>list1styear=fas.get1stYearForStaff(sid);
 	%>
 	
 <!-- Navigation Bar-->

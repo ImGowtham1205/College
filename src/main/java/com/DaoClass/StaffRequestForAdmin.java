@@ -7,6 +7,7 @@ public class StaffRequestForAdmin {
 	private int staffid;
 	private String name;
 	private String request;
+	private String status;
 	
 	public int getReqid() {
 		return reqid;
@@ -31,6 +32,12 @@ public class StaffRequestForAdmin {
 	}
 	public void setRequest(String request) {
 		this.request = request;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }

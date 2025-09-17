@@ -20,10 +20,15 @@ public class UpdateStaffRequest extends HttpServlet {
   			int staffid=Integer.parseInt(request.getParameter("staffid"));
   			String status=request.getParameter("status");
   			
-  		//It checks If The Status Value Is Completed Then It Allow To Update The Log In DataBase
-  			if(status.equals("complete")) {
-  				ur.updateStaffRequest(id, staffid);
+  		//It checks If The Status Value Is Completed Or Rejected Then It Allow To Update The Log In DataBase
+  			if(status.equals("completed")) {
+  				ur.updateStaffRequest(id, staffid,status);
   				request.getRequestDispatcher("UpdateStaffRequest.jsp?change=success&reqid="+id).forward(request, response);
+  			}
+  			
+  			else if(status.equals("rejected")) {
+  				ur.updateStaffRequest(id, staffid, status);
+  				request.getRequestDispatcher("UpdateStaffRequest.jsp?change=reject&reqid="+id).forward(request, response);
   			}
   			
   			else 

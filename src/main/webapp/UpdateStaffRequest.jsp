@@ -85,16 +85,21 @@
   if ("success".equals(change)) {
   %>
   	<div class="success-msg msg-box">
-    	Update Request Successfully...
+    	Request Updated Successfully...
   </div>
   <%} 
   else if("fail".equals(change)){
   %>
-  		<div class="error-msg msg-box">
-    	First Select Complete To Update...
+  <div class="error-msg msg-box">
+    	Select Complete Or Reject To Update Request Log...
   </div>
-  <%} %>
-    
+  <%} 
+  else if("reject".equals(change)){
+  %>
+  <div class="success-msg msg-box">
+    	 Request Rejected Successfully...
+  </div>
+   <%} %> 
     <form action="UpdateStaffRequest" method="post">
     <!-- Hidden Form To Access The Values In UpdateStaffRequest Servlet -->
     	<input type="hidden" name="id" value="<%=reqid%>">
@@ -109,7 +114,9 @@
         <label for="Pending">Pending</label>
         <input type="radio" name="status" id="pending" value="pending" checked>
         <label for="complete">Complete</label>
-        <input type="radio" name="status" id="complete" value="complete">
+        <input type="radio" name="status" id="complete" value="completed">
+        <label for="reject">Reject</label>
+        <input type="radio" name="status" id="reject" value="rejected">
         <button type="submit" class="submit">Submit</button>
      </form>   
     </div>

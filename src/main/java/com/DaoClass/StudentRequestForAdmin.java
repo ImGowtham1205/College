@@ -7,6 +7,7 @@ public class StudentRequestForAdmin {
 	private int rollno;
 	private String name;
 	private String request;
+	private String status;
 	
 	public int getReqid() {
 		return reqid;
@@ -31,5 +32,11 @@ public class StudentRequestForAdmin {
 	}
 	public void setRequest(String request) {
 		this.request = request;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }

@@ -10,8 +10,8 @@ public class UpdateRequest {
     private String user = "root";
     private String pass = "test";
     
-    //Method For Make The Student Request Update In Database
-    public void updateStudentRequest(int id,int rollno) {
+    //Method For Make The Student Request Log Update In Database
+    public void updateStudentRequest(int id,int rollno,String status) {
     	Connection con=null;
     	PreparedStatement ps=null;
     	try {
@@ -19,18 +19,20 @@ public class UpdateRequest {
     		con=DriverManager.getConnection(url, user, pass);
     		con.setAutoCommit(false);
     		
-    		//Getting Department Number From fetchDno() Method
+    		//Getting Department Number And Year From fetchDno() And fetchYear() Method
     		FetchStudent fs=new FetchStudent();
     		int dno=fs.fetchDno(rollno);
+    		int year=fs.fetchYear(rollno);
     		
     		//Geting Table Name From getStudentRequestTable() Method
     		
     		AdminRequest ar=new AdminRequest();
-    		String table=ar.getStudentRequestTable(dno);
+    		String table=ar.getStudentRequestTable(dno,year);
     		
-    		String qry="update "+table+" set progress='complete' where reqid=?;";
+    		String qry="update "+table+" set progress=? where reqid=?;";
     		ps=con.prepareStatement(qry);
-    		ps.setInt(1, id);
+    		ps.setString(1, status);
+    		ps.setInt(2, id);
     		int row=ps.executeUpdate();
     		
     		//It Checks The Query Executed Successfully Or Not If True Then It Allows To Save Changes In Database
@@ -53,8 +55,8 @@ public class UpdateRequest {
     			}
     }
     
-    //Method For Make The Staff & Hod Request Update In Database
-    public void updateStaffRequest(int id,int staffid) {
+    //Method For Make The Staff & Hod Request Log Update In Database
+    public void updateStaffRequest(int id,int staffid,String status) {
     	Connection con=null;
     	PreparedStatement ps=null;
     	try {
@@ -70,9 +72,10 @@ public class UpdateRequest {
     		AdminRequest ar=new AdminRequest();
     		String table=ar.getStaffRequestTable(dno);
     		
-    		String qry="update "+table+" set progress='complete' where reqid=?;";
+    		String qry="update "+table+" set progress=? where reqid=?;";
     		ps=con.prepareStatement(qry);
-    		ps.setInt(1, id);
+    		ps.setString(1, status);
+    		ps.setInt(2, id);
     		int row=ps.executeUpdate();
     		
     		//It Checks The Query Executed Successfully Or Not If True Then It Allows To Save Changes In Database

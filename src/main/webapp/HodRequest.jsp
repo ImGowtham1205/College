@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.DaoClass.*"%>
+    pageEncoding="UTF-8" import="com.DaoClass.*,java.util.*"%>
 
 <!DOCTYPE html>
 <html>
@@ -30,6 +30,10 @@
 		
 		//Getting Hod Name By Calling fetchName() Method Using HOD ID As Arugment
 		name=fh.fetchName(hodid);
+		
+		//Getting Staff By Calling getIndividualStaffRequest()Method
+	    FetchRequest fr=new FetchRequest();
+	    List<StaffRequestForAdmin> list=fr.getIndividualStaffRequest(hodid);
 %>
 
  <!-- Navigation Bar-->
@@ -82,6 +86,35 @@ if ("success".equals(request.getParameter("success"))) { %>
         </form>
     </div>
 </div>
+<% if((list==null ||list.isEmpty())) {%>
+	<h3>You Didn't Send Any Requst To Admin</h3>
+<%} 
+else { %>
+	<h3>Your Request : </h3>
+	<table>
+        <thead>
+            <tr>
+                <th>Sno</th>
+                <th>Request</th>
+                <th>Progress</th>
+            </tr>
+        </thead>
+        <tbody>
+        <%  int i=0;
+        	for(StaffRequestForAdmin s:list) { 
+            String req=s.getRequest();
+            String progress=s.getStatus();
+            i++;
+        %>
+            <tr>
+                <td data-label="Sno"><%=i %></td>
+                <td data-label="Request"><%=req %></td>
+                <td data-label="Progress"><%=progress %></td>
+            </tr>
+        <% } %>
+        </tbody>
+    </table>
+<%} %>
 <script src="jscodes/HodMenu.js"></script>
 <script src="jscodes/Task.js"></script>
 </body>

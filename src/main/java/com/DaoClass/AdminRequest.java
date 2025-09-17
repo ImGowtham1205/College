@@ -20,15 +20,16 @@ public class AdminRequest {
     		 con=DriverManager.getConnection(url, user, pass);
     		 con.setAutoCommit(false);
     		 
-    		 //Getting Department Number From fetchDno() Method
+    		 //Getting Department Number And Year  From fetchDno() ,fetchYear() Method
     		 FetchStudent fs=new FetchStudent();
     		 int dno=fs.fetchDno(rollno);
+    		 int year=fs.fetchYear(rollno);
     		 
     		 //Getting Student Name From fetchName() Method
     		 String name=fs.fetchName(rollno);
     		 
     		 //Getting Table Name From getStudentRequestTable() Method
-    		 String table=getStudentRequestTable(dno);
+    		 String table=getStudentRequestTable(dno,year);
     		 
     		 String qry="insert into "+table+"(sname,request,rollno) values(?,?,?);";
     		 ps=con.prepareStatement(qry);
@@ -103,19 +104,52 @@ public class AdminRequest {
     }
     
     //Method For Getting Student Request Table Name 
-    protected String getStudentRequestTable(int dno) {
-    	switch(dno) {
-    		case 5: return "Bcom_general_request";
-    		case 10: return "Bcom_cs_request";
-    		case 15: return "Bcom_AF_request";
-    		case 20: return "Bcom_BM_request";
-    		case 25: return "Bcom_ISM_request";
-    		case 30: return "Bcom_CA_request";
-    		case 35: return "BBA_request";
-    		case 40: return "Bsc_cs_request";
-    		case 45: return "BCA_request";
-    		default: return "";
-    	}
+    protected String getStudentRequestTable(int dno ,int year) {
+    	if (dno == 5 && year < 3) 
+	        return "Bcom_general_" + year + (year == 1 ? "st" : "nd") + "_yearrequest";
+	    else if (dno == 5 && year == 3) 
+	        return "Bcom_general_request";
+    	
+	    if(dno==10 &&year <3)
+	    	return "Bcom_cs_" + year + (year == 1 ? "st" : "nd") + "_yearrequest";
+	    else if (dno == 10 && year == 3) 
+	        return "Bcom_cs_request";
+	    
+	    if(dno==15 &&year <3)
+	    	return "Bcom_AF_" + year + (year == 1 ? "st" : "nd") + "_yearrequest";
+	    else if (dno == 15 && year == 3) 
+	        return "Bcom_AF_request";
+	    
+	    if(dno==20 &&year <3)
+	    	return "Bcom_BM_" + year + (year == 1 ? "st" : "nd") + "_yearrequest";
+	    else if (dno == 20 && year == 3) 
+	        return "Bcom_BM_request";
+	    
+	    if(dno==25 &&year <3)
+	    	return "Bcom_ISM_" + year + (year == 1 ? "st" : "nd") + "_yearrequest";
+	    else if (dno == 25 && year == 3) 
+	        return "Bcom_ISM_request";
+	    
+	    if(dno==30 &&year <3)
+	    	return "Bcom_CA_" + year + (year == 1 ? "st" : "nd") + "_yearrequest";
+	    else if (dno == 30 && year == 3) 
+	        return "Bcom_CA_request";
+	    
+	    if(dno==35 &&year <3)
+	    	return "BBA_" + year + (year == 1 ? "st" : "nd") + "_yearrequest";
+	    else if (dno == 35 && year == 3) 
+	        return "BBA_request";
+	    
+	    if(dno==40 &&year <3)
+	    	return "Bsc_CS_" + year + (year == 1 ? "st" : "nd") + "_yearrequest";
+	    else if (dno == 40 && year == 3) 
+	        return "Bsc_CS_request";
+	    
+	    if(dno==45 &&year <3)
+	    	return "BCA_" + year + (year == 1 ? "st" : "nd") + "_yearrequest";
+	    else if (dno == 45 && year == 3) 
+	        return "BCA_request";
+	    return null;
     }
     
   //Method For Getting Staff Request Table Name 
@@ -130,7 +164,7 @@ public class AdminRequest {
     		case 35: return "BBA_staff_request";
     		case 40: return "Bsc_cs_staff_request";
     		case 45: return "BCA_staff_request";
-    		default: return "";
+    		default: return null;
     	}
     }
 }

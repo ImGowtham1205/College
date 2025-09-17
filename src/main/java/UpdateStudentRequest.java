@@ -22,11 +22,17 @@ public class UpdateStudentRequest extends HttpServlet {
 		int rollno=Integer.parseInt(request.getParameter("rollno"));
 		String status=request.getParameter("status");
 		
-		//It checks If The Status Value Is Completed Then It Allow To Update The Log In DataBase
-		if(status.equals("complete")) {
-			ur.updateStudentRequest(id, rollno);
+		//It checks If The Status Value Is Completed Or Rejected Then It Allow To Update The Log In DataBase
+		if(status.equals("completed")) {
+			ur.updateStudentRequest(id, rollno,status);
 			request.getRequestDispatcher("UpdateStudentRequest.jsp?change=success&reqid="+id).forward(request, response);
 		}
+		
+		else if(status.equals("rejected")) {
+			ur.updateStudentRequest(id, rollno,status);
+			request.getRequestDispatcher("UpdateStudentRequest.jsp?change=reject&reqid="+id).forward(request, response);
+		}
+		
 		else 
 			request.getRequestDispatcher("UpdateStudentRequest.jsp?change=fail&reqid="+id).forward(request, response);
 	}

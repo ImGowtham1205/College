@@ -52,6 +52,11 @@
         totalpercent = 0;
     
     String percent = String.format("%.0f", totalpercent);
+    
+    //It Checks For Dynamic Styling For Overall Percentage
+    String overallClass = "good";
+    if (totalpercent >= 51 && totalpercent <75) overallClass = "medium";
+    else if (totalpercent <= 50) overallClass = "low";
 %>
 
 <!-- Overlay for sidebar -->
@@ -83,7 +88,7 @@
     <div class="section">
         <h2>Current Semester Attendance Details :</h2>
         <!-- Display The Student OverAll Attendance Percentage-->
-        <h2>Your OverAll Percentage : <%= percent %>%</h2>
+        <h2 class="attendance-percent <%= overallClass %>">Your OverAll Percentage : <%= percent %>%</h2>
         
         <!-- Display The Student Individual Subject Attendance Percentage-->
         <div class="info-grid">
@@ -102,13 +107,18 @@
               //If The Individual Class Held Is Greater Than Zero Then Calculate The Attendance Percentage If Not Then Assign The Percentage As 0 
                 float total = (attend > 0) ? (present / attend) * 100 : 0;
                 String total1 = String.format("%.2f", total);
+                
+                //It Checks For Dynamic Styling For Individual Percentage
+                String percentClass = "good";
+                if (total >=50 && total <75) percentClass = "medium";
+                else if (total < 50) percentClass = "low";   
         %>
             <div class="info-item" onclick="viewAttendance('<%= cname %>', '<%= ccode %>')">
                 <h5><%= cname %></h5>
                 <p>Course Code : <%= ccode %></p>
                 <p>Total Hours Attended : <%= present1 %></p>
                 <p>Total Hours Held : <%= attend1 %></p>
-                <p>Percentage : <%= total1 %>%</p>
+                <p class="attendance-percent <%= percentClass %>">Percentage : <%= total1 %>%</p>
             </div>
         <% } %>
         </div>

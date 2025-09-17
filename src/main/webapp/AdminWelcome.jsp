@@ -34,9 +34,11 @@
     FetchStaff fs=new FetchStaff();
     aname=fs.fetchName(aid);
 
-    ////Getting Student & Staff  Request By Calling getStudentRequest() getStaffRequest() & Method
+    //Getting Student & Staff Request By Calling get3rdYearStudentRequest(),get2ndYearStudentRequest(),get1stYearStudentRequest()&getStaffRequest()Method
     FetchRequest fr=new FetchRequest();
-    List<StudentRequestForAdmin> studentlist=fr.getStudentRequest(aid);
+    List<StudentRequestForAdmin> student3rdyearlist=fr.get3rdYearStudentRequest(aid);
+    List<StudentRequestForAdmin> student2ndyearlist=fr.get2ndYearStudentRequest(aid);
+    List<StudentRequestForAdmin> student1styearlist=fr.get1stYearStudentRequest(aid);
     List<StaffRequestForAdmin> stafflist=fr.getStaffRequest(aid);
    %>
    
@@ -75,13 +77,45 @@
    <div class="main-content">  
  <!-- It Checks That Any Request Assigned For Admin If Assigend Then Display The Assigned Request Else It Display "No Request Assigned" Message-->
   <div class="container">
-    <% if ((studentlist == null || studentlist.isEmpty()) && (stafflist == null || stafflist.isEmpty())) { %>
+    <% if ((student3rdyearlist == null || student3rdyearlist.isEmpty()) && (student2ndyearlist == null || student2ndyearlist.isEmpty())&&(student1styearlist == null || student1styearlist.isEmpty()) && (stafflist == null || stafflist.isEmpty())) { %>
         <h3>No Request Available At This Time...</h3>
     <% } else { %>
         <h3>Assigned Request For You:</h3>
         <% 
-        //Student Requests
-        for (StudentRequestForAdmin student: studentlist) {
+        //Student Requests For 3rd Year
+        for (StudentRequestForAdmin student: student3rdyearlist) {
+        %>
+            <div class="subject-card" data-type="student" data-reqid="<%= student.getReqid() %>" data-rollno="<%= student.getRollno() %>" 
+            data-name="<%= student.getName().replace("\"", "&quot;").replace("'", "\\'") %>" 
+            data-request="<%= student.getRequest().replace("\"", "&quot;").replace("'", "\\'") %>"
+            onclick="handleRequestClick(this)">
+            
+                Request Id: <%= student.getReqid() %><br>
+                Roll No: <%= student.getRollno() %><br>
+                Student Name: <%= student.getName() %><br>
+                Request: <%= student.getRequest() %><br>
+            </div>
+            <br>
+        <% } %>
+		<% 
+        //Student Requests For 2nd Year
+        for (StudentRequestForAdmin student: student2ndyearlist) {
+        %>
+            <div class="subject-card" data-type="student" data-reqid="<%= student.getReqid() %>" data-rollno="<%= student.getRollno() %>" 
+            data-name="<%= student.getName().replace("\"", "&quot;").replace("'", "\\'") %>" 
+            data-request="<%= student.getRequest().replace("\"", "&quot;").replace("'", "\\'") %>"
+            onclick="handleRequestClick(this)">
+            
+                Request Id: <%= student.getReqid() %><br>
+                Roll No: <%= student.getRollno() %><br>
+                Student Name: <%= student.getName() %><br>
+                Request: <%= student.getRequest() %><br>
+            </div>
+            <br>
+        <% } %>
+		<% 
+        //Student Requests For 1st Year
+        for (StudentRequestForAdmin student: student1styearlist) {
         %>
             <div class="subject-card" data-type="student" data-reqid="<%= student.getReqid() %>" data-rollno="<%= student.getRollno() %>" 
             data-name="<%= student.getName().replace("\"", "&quot;").replace("'", "\\'") %>" 

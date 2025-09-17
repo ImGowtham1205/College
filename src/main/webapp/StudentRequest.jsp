@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.DaoClass.*"%>
+    pageEncoding="UTF-8" import="com.DaoClass.*,java.util.*"%>
 
 <!DOCTYPE html>
 <html>
@@ -28,9 +28,13 @@
     String id = session.getAttribute("Rollno").toString();
     int rollno = Integer.parseInt(id);
     
-  //Getting Student Name By Calling fetchName() Method Using Student RollNo As Arugment
-    FetchStudent sn = new FetchStudent();
-    name = sn.fetchName(rollno); 
+    //Getting Student Name & year By Calling fetchName(), fetchyear() Method Using Student RollNo As Arugment
+    FetchStudent fs = new FetchStudent();
+    name = fs.fetchName(rollno); 
+    
+  //Getting Student By Calling getIndividualStudentRequest()Method
+  FetchRequest fr=new FetchRequest();
+  List<StudentRequestForAdmin> list=fr.getIndividualStudentRequest(rollno);
 %>
 
 <!-- Overlay for sidebar -->
@@ -84,7 +88,35 @@ if ("success".equals(success)) { %>
         
     </div>
 </div>
-
+<% if((list==null ||list.isEmpty())) {%>
+	<h3>You Didn't Send Any Requst To Admin</h3>
+<%} 
+else { %>
+	<h3>Your Request : </h3>
+	<table>
+        <thead>
+            <tr>
+                <th>Sno</th>
+                <th>Request</th>
+                <th>Progress</th>
+            </tr>
+        </thead>
+        <tbody>
+        <%  int i=0;
+        	for(StudentRequestForAdmin s:list) { 
+            String req=s.getRequest();
+            String progress=s.getStatus();
+            i++;
+        %>
+            <tr>
+                <td data-label="Sno"><%=i %></td>
+                <td data-label="Request"><%=req %></td>
+                <td data-label="Progress"><%=progress %></td>
+            </tr>
+        <% } %>
+        </tbody>
+    </table>
+<%} %>
 <script src="jscodes/RequestMenu.js"></script>
 <script src="jscodes/Task.js"></script>
 </body>
