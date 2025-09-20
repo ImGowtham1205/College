@@ -284,6 +284,16 @@ h2 {
     display: block;
 }
 
+/* Input error (red border) */
+.input-error {
+  border: 2px solid red !important;
+}
+
+/* Input success (green border) */
+.input-success {
+  border: 2px solid green !important;
+}
+
 /* Shake animation */
 @keyframes shake {
   0% { transform: translateX(0); }

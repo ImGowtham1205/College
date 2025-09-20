@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Student Registration</title>
+  <title>Add Course</title>
    <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/Image/favicon.png">
   <link rel="stylesheet" href="csscodes/AddStudent.css" />
 </head>
@@ -60,6 +60,7 @@
  
     <div class="sidebar" id="sidebar">
       <a href="AdminWelcome.jsp">Admin Welcome Page</a>
+      <a href="AddStudent.jsp">Add Student Details</a>
       <a href="StudentUpdate.jsp">Update Student Details</a>
       <a href="StaffUpdate.jsp">Update Staff Details</a>
       <a href="StudentDelete.jsp">Delete Student Record</a>
@@ -76,11 +77,11 @@ String success = request.getParameter("success");
 
 if ("true".equals(success)) { %>
   <div class="success-msg msg-box">
-     student Record Added Successfully.
+     Course Added Successfully.
   </div>
 <% }  else if("unauthorized".equals(success)) {%>
   	 <div class="error-msg msg-box">
-      You are not authorized to Add student Record for the selected department.
+      You are not authorized to Add Course for the selected department.
   </div>
 <%}   else if("false".equals(success)) {%>
 	<div class="error-msg msg-box">
@@ -89,85 +90,49 @@ if ("true".equals(success)) { %>
 <%} %>
   	 <!-- Form For Add The Student Record -->
   	 <div class="main-content">
-    <h2>Add Student Record</h2>
-    <form id="studentForm" action="AddStudent" method="post" novalidate>
+    <h2>Add Course</h2>
+    <form id="CourseForm" action="AddCourse" method="post" novalidate>
       <div class="input-group">
-        <label for="fullname">Full Name</label>
-        <input type="text" id="fullname" name="fullname" required />
+        <label for="code">Code</label>
+        <input type="text" id="code" name="code" pattern="^[A-Z0-9]{6,}$" 
+        title="Course code must be at least 6 characters long, only capital letters and numbers allowed"required />
         <small class="error-text"></small>
       </div>
 
       <div class="input-group">
-        <label>Gender</label>
-        <div class="radio-group">
-          <label><input type="radio" name="gender" value="Male" required /> Male</label>
-          <label><input type="radio" name="gender" value="Female" /> Female</label>
-        </div>
-        <small class="error-text"></small>
-      </div>
-
-      <div class="input-group">
-        <label for="department">Department</label>
-        <select id="department" name="department" required>
-          <option value="" disabled selected>Select Department</option>
-          <option value="B.com(ISM)">B.com(ISM)</option>
-          <option value="B.com(General)">B.com(General)</option>
-          <option value="B.com(Coporate Secretaryship)">B.com(Coporate Secretaryship)</option>
-          <option value="B.com(A&F)">B.com(A And F)</option>
-          <option value="B.com(Bank Management)">B.com(Bank Management)</option>
-          <option value="B.com(CA)">B.com(CA)</option>
-          <option value="BBA">BBA</option>
-          <option value="B.Sc(Computer Science)">B.Sc(Computer Science)</option>
-          <option value="BCA">BCA</option>
-        </select>
-        <small class="error-text"></small>
-      </div>
-
-      <div class="input-group">
-        <label for="blood-group">Blood Group</label>
-        <select id="blood-group" name="blood-group" required>
-          <option value="" disabled selected>Select Blood Group</option>
-          <option value="A+ve">A+ve</option>
-          <option value="A-ve">A-ve</option>
-          <option value="B+ve">B+ve</option>
-          <option value="B-ve">B-ve</option>
-          <option value="O+ve">O+ve</option>
-          <option value="O-ve">O-ve</option>
-          <option value="AB+ve">AB+ve</option>
-          <option value="AB-ve">AB-ve</option>
-        </select>
-        <small class="error-text"></small>
-      </div>
-
-      <div class="input-group">
-        <label for="phone">Phone Number</label>
-        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required placeholder="10-digit number"/>
-        <small class="error-text"></small>
-      </div>
-
-      <div class="input-group">
-        <label for="address">Address</label>
-        <textarea id="address" name="address" rows="3" required></textarea>
-        <small class="error-text"></small>
-      </div>
-
-      <div class="input-group">
-        <label for="email">Email Address</label>
-        <input type="email" id="email" name="email" required />
+        <label for="subject">Subject Name</label>
+        <input type="text" id="subject" name="subject" required />
         <small class="error-text"></small>
       </div>
 
 	<div class="input-group">
-        <label for="year">Year</label>
-        <select id="year" name="year" required>
-          <option value="" disabled selected>Select Year</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
+        <label for="department">Department</label>
+        <select id="department" name="department" required>
+          <option value="" disabled selected>Select Department</option>
+          <option value="25">B.com(ISM)</option>
+          <option value="5">B.com(General)</option>
+          <option value="10">B.com(Coporate Secretaryship)</option>
+          <option value="15">B.com(A And F)</option>
+          <option value="20">B.com(Bank Management)</option>
+          <option value="30">B.com(CA)</option>
+          <option value="35">BBA</option>
+          <option value="40">B.Sc(Computer Science)</option>
+          <option value="45">BCA</option>
         </select>
         <small class="error-text"></small>
       </div>
-	
+
+	<div class="input-group">
+        <label for="credits">Credits</label>
+        <select id="credits" name="credits" required>
+          <option value="" disabled selected>Select Credits</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <small class="error-text"></small>
+      </div>
+
 	<div class="input-group">
         <label for="sem">sem</label>
         <select id="sem" name="sem" required>
@@ -182,12 +147,23 @@ if ("true".equals(success)) { %>
         <small class="error-text"></small>
       </div>
 
-      <button type="submit">Add Record</button>
+	<div class="input-group">
+        <label for="year">Year</label>
+        <select id="year" name="year" required>
+          <option value="" disabled selected>Select Year</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+        <small class="error-text"></small>
+      </div>	
+
+      <button type="submit">Add Course</button>
     </form>
   </div>
   </div>
   <script src="jscodes/AdminMenu.js"></script>
-  <script src="jscodes/StudentValidation.js"></script>
+  <script src="jscodes/CourseValidation.js"></script>
 </body>
 </html>
     

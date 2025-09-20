@@ -11,8 +11,9 @@ public class AssignStaff {
     private String user = "root";
     private String pass = "test";
     
-    //Creating Object For FetchStaff Class
+    //Creating Object For FetchStaff & GetCourseDetails Class
     FetchStaff fs=new FetchStaff();
+    GetCourseDetails gc=new GetCourseDetails();
     
     //Method For Assign The Staff For Given Paper
 	public void assignStaff(int hodid,String name,String subject,String code,int sid,int year,int sem) {
@@ -90,9 +91,8 @@ public class AssignStaff {
 	//Method For To Check The Subject Is Already Assigend 
 	public String subjectName(int hodid,String code) {
 		
-		//Getting Semseter By calling getSemByCode() Method
-    	FetchCourse fc=new FetchCourse();
-    	int sem=fc.getSemByCode(code, hodid);
+		//Getting Semseter By calling fetchSem() Method
+    	int sem=gc.fetchSem(code);
     	
     	//Getting Department Number By calling fetchDno() Method
     	int dno=fs.fetchDno(hodid);
@@ -133,11 +133,11 @@ public class AssignStaff {
 		return "";
 	}
 	
-	//Method For To Check The Staff To Assign The Subject For This Semester
+	//Method For To Check The Staff Already Assign The Subject For This Semester
 	public int assignStaffCheck(int id,int hodid,String code) {
-		//Getting Semseter By calling getSemByCode() Method
-    	FetchCourse fc=new FetchCourse();
-    	int sem=fc.getSemByCode(code, hodid);
+		
+		//Getting Semseter By calling fetchSem() Method
+    	int sem=gc.fetchSem(code);
     	
     	//Getting Department Number By calling fetchDno() Method
     	int dno=fs.fetchDno(hodid);

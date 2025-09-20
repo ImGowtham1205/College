@@ -180,48 +180,7 @@ public class FetchCourse {
     	}
     	return list;
     }
-       
-  //Method For To Get Semseter Using Subject Code & Hod ID
-    protected int getSemByCode(String code,int hodid) {
-    	Connection con=null;
-    	PreparedStatement ps=null;
-    	ResultSet rs=null;
-    	try {
-    		Class.forName("com.mysql.jdbc.Driver");
-    		con=DriverManager.getConnection(url, user, pass);
-    		
-    		//Getting Department Number From fetchDno()
-    		int dno=fs.fetchDno(hodid);
-    		
-    		//Getting Table Name From getTable()
-    		String table=getCourseTable(dno);
-    		String qry="SELECT Semseter FROM " + table+" where subject_code=?;";
-    		ps=con.prepareStatement(qry);
-    		ps.setString(1, code);
-    		rs=ps.executeQuery();
-    		while(rs.next())
-    			return rs.getInt("Semseter");
-    	}
-    	catch(Exception e) {e.printStackTrace();}
-    	
-    	//Close The Connection Using Finally Block
-    	finally {
-    		try {
-    			if(con!=null) con.close();
-    		}
-    		catch(Exception e) {}
-    		try {
-    			if(ps!=null) ps.close();
-    		}
-    		catch(Exception e) {}
-    		try {
-    			if(rs!=null) rs.close();
-    		}
-    		catch(Exception e) {}
-    	}
-    	return 0;
-    }
-   
+        
     //Method For To Get The Course Table Name
     protected String getCourseTable(int dno) {
     	switch(dno) {

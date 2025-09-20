@@ -12,7 +12,7 @@ public class UpdateAttendance {
     private String pass = "test";
     
     //Creating Object For FetchCourse & PutAttendance Class
-    FetchCourse fc=new FetchCourse();
+    GetCourseDetails gc=new GetCourseDetails();
 	PutAttendance pa=new PutAttendance();
 	
     //Method For To Check Staff Will Mark Attendance For Selected Date & Time 
@@ -28,8 +28,8 @@ public class UpdateAttendance {
     		FetchStaff fs=new FetchStaff();
     		int dno=fs.fetchDno(sid);
    
-    		//Getting Current Semester From getSemByCode() Method
-    		int sem=fc.getSemByCode(code, sid);
+    		//Getting Semseter By calling fetchSem() Method
+        	int sem=gc.fetchSem(code);
     		
     		//Getting Table Name From getTable() Method
     		String table=pa.getAttendanceTable(dno, sem);
@@ -78,8 +78,8 @@ public class UpdateAttendance {
     		FetchStudent fs=new FetchStudent();
     		int dno=fs.fetchDno(rollno);
     		
-    		//Getting Current Semester From getSemByCode() Method
-    		int sem=fc.getSemByCode(code, sid);
+    		//Getting Semseter By calling fetchSem() Method
+        	int sem=gc.fetchSem(code);
     		
     		//Getting Table Name From getTable() Method
     		String table=pa.getAttendanceTable(dno, sem);

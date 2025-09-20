@@ -1,0 +1,146 @@
+/* Reset default margin/padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(135deg, #eaf3ff, #f9f9f9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Header */
+header {
+    width: 100%;
+    background: #003366;
+    color: white;
+    text-align: center;
+    padding: 25px 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+header h1 {
+    font-size: 2.2rem;
+    letter-spacing: 1.5px;
+}
+
+/* Container (responsive grid) */
+.container {
+    margin: 50px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    width: 90%;
+    max-width: 1100px;
+    padding: 10px;
+}
+
+/* Card Styles */
+.card {
+    background: white;
+    padding: 40px 20px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* Card Image */
+.card img {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 20px;
+}
+
+/* Card Button */
+.card a {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+/* Different Colors for Each Role */
+.student a {
+    background: #0077cc;
+}
+.student a:hover {
+    background: #005fa3;
+}
+
+.staff a {
+    background: #28a745;
+}
+.staff a:hover {
+    background: #1e7e34;
+}
+
+.hod a {
+    background: #ff9800;
+}
+.hod a:hover {
+    background: #e68900;
+}
+
+.admin a {
+    background: #dc3545;
+}
+.admin a:hover {
+    background: #b52a37;
+}
+
+/* Footer */
+footer {
+    margin-top: auto;
+    width: 100%;
+    background: #003366;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-size: 0.95rem;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    .card img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .card a {
+        font-size: 1rem;
+        padding: 10px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        padding: 30px 15px;
+    }
+}

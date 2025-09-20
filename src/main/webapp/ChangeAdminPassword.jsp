@@ -62,6 +62,9 @@
       <a href="StaffUpdate.jsp">Update Staff Details</a>
       <a href="StudentDelete.jsp">Delete Student Record</a>
       <a href="StaffDelete.jsp">Delete Staff Record</a>
+      <a href="AddCourse.jsp">Add Course</a>
+      <a href="UpdateCourse.jsp">Update Course details</a>
+      <a href="DeleteCourse.jsp">Delete Course details</a>
     </div>
 <!-- Messages -->
 <div class="form-container">
