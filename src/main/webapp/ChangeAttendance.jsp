@@ -156,13 +156,13 @@
       </select>
 	<span class="field-error" id="studentError"></span>
 	
-		<label for="attendance">Attendance :</label>
+		<label>Attendance :</label>
 	<div class="radio-group">
   		<label class="radio-option">
-    	<input type="radio" name="attendance" id="attendance" value="Present"> Present
+    	<input type="radio" name="attendance" id="attendancepresent" value="Present"> Present
   	</label>
  		 <label class="radio-option">
-    	<input type="radio" name="attendance" id="attendance" value="Absent"> Absent
+    	<input type="radio" name="attendance" id="attendanceabsent" value="Absent"> Absent
   </label>
   <span class="field-error" id="attendanceError"></span>
   
