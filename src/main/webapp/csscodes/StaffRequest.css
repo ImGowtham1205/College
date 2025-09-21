@@ -102,31 +102,33 @@ body {
 /* Sidebar */
 .sidebar {
 	position: fixed;
-	top: 60px;
-	left: 0;
-	width: 0;
-	height: calc(100% - 60px);
-	background: linear-gradient(180deg, #004080, #00264d);
-	overflow-x: hidden;
-	transition: width 0.4s ease;
-	z-index: 1100;
-	padding-top: 20px;
-	box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
-	border-top: 2px solid #003366;
+    top: 0;
+    left: -100%; /* hidden by default */
+    width: 220px; /* slightly smaller for mobile */
+    max-width: 80%; /* don't exceed 80% of screen width */
+    height: 100%;
+    background: linear-gradient(180deg, #004080, #00264d);
+    overflow-y: auto;
+    transition: left 0.3s ease;
+    z-index: 1500;
+    padding-top: 60px; /* space for navbar */
+    box-shadow: 2px 0 12px rgba(0,0,0,0.4);
+    word-wrap: break-word; /* wrap long text */
 }
 
 .sidebar.active {
-	width: 250px;
+	left: 0; /* slide in */
 }
 
 .sidebar a {
 	display: block;
-	padding: 14px 25px;
-	font-size: 16px;
-	color: #fff;
-	text-decoration: none;
-	border-left: 3px solid transparent;
-	transition: background 0.3s, border-color 0.3s;
+    padding: 14px 16px; /* reduce padding slightly */
+    font-size: 16px;
+    color: #fff;
+    text-decoration: none;
+    white-space: normal; /* allow wrapping */
+    word-break: break-word;
+    border-left: 3px solid transparent;
 }
 
 .sidebar a:hover {
@@ -136,15 +138,14 @@ body {
 
 .sidebar .closebtn {
 	position: absolute;
-	top: 10px;
-	right: 15px;
-	font-size: 22px;
-	background: #e74c3c;
-	color: white;
-	border-radius: 50%;
-	padding: 2px 8px;
-	cursor: pointer;
-	transition: background 0.3s;
+    top: 10px;
+    right: 15px;
+    font-size: 22px;
+    background: #e74c3c;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 8px;
+    cursor: pointer;
 }
 
 body.sidebar-open::after {
@@ -385,6 +386,29 @@ h3 {
     text-align: left;
     color: #2c3e50;
   }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 80%; /* sidebar covers 70% of screen */
+        padding-top: 60px;
+    }
+
+    .sidebar a {
+        font-size: 14px;
+        padding: 10px 12px;
+    }
+    
+    .hamburger {
+        font-size: 20px;
+        padding: 5px 8px;
+    }
+
+    .logout-btn {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
 }
 
 @media ( max-width : 480px) {

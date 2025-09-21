@@ -9,159 +9,158 @@
 }
 
 body {
-  	background-color: #f4f6f8;
-	color: #333;
-	transition: filter 0.3s ease;
-	position: relative;
-	overflow-x: hidden;
+  background-color: #f4f6f8;
+  color: #333;
+  transition: filter 0.3s ease;
+  position: relative;
+  overflow-x: hidden;
 }
 
 /* Navbar Styling */
 .navbar {
-  	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	background-color: #004080;
-	color: white;
-	padding: 12px 25px;
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	z-index: 1200;
-	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #004080;
+  color: white;
+  padding: 12px 25px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1200;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .navbar h2 {
-   color: white;
-   font-size: 20px;
-   margin: 0;  
-   overflow: hidden;
-   text-overflow: ellipsis;
+  color: white;
+  font-size: 20px;
+  margin: 0;  
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Left nav */
-.nav-left{
-   display: flex;
-   align-items: center;
-   gap: 15px;
-   flex-wrap: nowrap;  
-   white-space: nowrap; 
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: nowrap;  
+  white-space: nowrap; 
 }
 
 .logout-btn {
-	background: #ff3333;
-	color: white;
-	border: none;
-	padding: 8px 16px;
-	border-radius: 6px;
-	cursor: pointer;
-	font-weight: 500;
-	position: relative;
-	overflow: hidden;
-	transition: all 0.3s ease, background 0.3s ease;
-	white-space: nowrap;
+  background: #ff3333;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease, background 0.3s ease;
+  white-space: nowrap;
 }
 
 .logout-btn::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2),transparent);
-    transition: all 0.5s ease;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: all 0.5s ease;
 }
 
 .logout-btn:hover::after {
-    left: 100%;
+  left: 100%;
 }
 
 .logout-btn:hover {
-    background: linear-gradient(90deg, #ff4d4d, #ff1a1a);
-    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
-    transform: scale(1.05);
+  background: linear-gradient(90deg, #ff4d4d, #ff1a1a);
+  box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
+  transform: scale(1.05);
 }
 
 .hamburger {
-	font-size: 22px;
-	background: none;
-	border: none;
-	color: white;
-	cursor: pointer;
-	padding: 6px 10px;
-	z-index: 1300;
+  font-size: 22px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 6px 10px;
+  z-index: 1300;
 }
 
 .hamburger:hover {
-	transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 
 /* Sidebar */
 .sidebar {
-	position: fixed;
-	top: 60px;
-	left: 0;
-	width: 0;
-	height: calc(100% - 60px);
-	background: linear-gradient(180deg, #004080, #00264d);
-	overflow-x: hidden;
-	transition: width 0.4s ease;
-	z-index: 1100;
-	padding-top: 20px;
-	box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
-	border-top: 2px solid #003366;
+  position: fixed;
+  top: 0; /* start from top to cover navbar too */
+  left: -100%; /* hidden by default */
+  width: 250px; /* width of the drawer */
+  height: 100%;
+  background: linear-gradient(180deg, #004080, #00264d);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch; /* smooth scrolling for iOS */
+  transition: left 0.3s ease;
+  z-index: 1500; /* above everything */
+  padding-top: 60px; /* leave space for navbar */
+  box-shadow: 2px 0 12px rgba(0,0,0,0.4);
 }
 
 .sidebar.active {
-	width: 250px;
+  left: 0; /* slide in */
 }
 
 .sidebar a {
-	display: block;
-	padding: 14px 25px;
-	font-size: 16px;
-	color: #fff;
-	text-decoration: none;
-	border-left: 3px solid transparent;
-	transition: background 0.3s, border-color 0.3s;
+  display: block;
+  padding: 14px 20px;
+  font-size: 16px;
+  color: #fff;
+  text-decoration: none;
+  white-space: normal; /* wrap text */
+  word-break: break-word;
+  border-left: 3px solid transparent;
 }
 
 .sidebar a:hover {
-	background: rgba(255, 255, 255, 0.1);
-	border-left: 3px solid #00bfff;
+  background: rgba(255, 255, 255, 0.1);
+  border-left: 3px solid #00bfff;
 }
 
 .sidebar .closebtn {
-	position: absolute;
-	top: 10px;
-	right: 15px;
-	font-size: 22px;
-	background: #e74c3c;
-	color: white;
-	border-radius: 50%;
-	padding: 2px 8px;
-	cursor: pointer;
-	transition: background 0.3s;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 22px;
+  background: #e74c3c;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 8px;
+  cursor: pointer;
 }
 
 body.sidebar-open::after {
   content: "";
   position: fixed;
-  top: 60px; /* below navbar */
+  top: 0;
   left: 0;
   width: 100%;
-  height: calc(100% - 60px);
-  background: rgba(0, 0, 0, 0.3); 
-  backdrop-filter: blur(6px);      
-  z-index: 900;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  z-index: 1400; /* below sidebar */
 }
 
 /* Container for form */
 .container {
   max-width: 500px;
-  margin: 100px auto 40px auto;  
+  margin: 120px auto 40px auto; /* increased top margin to avoid navbar overlap */
   background-color: white;
   padding: 30px;
   border-radius: 12px;
@@ -183,7 +182,6 @@ body.sidebar-open::after {
 .error-msg {
   color: #c0392b;
 }
-
 
 /* Headings */
 h2 {
@@ -234,7 +232,6 @@ select {
   to { opacity: 1; transform: translateY(0); }
 }
 
-
 button {
   background-color: #004080;
   color: white;
@@ -265,16 +262,23 @@ button:hover {
     gap: 10px;
   }
 
-  .logout-form {
-    width: 100%;
-  }
-
   .logout-btn {
     width: 100%;
   }
 
   .container {
     width: 90%;
-    margin: 20px auto;
+    margin: 140px auto 20px auto; /* extra top margin on mobile */
+  }
+
+  /* Sidebar full width for mobile */
+  .sidebar {
+    width: 100%;
+    padding-top: 70px;
+  }
+
+  .sidebar a {
+    font-size: 18px;
+    padding: 16px;
   }
 }
