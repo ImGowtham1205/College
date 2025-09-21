@@ -1,399 +1,413 @@
-@charset "UTF-8"; 
-
-/* Reset & Base Styles */
+/* ================= Global Reset ================= */
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
 body {
-	background-color: #f0f2f5;
-} 
+    background-color: #f0f2f5;
+}
 
-/* Navigation Bar*/
+/* ================= Navigation Bar ================= */
 nav {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	background-color: #2c3e50;
-	padding: 12px 25px;
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100vw;
-	height: 70px;
-	z-index: 1001;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-	border-bottom-left-radius: 8px;
-	border-bottom-right-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #2c3e50;
+    padding: 12px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    z-index: 1001;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 
 .nav-left-group {
-	display: flex;
-	align-items: center;
-	gap: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .nav-left {
-	color: white;
-	font-size: 1.3rem;
-	font-weight: bold;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
 .menu-toggle {
-	font-size: 1.8rem;
-	color: white;
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	line-height: 1;
-	transition: transform 0.3s ease;
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
 }
 
 .menu-toggle:hover {
-	transform: rotate(90deg);
-} 
+    transform: rotate(90deg);
+}
 
-/* Logout Button */
 .logout-form {
-	margin-left: auto;
+    margin-left: auto;
 }
 
 .logout-btn {
-  padding: 10px 20px;
-  background-color: #e74c3c;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 0.95rem;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+    padding: 8px 15px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .logout-btn:hover {
-	background-color: #c0392b;
-  	transform: scale(1.05);
-} 
+    background-color: #c0392b;
+    transform: scale(1.05);
+}
 
-/* Sidebar Menu*/
+/* ================= Sidebar ================= */
 .sidebar {
-	position: fixed;
-	top: 75px;
-	left: -240px;
-	width: 240px;
-	height: calc(100% - 75px);
-	background-color: #34495e;
-	display: flex;
-	flex-direction: column;
-	padding-top: 20px;
-	transition: left 0.35s ease;
-	z-index: 1000;
-	overflow-y: auto;
-	border-top-right-radius: 10px;
-	border-bottom-right-radius: 10px;
-	box-shadow: 3px 0 15px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 70px;
+    left: -220px;
+    width: 220px;
+    height: calc(100% - 70px);
+    background-color: #34495e;
+    display: flex;
+    flex-direction: column;
+    padding-top: 15px;
+    transition: left 0.35s ease;
+    z-index: 1000;
+    overflow-y: auto;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 .sidebar.open {
-	left: 0;
+    left: 0;
 }
 
 .sidebar a {
-	position: relative;
-	padding: 15px 25px;
-	text-decoration: none;
-	color: white;
-	font-size: 1rem;
-	margin-bottom: 5px;
-	border-radius: 8px;
-	transition: color 0.3s ease, padding-left 0.3s ease;
-}
-
-.sidebar a::after {
-	content: '';
-	position: absolute;
-	left: 25px;
-	bottom: 5px;
-	width: 0%;
-	height: 2px;
-	background-color: #1abc9c;
-	transition: width 0.3s ease;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    margin-bottom: 5px;
+    border-radius: 8px;
+    transition: color 0.3s ease, padding-left 0.3s ease;
 }
 
 .sidebar a:hover {
-	color: #1abc9c;
-	padding-left: 35px;
-}
-
-.sidebar a:hover::after {
-	width: calc(100% - 50px);
+    color: #1abc9c;
+    padding-left: 30px;
 }
 
 .sidebar a.active {
-	background-color: #1abc9c;
-	font-weight: bold;
-} 
+    background-color: #1abc9c;
+    font-weight: bold;
+}
 
-/* Overlay background */
+/* ================= Overlay ================= */
 #overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.3);
-  display: none;
-  z-index: 900;
-  transition: background 0.3s ease;
-} 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.3);
+    display: none;
+    z-index: 900;
+    transition: background 0.3s ease;
+}
 
+/* ================= Success Message ================= */
 .success-msg {
-	color: green;
-	text-align: center;
-	margin-top: 80px; /* below navbar */
-	font-weight: bold;
-	font-size: 16px;
-	transition: opacity 0.5s ease;
-} 
+    color: green;
+    text-align: center;
+    margin-top: 90px;
+    font-weight: bold;
+    font-size: 16px;
+    transition: opacity 0.5s ease;
+}
 
+/* ================= Form Container ================= */
 .form-wrapper {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 40px 10px;
-} 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 10px;
+}
 
-/* Form Container */
 .register-container {
-	background-color: #ffffff;
-	padding: 40px;
-	border-radius: 12px;
-	box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-	width: 100%;
-	max-width: 520px;
-	margin-top: 30px;
-	transition: transform 0.3s ease;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    margin-top: 30px;
+    transition: transform 0.3s ease;
 }
 
 .register-container:hover {
-	transform: translateY(-3px);
+    transform: translateY(-2px);
 }
 
 h2 {
-	text-align: center;
-	margin-bottom: 30px;
-	color: #2c3e50;
-	font-size: 28px;
-} 
+    text-align: center;
+    margin-bottom: 25px;
+    color: #2c3e50;
+    font-size: 24px;
+}
 
 /* Input Group */
 .input-group {
-	margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .input-group label {
-	display: block;
-	margin-bottom: 10px;
-	font-weight: 600;
-	color: #34495e;
-	font-size: 16px;
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #34495e;
+    font-size: 15px;
 }
 
 .input-group textarea {
-	width: 100%;
-	padding: 12px;
-	border: 1px solid #ccc;
-	border-radius: 8px;
-	font-size: 15px;
-	resize: vertical;
-	transition: border-color 0.3s, box-shadow 0.3s;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.4;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .input-group textarea:focus {
-	border-color: #28a745;
-	box-shadow: 0 0 6px rgba(40, 167, 69, 0.4);
-	outline: none;
-} 
+    border-color: #28a745;
+    box-shadow: 0 0 6px rgba(40, 167, 69, 0.4);
+    outline: none;
+}
 
 /* Submit Button */
 button[type="submit"] {
-	width: 100%;
-	padding: 12px;
-	background-color: #28a745;
-	color: #fff;
-	border: none;
-	border-radius: 8px;
-	font-size: 17px;
-	font-weight: bold;
-	cursor: pointer;
-	transition: background 0.3s, transform 0.2s ease-in-out;
+    width: 100%;
+    padding: 12px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s ease-in-out;
 }
 
 button[type="submit"]:hover {
-	background-color: #218838;
-	transform: scale(1.02);
-} 
+    background-color: #218838;
+    transform: scale(1.02);
+}
 
-/* Character Counter */
+/* Character Count & Error */
 .char-count {
-	display: block;
-	font-size: 13px;
-	margin-top: 5px;
-	color: #555;
-	text-align: right;
+    display: block;
+    font-size: 13px;
+    margin-top: 5px;
+    color: #555;
+    text-align: right;
 }
 
 .char-count.warning {
-	color: red;
-	font-weight: bold;
-} 
-
-/* Error State */
-textarea.error {
-	border-color: red !important;
-	box-shadow: 0 0 6px rgba(255, 0, 0, 0.4);
-} 
-
-/* Error Message */
-.error-msg {
-	color: red;
-	font-size: 14px;
-	margin-top: 5px;
-	display: block;
-} 
-
-/* Shake Animation */
-@keyframes shake {
-  0% { transform: translateX(0); }
-  20% { transform: translateX(-6px); }
-  40% { transform: translateX(6px); }
-  60% { transform: translateX(-6px); }
-  80% { transform: translateX(6px); }
-  100% { transform: translateX(0); }
+    color: red;
+    font-weight: bold;
 }
 
-textarea.shake { 
-	animation: shake 0.3s; 
+textarea.error {
+    border-color: red !important;
+    box-shadow: 0 0 6px rgba(255,0,0,0.4);
+}
+
+.error-msg {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
 }
 
 /* ================= Request History Table ================= */
 table {
-  width: 90%;
-  max-width: 900px;
-  margin: 30px auto;
-  border-collapse: collapse;
-  background-color: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 100%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
 
 table thead {
-  background-color: #2c3e50;
-  color: #fff;
-  font-size: 16px;
+    background-color: #2c3e50;
+    color: #fff;
+    font-size: 15px;
 }
 
 table th, table td {
-  padding: 14px 18px;
-  text-align: left;
-  border-bottom: 1px solid #e0e0e0;
-  font-size: 15px;
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 14px;
 }
 
 table tbody tr:nth-child(even) {
-  background-color: #f9f9f9;
+    background-color: #f9f9f9;
 }
 
 table tbody tr:hover {
-  background-color: #f1f7ff;
-  transition: background 0.3s ease;
+    background-color: #f1f7ff;
 }
 
-/* Status column styling */
 table td:last-child {
-  font-weight: bold;
-  color: #1abc9c;
-}
-
-h3 {
-  text-align: center;
-  margin-top: 25px;
-  color: #34495e;
-  font-size: 20px;
-}
-	
- /* Responsive Design */
-@media ( max-width : 768px) {
-	.register-container {
-		padding: 25px;
-		margin: 20px;
-	}
-	h2 {
-		font-size: 24px;
-	}
-	.input-group label {
-		font-size: 15px;
-	}
-	button[type="submit"] {
-		font-size: 15px;
-		padding: 10px;
-	}
-	table, thead, tbody, th, td, tr {
-    display: block;
-    width: 100%;
-  }
-
-  table thead {
-    display: none; /* hide header on small screens */
-  }
-
-  table tr {
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background: #fff;
-    padding: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  }
-
-  table td {
-    border: none;
-    position: relative;
-    padding-left: 50%;
-    text-align: right;
-    font-size: 14px;
-  }
-
-  table td::before {
-    content: attr(data-label);
-    position: absolute;
-    left: 15px;
     font-weight: bold;
-    text-align: left;
-    color: #2c3e50;
-  }
+    color: #1abc9c;
 }
 
-@media ( max-width : 480px) {
-	.register-container {
-		padding: 20px;
-	}
-	h2 {
-		font-size: 20px;
-	}
-	.input-group label {
-		font-size: 14px;
-	}
-	.input-group textarea {
-		font-size: 14px;
-		padding: 10px;
-	}
-	button[type="submit"] {
-		font-size: 14px;
-		padding: 10px;
-	}
+/* ================= Mobile Sidebar Improvements ================= */
+@media (max-width: 768px) {
+    /* Make sidebar wider and readable */
+    .sidebar {
+        width: 220px; /* default for tablets */
+        left: -220px; /* hidden initially */
+        padding-top: 20px;
+    }
+
+    .sidebar.open {
+        left: 0;
+    }
+
+    .sidebar a {
+        padding: 15px 20px;
+        font-size: 15px;
+        margin-bottom: 5px;
+    }
+
+    .sidebar a::after {
+        left: 20px;
+    }
+}
+
+
+/* Responsive Table for Small Devices */
+@media (max-width: 600px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+        width: 100%;
+    }
+
+    table thead {
+        display: none;
+    }
+
+    table tr {
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        background: #fff;
+        padding: 12px 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    table td {
+        border: none;
+        padding-left: 50%;
+        text-align: right;
+        position: relative;
+        font-size: 13px;
+    }
+
+    table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 15px;
+        width: 45%;
+        text-align: left;
+        font-weight: bold;
+        color: #2c3e50;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+}
+
+/* Extra small screens (phones <480px) */
+@media (max-width: 480px) {
+    .sidebar {
+        width: 240px; /* wider on small screens */
+        left: -240px;
+        font-size: 14px;
+        padding-top: 25px;
+        overflow-y: auto; /* scroll if links exceed screen height */
+    }
+
+    .sidebar a {
+        padding: 12px 20px;
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+
+    /* Highlight active link clearly */
+    .sidebar a.active {
+        font-size: 15px;
+    }
+
+    /* Sidebar shadow for clarity */
+    .sidebar {
+        box-shadow: 3px 0 15px rgba(0,0,0,0.2);
+    }
+
+    /* Adjust overlay when sidebar is open */
+    #overlay {
+        display: block; /* show overlay when sidebar opens */
+    }
+}
+
+/* Extra small devices (<400px) */
+@media (max-width: 400px) {
+    .register-container {
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    .input-group label,
+    .input-group textarea {
+        font-size: 13px;
+    }
+
+    button[type="submit"] {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    table td {
+        font-size: 12px;
+        padding-left: 45%;
+    }
+
+    table td::before {
+        font-size: 12px;
+    }
 }

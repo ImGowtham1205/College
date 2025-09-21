@@ -82,6 +82,7 @@
     </div>
 
     <!-- Attendance Table -->
+<div class="table-wrapper">
     <table>
         <thead>
             <tr>
@@ -108,7 +109,7 @@
         </tbody>
     </table>
 </div>
-
+</div>    
 <script src="jscodes/Menu.js"></script>
 </body>
 </html>

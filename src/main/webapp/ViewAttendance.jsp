@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.DaoClass.*,java.util.*"%>
 <!DOCTYPE html>
@@ -114,7 +115,7 @@
                 else if (total < 50) percentClass = "low";   
         %>
             <div class="info-item" onclick="viewAttendance('<%= cname %>', '<%= ccode %>')">
-                <h5><%= cname %></h5>
+                <h1><%= cname %></h1>
                 <p>Course Code : <%= ccode %></p>
                 <p>Total Hours Attended : <%= present1 %></p>
                 <p>Total Hours Held : <%= attend1 %></p>
