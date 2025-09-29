@@ -30,7 +30,7 @@ public class ChangePassword {
 		
 		//Code For Change Student Password
 		try {
-				Class.forName("com.mysql.jdbc.Driver");
+				Class.forName("com.mysql.cj.jdbc.Driver");
 				con=DriverManager.getConnection(url, user, pass);
 				con.setAutoCommit(false);
 				String qry="update "+table+" set Pass=? where Rollno=?;";
@@ -75,7 +75,7 @@ public class ChangePassword {
 		
 		//Code For Change HOD Password In Hod Table
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			con=DriverManager.getConnection(url, user, pass);
 			con.setAutoCommit(false);
 			int dno=fh.fetchDno(id);
@@ -137,7 +137,7 @@ public class ChangePassword {
 		
 		//Code For Change Staff Password
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			con=DriverManager.getConnection(url, user, pass);
 			con.setAutoCommit(false);
 			FetchStaff fs=new FetchStaff();
@@ -194,7 +194,7 @@ public class ChangePassword {
 			
 			//Code For Change Admin Password In admin_staff Table
 			try {
-				Class.forName("com.mysql.jdbc.Driver");
+				Class.forName("com.mysql.cj.jdbc.Driver");
 				con=DriverManager.getConnection(url, user, pass);
 				con.setAutoCommit(false);
 				int dno=fs.fetchDno(id);

@@ -25,7 +25,7 @@ public class FetchAssignedStaff {
     	
     	//Code For To Get Staffs Who Are Handle Subject For 3rd Year
     	try {
-    		Class.forName("com.mysql.jdbc.Driver");
+    		Class.forName("com.mysql.cj.jdbc.Driver");
     		con=DriverManager.getConnection(url, user, pass);
     		
     		//Getting Department Number From fetchDno()
@@ -86,7 +86,7 @@ public class FetchAssignedStaff {
     	
     	//Code For To Get Staffs Who Are Handle Subject For 2nd Year
     	try {
-    		Class.forName("com.mysql.jdbc.Driver");
+    		Class.forName("com.mysql.cj.jdbc.Driver");
     		con=DriverManager.getConnection(url, user, pass);
     		
     		//Getting Department Number From fetchDno()
@@ -147,7 +147,7 @@ public class FetchAssignedStaff {
     	
     	//Code For To Get Staffs Who Are Handle Subject For 3rd Year
     	try {
-    		Class.forName("com.mysql.jdbc.Driver");
+    		Class.forName("com.mysql.cj.jdbc.Driver");
     		con=DriverManager.getConnection(url, user, pass);
     		
     		//Getting Department Number From fetchDno()
@@ -208,7 +208,7 @@ public class FetchAssignedStaff {
     	
     	//Code For To Get Staffs Who Are Handle Subject For 3rd Year
     	try {
-    		Class.forName("com.mysql.jdbc.Driver");
+    		Class.forName("com.mysql.cj.jdbc.Driver");
     		con=DriverManager.getConnection(url, user, pass);
     		
     		//Getting Department Number From fetchDno()
@@ -264,7 +264,7 @@ public class FetchAssignedStaff {
     	
     	//Code For To Get Staffs Who Are Handle Subject For 2nd Year
     	try {
-    		Class.forName("com.mysql.jdbc.Driver");
+    		Class.forName("com.mysql.cj.jdbc.Driver");
     		con=DriverManager.getConnection(url, user, pass);
     		
     		//Getting Department Number From fetchDno()
@@ -320,7 +320,7 @@ public class FetchAssignedStaff {
     	
     	//Code For To Get Staffs Who Are Handle Subject For 1st Year
     	try {
-    		Class.forName("com.mysql.jdbc.Driver");
+    		Class.forName("com.mysql.cj.jdbc.Driver");
     		con=DriverManager.getConnection(url, user, pass);
     		
     		//Getting Department Number From fetchDno()

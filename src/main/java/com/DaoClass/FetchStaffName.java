@@ -24,7 +24,7 @@ public class FetchStaffName {
     	
     	//Code For To Get All Staff Name From The Department
     	try {
-    		Class.forName("com.mysql.jdbc.Driver");
+    		Class.forName("com.mysql.cj.jdbc.Driver");
     		con=DriverManager.getConnection(url, user, pass);
     		
     		//Getting Department Number From fetchDno() Method

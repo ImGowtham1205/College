@@ -23,7 +23,7 @@ public class CheckGivenTime {
 		PreparedStatement ps=null;
 		ResultSet rs=null;
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			con=DriverManager.getConnection(url, user, pass);
 			
 			//Getting Department Number From fetchDno() Method Using Rollno For To Get The Argument For getTable() To Fetch The Time
@@ -67,7 +67,7 @@ public class CheckGivenTime {
     	PreparedStatement ps=null;
     	ResultSet rs=null;
     	try {
-    		Class.forName("com.mysql.jdbc.Driver");
+    		Class.forName("com.mysql.cj.jdbc.Driver");
     		con=DriverManager.getConnection(url, user, pass);
     		
     		//Getting Department Number From fetchDno() 
@@ -113,7 +113,7 @@ public class CheckGivenTime {
 	    	PreparedStatement ps=null;
 	    	ResultSet rs=null;
 	    	try {
-	    		Class.forName("com.mysql.jdbc.Driver");
+	    		Class.forName("com.mysql.cj.jdbc.Driver");
 	    		con=DriverManager.getConnection(url, user, pass);
 	    		
 	    		//Getting Department Number From fetchDno() 
@@ -159,7 +159,7 @@ public class CheckGivenTime {
 	    	PreparedStatement ps=null;
 	    	ResultSet rs=null;
 	    	try {
-	    		Class.forName("com.mysql.jdbc.Driver");
+	    		Class.forName("com.mysql.cj.jdbc.Driver");
 	    		con=DriverManager.getConnection(url, user, pass);
 	    		
 	    		//Getting Department Number From fetchDno() 

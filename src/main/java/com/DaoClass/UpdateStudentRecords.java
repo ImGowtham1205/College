@@ -21,7 +21,7 @@ public class UpdateStudentRecords {
 		 
 		 //Code For Update Selected Student Record
 	        try {
-	        	Class.forName("com.mysql.jdbc.Driver");
+	        	Class.forName("com.mysql.cj.jdbc.Driver");
 	            con = DriverManager.getConnection(url, user, pass);
 	            con.setAutoCommit(false);
 	            String qry = "update " + table + " set Sname=?,Email=?,Blood_Group=?,phoneno=?,Address=?,Semester=?,Batch_Year=? where Rollno=?";

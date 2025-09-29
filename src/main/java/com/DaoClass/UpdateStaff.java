@@ -26,7 +26,7 @@ public class UpdateStaff {
 		//Creating Object For FetchStaff Class
 		FetchStaff fh=new FetchStaff();
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			con=DriverManager.getConnection(url, user, pass);
 			con.setAutoCommit(false);
 			    	

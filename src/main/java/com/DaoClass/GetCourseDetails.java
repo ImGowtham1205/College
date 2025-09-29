@@ -39,7 +39,7 @@ public class GetCourseDetails {
     	
     	//Code For To Get The Department Number For The Given Course Code
     	try {
-    		Class.forName("com.mysql.jdbc.Driver");
+    		Class.forName("com.mysql.cj.jdbc.Driver");
     		con=DriverManager.getConnection(url, user, pass);
     		String tables[]= {"Bcom_General_Course","Bcom_cs_Course","Bcom_AF_Course","Bcom_BM_Course","Bcom_ISM_Course","Bcom_CA_Course","BBA_Course","Bsc_cs_Course","BCA_Course"};
     		for(String table:tables) {
@@ -83,7 +83,7 @@ public class GetCourseDetails {
     PreparedStatement ps=null;
     ResultSet rs=null;
     try {
-    	Class.forName("com.mysql.jdbc.Driver");
+    	Class.forName("com.mysql.cj.jdbc.Driver");
     	con=DriverManager.getConnection(url, user, pass);
     	
     	//Getting Table Name From getTableName() Method
@@ -130,7 +130,7 @@ public class GetCourseDetails {
         PreparedStatement ps=null;
         ResultSet rs=null;
         try {
-        	Class.forName("com.mysql.jdbc.Driver");
+        	Class.forName("com.mysql.cj.jdbc.Driver");
         	con=DriverManager.getConnection(url, user, pass);
         	
         	//Getting Table Name From getTable() Method

@@ -48,7 +48,7 @@ public class FetchStaff {
     	
     	//Code For To Get The Staff Department Number
     	try {
-    		Class.forName("com.mysql.jdbc.Driver");
+    		Class.forName("com.mysql.cj.jdbc.Driver");
     		con=DriverManager.getConnection(url, user, pass);
     		String tables[]= {"Bcom_General_staff","Bcom_cs_staff","Bcom_AF_staff","Bcom_BM_staff","Bcom_ISM_staff","Bcom_CA_staff","BBA_staff","Bsc_Cs_staff","BCA_staff"};
     		for(String table:tables) {
@@ -92,7 +92,7 @@ public class FetchStaff {
     PreparedStatement ps=null;
     ResultSet rs=null;
     try {
-    	Class.forName("com.mysql.jdbc.Driver");
+    	Class.forName("com.mysql.cj.jdbc.Driver");
     	con=DriverManager.getConnection(url, user, pass);
     	
     	//Getting Table Name From getTableName() Method

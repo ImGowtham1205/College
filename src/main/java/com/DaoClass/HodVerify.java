@@ -19,7 +19,7 @@ public class HodVerify {
 		
 		//Code For Check HOD Login Credential
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			con=DriverManager.getConnection(url,user,pass);
 			String qry="select 1 from Hod where Hodid=? and Pass=?";
 			ps=con.prepareStatement(qry);

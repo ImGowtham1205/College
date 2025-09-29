@@ -17,7 +17,7 @@ public class Course {
     	Connection con=null;
     	PreparedStatement ps=null;
     	try {
-    		Class.forName("com.mysql.jdbc.Driver");
+    		Class.forName("com.mysql.cj.jdbc.Driver");
     		con=DriverManager.getConnection(url, user, pass);
     		con.setAutoCommit(false);
     		
@@ -58,7 +58,7 @@ public class Course {
     	Connection con=null;
     	PreparedStatement ps=null;
     	try {
-    		Class.forName("com.mysql.jdbc.Driver");
+    		Class.forName("com.mysql.cj.jdbc.Driver");
     		con=DriverManager.getConnection(url, user, pass);
     		con.setAutoCommit(false);
     		
@@ -99,7 +99,7 @@ public class Course {
     	Connection con=null;
     	PreparedStatement ps=null;
     	try {
-    		Class.forName("com.mysql.jdbc.Driver");
+    		Class.forName("com.mysql.cj.jdbc.Driver");
     		con=DriverManager.getConnection(url, user, pass);
     		con.setAutoCommit(false);
     		

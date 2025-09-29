@@ -21,7 +21,7 @@ public class DeleteStudentRecords {
 		 
 		//Code For To Delete Student Record
 	        try {
-	        	Class.forName("com.mysql.jdbc.Driver");
+	        	Class.forName("com.mysql.cj.jdbc.Driver");
 	            con = DriverManager.getConnection(url, user, pass);
 	            con.setAutoCommit(false);
 	            

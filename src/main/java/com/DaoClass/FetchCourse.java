@@ -24,7 +24,7 @@ public class FetchCourse {
     	
     	//Code For To Get The Subject Details For The Current Semester
     	try {
-    		Class.forName("com.mysql.jdbc.Driver");
+    		Class.forName("com.mysql.cj.jdbc.Driver");
     		con=DriverManager.getConnection(url, user, pass);
     		
     		//Getting Department Number From fetchDno() 
@@ -79,7 +79,7 @@ public class FetchCourse {
     	
     	//Code For To Get The Subject Details For The Given Semester
     	try {
-    		Class.forName("com.mysql.jdbc.Driver");
+    		Class.forName("com.mysql.cj.jdbc.Driver");
     		con=DriverManager.getConnection(url, user, pass);
     		
     		//Getting Department Number From fetchDno()
@@ -136,7 +136,7 @@ public class FetchCourse {
     	
     	//Code For To Get The Subject Details For All Semseter
     	try {
-    		Class.forName("com.mysql.jdbc.Driver");
+    		Class.forName("com.mysql.cj.jdbc.Driver");
     		con=DriverManager.getConnection(url, user, pass);
     		
     		//Getting Department Number From fetchDno()

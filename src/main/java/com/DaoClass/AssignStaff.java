@@ -26,7 +26,7 @@ public class AssignStaff {
     	PreparedStatement ps=null;
     	PreparedStatement ps1=null;
     	try {
-    		Class.forName("com.mysql.jdbc.Driver");
+    		Class.forName("com.mysql.cj.jdbc.Driver");
     		con=DriverManager.getConnection(url, user, pass);
     		con.setAutoCommit(false);
     		
@@ -103,7 +103,7 @@ public class AssignStaff {
     	ResultSet rs=null;
     	String table=getAssignedStaffTable(dno,sem);
     	try {
-    		Class.forName("com.mysql.jdbc.Driver");
+    		Class.forName("com.mysql.cj.jdbc.Driver");
     		con=DriverManager.getConnection(url, user, pass);
     		String qry="select Subject_name from "+table+" where subject_code=?;";
     		ps=con.prepareStatement(qry);
@@ -148,7 +148,7 @@ public class AssignStaff {
     	ResultSet rs=null;
     	String table=getAssignedStaffTable(dno,sem);
     	try {
-    		Class.forName("com.mysql.jdbc.Driver");
+    		Class.forName("com.mysql.cj.jdbc.Driver");
     		con=DriverManager.getConnection(url, user, pass);
     		String qry="select Staffid from "+table+" where Staffid=?;";
     		ps=con.prepareStatement(qry);

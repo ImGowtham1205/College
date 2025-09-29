@@ -20,7 +20,7 @@ public class Percentage {
     	PreparedStatement ps=null;
     	ResultSet rs=null;
     	try {
-    		Class.forName("com.mysql.jdbc.Driver");
+    		Class.forName("com.mysql.cj.jdbc.Driver");
     		con=DriverManager.getConnection(url, user, pass);
     		
     		//Getting Department Number & Semester By Calling fetchDno() & fetchSem() Method Passing Argument As Rollno To The Method
@@ -66,7 +66,7 @@ public class Percentage {
     	PreparedStatement ps=null;
     	ResultSet rs=null;
     	try {
-    		Class.forName("com.mysql.jdbc.Driver");
+    		Class.forName("com.mysql.cj.jdbc.Driver");
     		con=DriverManager.getConnection(url, user, pass);
     		
     		//Getting Department Number & Semester By Calling fetchDno() & fetchSem() Method Passing Argument As Rollno To The Method
@@ -112,7 +112,7 @@ public class Percentage {
 	    	PreparedStatement ps=null;
 	    	ResultSet rs=null;
 	    	try {
-	    		Class.forName("com.mysql.jdbc.Driver");
+	    		Class.forName("com.mysql.cj.jdbc.Driver");
 	    		con=DriverManager.getConnection(url, user, pass);
 	    		
 	    		//Getting Department Number & Semester By Calling fetchDno() & fetchSem() Method Passing Argument As Rollno To The Method
@@ -159,7 +159,7 @@ public class Percentage {
 	    	PreparedStatement ps=null;
 	    	ResultSet rs=null;
 	    	try {
-	    		Class.forName("com.mysql.jdbc.Driver");
+	    		Class.forName("com.mysql.cj.jdbc.Driver");
 	    		con=DriverManager.getConnection(url, user, pass);
 	    		
 	    		//Getting Department Number & Semester By Calling fetchDno() & fetchSem() Method Passing Argument As Rollno To The Method

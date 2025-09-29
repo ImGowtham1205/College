@@ -22,7 +22,7 @@ public class DeleteStaff {
 		//Creating Object For FetchStaff Class
 		FetchStaff fs=new FetchStaff();
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			con=DriverManager.getConnection(url, user, pass);
 			con.setAutoCommit(false);
 			

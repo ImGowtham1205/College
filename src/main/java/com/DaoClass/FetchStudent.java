@@ -67,7 +67,7 @@ public class FetchStudent {
         PreparedStatement ps=null;
         ResultSet rs=null;
         try {
-        	Class.forName("com.mysql.jdbc.Driver");
+        	Class.forName("com.mysql.cj.jdbc.Driver");
         	con=DriverManager.getConnection(url, user, pass);
         	
         	for(String table:tables) {
@@ -118,7 +118,7 @@ public class FetchStudent {
         PreparedStatement ps=null;
         ResultSet rs=null;
         try {
-        	Class.forName("com.mysql.jdbc.Driver");
+        	Class.forName("com.mysql.cj.jdbc.Driver");
         	con=DriverManager.getConnection(url, user, pass);
         	
         	for(String table:tables) {
@@ -166,7 +166,7 @@ public class FetchStudent {
         PreparedStatement ps=null;
         ResultSet rs=null;
         try {
-        	Class.forName("com.mysql.jdbc.Driver");
+        	Class.forName("com.mysql.cj.jdbc.Driver");
         	con=DriverManager.getConnection(url, user, pass);
         	
         	//Getting Table Name From getTable() Method
@@ -214,7 +214,7 @@ public class FetchStudent {
         PreparedStatement ps=null;
         ResultSet rs=null;
         try {
-        	Class.forName("com.mysql.jdbc.Driver");
+        	Class.forName("com.mysql.cj.jdbc.Driver");
         	con=DriverManager.getConnection(url, user, pass);
         	
         	//Getting Table Name From getTable() Method

@@ -22,7 +22,7 @@ public class UpdateStaffRecords {
 			
 			//Code For Update Selected Staff Record
 	        try {
-	        	Class.forName("com.mysql.jdbc.Driver");
+	        	Class.forName("com.mysql.cj.jdbc.Driver");
 	            con = DriverManager.getConnection(url, user, pass);
 	            con.setAutoCommit(false);
 	            String qry = "update " + table + " set Sname=?,Email=?,phoneno=?,Desigination=? where staffid=?";

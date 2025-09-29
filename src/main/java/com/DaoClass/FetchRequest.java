@@ -22,7 +22,7 @@ public class FetchRequest {
   	    	
   	    	//Code For Fetching Student Request 
   	    	try {
-  	    		Class.forName("com.mysql.jdbc.Driver");
+  	    		Class.forName("com.mysql.cj.jdbc.Driver");
   	    		con=DriverManager.getConnection(url, user, pass);
   	    		
   	    		//Getting Department Number And Year From fetchDno() & fetchYear() Method
@@ -71,7 +71,7 @@ public class FetchRequest {
   	    	
   	    	//Code For Fetching Staff And HOD Request 
   	    	try {
-  	    		Class.forName("com.mysql.jdbc.Driver");
+  	    		Class.forName("com.mysql.cj.jdbc.Driver");
   	    		con=DriverManager.getConnection(url, user, pass);
   	    		
   	    		//Getting Department Number And Year From fetchDno() & fetchYear() Method
@@ -119,7 +119,7 @@ public class FetchRequest {
     	
     	//Code For Fetching Student Request 
     	try {
-    		Class.forName("com.mysql.jdbc.Driver");
+    		Class.forName("com.mysql.cj.jdbc.Driver");
     		con=DriverManager.getConnection(url, user, pass);
     		
     		//Getting Department Number From fetchDno() Method
@@ -168,7 +168,7 @@ public class FetchRequest {
 	    	
 	    	//Code For Fetching Student Request 
 	    	try {
-	    		Class.forName("com.mysql.jdbc.Driver");
+	    		Class.forName("com.mysql.cj.jdbc.Driver");
 	    		con=DriverManager.getConnection(url, user, pass);
 	    		
 	    		//Getting Department Number From fetchDno() Method
@@ -217,7 +217,7 @@ public class FetchRequest {
 	    	
 	    	//Code For Fetching Student Request 
 	    	try {
-	    		Class.forName("com.mysql.jdbc.Driver");
+	    		Class.forName("com.mysql.cj.jdbc.Driver");
 	    		con=DriverManager.getConnection(url, user, pass);
 	    		
 	    		//Getting Department Number From fetchDno() Method
@@ -266,7 +266,7 @@ public class FetchRequest {
 	    	
 	    	//Code For Fetching Student Request 
 	    	try {
-	    		Class.forName("com.mysql.jdbc.Driver");
+	    		Class.forName("com.mysql.cj.jdbc.Driver");
 	    		con=DriverManager.getConnection(url, user, pass);
 	    		
 	    		//Getting Department Number From fetchDno() Method

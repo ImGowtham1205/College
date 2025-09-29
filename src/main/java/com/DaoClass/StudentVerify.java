@@ -19,7 +19,7 @@ public class StudentVerify {
     	
     	//Code For Check Student Login Credential
         try {
-        	Class.forName("com.mysql.jdbc.Driver");
+        	Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url, user, password1);
             
             //Getting Department Number From fetchDno() Method

@@ -16,7 +16,7 @@ public class DeleteStaffRecords {
 		
 		//Code For Delete Selected Staff Record
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			String table=getStaffTable(dno);
 			con = DriverManager.getConnection(url,user,pass);
 			con.setAutoCommit(false);

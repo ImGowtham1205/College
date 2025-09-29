@@ -21,18 +21,19 @@ public class FetchAttendanceDetails {
     	
     	//Code For To Get The Attendance Details For Particular Student For The Selected Subject
     	try {
-    		Class.forName("com.mysql.jdbc.Driver");
+    		Class.forName("com.mysql.cj.jdbc.Driver");
     		con=DriverManager.getConnection(url, user, pass);
     		
     		//Getting Department Number From fetchDno() 
     		FetchStudent fs=new FetchStudent();
     		int dno=fs.fetchDno(rollno);
     		
-    		//Getting Current Semester From fetchDno() 
-    		PutAttendance pa=new PutAttendance();
-    		int sem=pa.getSem(code, dno);
+    		//Getting Current Semester From fetchSem() 
+    		GetCourseDetails gc=new GetCourseDetails();
+    		int sem=gc.fetchSem(code);
     		
     		//Getting Table Name From getTable() Method
+    		PutAttendance pa=new PutAttendance();
     		String table=pa.getAttendanceTable(dno, sem);
     		String qry = "select Adate, Atime, Staff_name, Attendance from " + table + " where subject_code=? and rollno=?;";
     		ps=con.prepareStatement(qry);

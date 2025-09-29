@@ -23,7 +23,7 @@ public class StaffVerify {
 		
 		//Code For Check Staff Login Credential
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			con=DriverManager.getConnection(url, user, pass);
 			
 			//Getting Department Number From fetchDno Method()

@@ -21,7 +21,7 @@ public class UpdateAttendance {
     	PreparedStatement ps=null;
     	ResultSet rs=null;
     	try {
-    		Class.forName("com.mysql.jdbc.Driver");
+    		Class.forName("com.mysql.cj.jdbc.Driver");
     		con=DriverManager.getConnection(url, user, pass);
     		
     		//Getting Department Number From fetchDno() Method
@@ -71,7 +71,7 @@ public class UpdateAttendance {
     	PreparedStatement ps=null;
     	Statement s=null;
     	try {
-    		Class.forName("com.mysql.jdbc.Driver");
+    		Class.forName("com.mysql.cj.jdbc.Driver");
     		con=DriverManager.getConnection(url, user, pass);
     		con.setAutoCommit(false);
     		//Getting Department Number From fetchDno() 

@@ -19,7 +19,7 @@ public class AdminVerify {
 		
 		//Code For Check Admin Login Credential
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			con=DriverManager.getConnection(url,user,pass);
 			String qry="select 1 from admin_staff where Adminid=? and pass=?";
 			ps=con.prepareStatement(qry);
