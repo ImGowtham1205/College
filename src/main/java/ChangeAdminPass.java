@@ -17,9 +17,10 @@ public class ChangeAdminPass extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 
-	FetchStaff fs=new FetchStaff();
-	ChangePassword cp=new ChangePassword();
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		FetchStaff fs=new FetchStaff();
+		ChangePassword cp=new ChangePassword();
 		
 		//Reads Admin ID From session
 		HttpSession session=request.getSession();

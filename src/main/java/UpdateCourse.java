@@ -15,8 +15,10 @@ public class UpdateCourse extends HttpServlet {
 	//This Servlet Is Use For Update Course Details In The Particular Department
 	private static final long serialVersionUID = 1L;
 
-	Course c=new Course();
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		Course c=new Course();
+		
 		//Read The Values From The Form
 		String code=request.getParameter("code");
 		String subject=request.getParameter("subject");

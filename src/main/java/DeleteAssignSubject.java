@@ -15,8 +15,9 @@ public class DeleteAssignSubject extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	
-	DeleteStaff ds= new DeleteStaff();
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		DeleteStaff ds= new DeleteStaff();
 		
 		//Reads values From the Form
 		String code=request.getParameter("code");

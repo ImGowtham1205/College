@@ -15,8 +15,10 @@ public class StaffLogin extends HttpServlet {
 	//This Servlet Is Use For To Verify The Staff Login credentials 
 	private static final long serialVersionUID = 1L;
      
-	StaffVerify sv=new StaffVerify();
  	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+ 		
+ 		StaffVerify sv=new StaffVerify();
+ 		
  		//Read The Values From The Staff Login Form
  		int id=Integer.parseInt(request.getParameter("id"));
 		String pass=request.getParameter("password");

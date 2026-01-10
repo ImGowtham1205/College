@@ -19,9 +19,10 @@ public class UpdateAssignSubject extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	
-	FetchStaff fs=new FetchStaff();
-	UpdateStaff us=new UpdateStaff();
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		FetchStaff fs=new FetchStaff();
+		UpdateStaff us=new UpdateStaff();
 		
 		//Reads values From the Form
 		String code=request.getParameter("code");

@@ -15,9 +15,10 @@ public class StudentUpdate extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 
-	UpdateStudentRecords usr=new UpdateStudentRecords();
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		UpdateStudentRecords usr=new UpdateStudentRecords();
+		
 		//Reads Values From The Form
 		int rollno=Integer.parseInt(request.getParameter("studentId"));
 		String name=request.getParameter("name");

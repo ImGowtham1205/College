@@ -15,10 +15,12 @@ public class StaffUpdate extends HttpServlet {
 	//This Servlet Is Use For To Update The Selected Staff Record
 	
 	private static final long serialVersionUID = 1L;
-	UpdateStaffRecords usr=new UpdateStaffRecords();
-	FetchStaff fs=new FetchStaff();
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		UpdateStaffRecords usr=new UpdateStaffRecords();
+		FetchStaff fs=new FetchStaff();
+		
 		//Reads Values From The Form
 		int staffid=Integer.parseInt(request.getParameter("staffId"));
 		String name=request.getParameter("staffName");

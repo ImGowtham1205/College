@@ -16,9 +16,11 @@ public class SelectedSem extends HttpServlet {
 	//This Servlet Is Use For To Fetch The Selected Semester Subjects
 	private static final long serialVersionUID = 1L;
 			
-	FetchCourse fc=new FetchCourse();
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Reads Values From The Form
+				
+		FetchCourse fc=new FetchCourse();
+		
 		int sem=Integer.parseInt(request.getParameter("sem"));
 		int year=Integer.parseInt(request.getParameter("year"));
 	

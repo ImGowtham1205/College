@@ -16,9 +16,10 @@ public class ChangePass extends HttpServlet {
 	//This Servlet Is Use For To Change The Student Password
 	private static final long serialVersionUID = 1L;
 
-	ChangePassword cp=new ChangePassword();
-	FetchStudent fs= new FetchStudent();
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		ChangePassword cp=new ChangePassword();
+		FetchStudent fs= new FetchStudent();
 		
 		//Reads Student Rollno From session
 		HttpSession session=request.getSession();

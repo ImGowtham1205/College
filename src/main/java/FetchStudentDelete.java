@@ -15,9 +15,9 @@ public class FetchStudentDelete extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 
-	FetchStudent fs = new FetchStudent();
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		FetchStudent fs = new FetchStudent();
 		
 		//Reads Student Rollno From The Form
 		int rollno = Integer.parseInt(request.getParameter("studentId"));

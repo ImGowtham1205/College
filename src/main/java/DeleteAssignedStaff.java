@@ -16,8 +16,10 @@ public class DeleteAssignedStaff extends HttpServlet {
 	//This Servlet Is Use For To Fetch The Assigned Subjects For Delete Staff In Selected Semester
 	private static final long serialVersionUID = 1L;
 			
-	FetchAssignedStaff fas=new FetchAssignedStaff();
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		FetchAssignedStaff fas=new FetchAssignedStaff();
+		
 		//Reads Values From The Form
 		int sem=Integer.parseInt(request.getParameter("sem"));
 		int year=Integer.parseInt(request.getParameter("year"));

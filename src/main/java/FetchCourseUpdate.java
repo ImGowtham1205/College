@@ -14,10 +14,11 @@ import jakarta.servlet.http.HttpSession;
 //This Servlet Is Use For Admin Entered Course Code In The Form And Click Fetch Button It Fills The Values In The UpdateCourse.jsp
 public class FetchCourseUpdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	GetCourseDetails gc=new GetCourseDetails();
-	
+		
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		GetCourseDetails gc=new GetCourseDetails();
+		
 		//Read Value From The Form
 		String code=request.getParameter("code");
 		

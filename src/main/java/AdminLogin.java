@@ -13,9 +13,10 @@ import jakarta.servlet.http.HttpSession;
 public class AdminLogin extends HttpServlet {
 	//This Servlet Is Use For To Verify The Admin Login credentials 
 	private static final long serialVersionUID = 1L;
-
-	AdminVerify av=new AdminVerify();
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		AdminVerify av=new AdminVerify();
 		
 		//Read The Values From The Admin Login Form
 		int aid=Integer.parseInt(request.getParameter("id"));

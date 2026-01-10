@@ -15,9 +15,11 @@ public class HodLogin extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 
-	HodVerify hv=new HodVerify();
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			//Read The Values From The HOD Login Form
+			
+		HodVerify hv=new HodVerify();
+		
+		//Read The Values From The HOD Login Form
 			int Hodid=Integer.parseInt(request.getParameter("id"));
 			String pass=request.getParameter("password");
 			

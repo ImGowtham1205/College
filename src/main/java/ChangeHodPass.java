@@ -15,10 +15,11 @@ public class ChangeHodPass extends HttpServlet {
 	
 	//This Servlet Is Use For To Change The HOD Password
 	private static final long serialVersionUID = 1L;
-
-	FetchStaff fh=new FetchStaff();
-	ChangePassword cp=new ChangePassword();
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		FetchStaff fh=new FetchStaff();
+		ChangePassword cp=new ChangePassword();
 		
 		//Reads HOD ID From session
 		HttpSession session=request.getSession();

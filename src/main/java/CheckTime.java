@@ -3,7 +3,6 @@ import java.util.List;
 
 import com.DaoClass.Attendance;
 import com.DaoClass.CheckGivenTime;
-import com.DaoClass.FetchStudentRecord;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -17,11 +16,11 @@ public class CheckTime extends HttpServlet {
 	//This Servlet Is Use For To Checks Staff Selected the Valid Time To Mark Thier Attendance
 	private static final long serialVersionUID = 1L;
        
-	FetchStudentRecord fsr=new FetchStudentRecord();
-    CheckGivenTime cgt=new CheckGivenTime();
-
 	@SuppressWarnings("unused")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	    CheckGivenTime cgt=new CheckGivenTime();
+		
 		//Creating HttpSession To Get the Staff ID
 		HttpSession session=request.getSession();
 		int sid=(int) session.getAttribute("sid");

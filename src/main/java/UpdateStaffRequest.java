@@ -13,9 +13,11 @@ public class UpdateStaffRequest extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
        
-	UpdateRequest ur=new UpdateRequest();
   	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-  	//Reads values From the Form
+  		
+  		UpdateRequest ur=new UpdateRequest();
+  		
+  		//Reads values From the Form
   			int id=Integer.parseInt(request.getParameter("id"));
   			int staffid=Integer.parseInt(request.getParameter("staffid"));
   			String status=request.getParameter("status");

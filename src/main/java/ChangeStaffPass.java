@@ -16,9 +16,10 @@ public class ChangeStaffPass extends HttpServlet {
 	//This Servlet Is Use For To Change The Staff Password
 	private static final long serialVersionUID = 1L;
 
-	FetchStaff fs=new FetchStaff();
-	ChangePassword cp=new ChangePassword();
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		FetchStaff fs=new FetchStaff();
+		ChangePassword cp=new ChangePassword();
 		
 		//Reads Staff ID From session
 		HttpSession session=request.getSession();

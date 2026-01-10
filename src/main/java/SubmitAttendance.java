@@ -18,11 +18,11 @@ import jakarta.servlet.http.HttpSession;
 public class SubmitAttendance extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    PutAttendance pa = new PutAttendance();
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+    	 PutAttendance pa = new PutAttendance();
+    	
         HttpSession session = request.getSession();
         int sid = (int) session.getAttribute("sid");
 

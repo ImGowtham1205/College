@@ -15,8 +15,9 @@ public class FetchStaffDelete extends HttpServlet {
 	//This Servlet Is Use For Admin Entered Staff Id In The Form And Click Fetch Button It Fills The Values In The StaffDelete.jsp
 	private static final long serialVersionUID = 1L;
        
-	FetchStaff fs=new FetchStaff();
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		FetchStaff fs=new FetchStaff();
 		
 		//Reads Staff ID From The Form
 		int sid=Integer.parseInt(request.getParameter("staffId"));

@@ -17,10 +17,11 @@ public class AssignSubject extends HttpServlet {
 	//This Servlet Is Use For To Assign The Subject To The Selected Staff 
 	private static final long serialVersionUID = 1L;
 	
-	AssignStaff as=new AssignStaff();
-	FetchStaff fs=new FetchStaff();
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		AssignStaff as=new AssignStaff();
+		FetchStaff fs=new FetchStaff();
+		
 		//Reads Values From The Form
 		String no=request.getParameter("staffname");
 		String subject=request.getParameter("subject");

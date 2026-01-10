@@ -15,8 +15,10 @@ import jakarta.servlet.http.HttpSession;
 public class StaffDelete extends HttpServlet {
 	//This Servlet Is Use For To Delete The Selected Staff Record
 	
-	DeleteStaffRecords dsr=new DeleteStaffRecords();
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		DeleteStaffRecords dsr=new DeleteStaffRecords();
+		
 		//Reads Values From The Form
 		int staffid=Integer.parseInt(request.getParameter("staffId"));
 		int dno=Integer.parseInt(request.getParameter("dno"));

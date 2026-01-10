@@ -15,8 +15,10 @@ public class StudentDelete extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 
-	DeleteStudentRecords dsr=new DeleteStudentRecords();
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		DeleteStudentRecords dsr=new DeleteStudentRecords();
+		
 		//Reads Values From The Form
 		int rollno=Integer.parseInt(request.getParameter("studentId"));
 		int dno=Integer.parseInt(request.getParameter("dno"));

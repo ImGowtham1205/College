@@ -14,9 +14,10 @@ import jakarta.servlet.http.HttpSession;
 public class StudentLogin extends HttpServlet {
 	//This Servlet Is Use For To Verify The HOD Login credentials 
 	
-	StudentVerify s=new StudentVerify();
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			
+			StudentVerify s=new StudentVerify();
+		
 			//Read The Values From The Staff Login Form
 			int id=Integer.parseInt(request.getParameter("id"));
 			String password=request.getParameter("password");

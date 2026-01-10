@@ -14,9 +14,10 @@ public class ChangeAttendance extends HttpServlet {
 	//This Servlet Is Use For To Update Selected Student Attendance
 	private static final long serialVersionUID = 1L;
 
-	UpdateAttendance ua=new UpdateAttendance();
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		UpdateAttendance ua=new UpdateAttendance();
+		
 		//Creating HttpSession To Get the Staff ID
 		HttpSession session=request.getSession();
 		int sid=(int) session.getAttribute("sid");

@@ -15,9 +15,10 @@ import jakarta.servlet.http.HttpSession;
 public class FetchCourseDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	GetCourseDetails gc=new GetCourseDetails();
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		GetCourseDetails gc=new GetCourseDetails();
+		
 		//Read Value From The Form
 		String code=request.getParameter("code");
 		
